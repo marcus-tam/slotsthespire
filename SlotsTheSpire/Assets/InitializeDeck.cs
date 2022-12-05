@@ -10,9 +10,4 @@ public class InitializeDeck : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
