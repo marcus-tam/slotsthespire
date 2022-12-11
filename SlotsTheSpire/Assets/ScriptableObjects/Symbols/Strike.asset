@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eb177b4cec16cd4c8827228c6b25dc0, type: 3}
+  m_Name: Strike
+  m_EditorClassIdentifier: 
+  name: Strike
+  description: Deals 1 damage
+  symbolID: 1
+  artwork: {fileID: 21300000, guid: a9d08c860115a27408d03560c7c62549, type: 3}
+  size:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  damage:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 9229cc79aff68b345b4b66194de31506, type: 2}
+  block:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  heal:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  dot:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  position:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  turn:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
