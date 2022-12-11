@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c23a78829d2cb6447aeade77eb7b83df, type: 3}
+  m_Name: Rat
+  m_EditorClassIdentifier: 
+  unitName: Rat
+  unitArtwork: {fileID: 21300000, guid: 268169ebdc5435b4eb98a9bf22ec8ebb, type: 3}
+  maxHp:
+    UseConstant: 1
+    ConstantValue: 10
+    Variable: {fileID: 0}
+  currentHp:
+    UseConstant: 1
+    ConstantValue: 10
+    Variable: {fileID: 0}
