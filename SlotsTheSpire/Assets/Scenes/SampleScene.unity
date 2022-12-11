@@ -672,7 +672,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb8a4222b7a21ee44aa1a7dc4e1f7115, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deck: []
+  deck:
+  - symbolData: {fileID: 11400000, guid: 3f482f7be8e0786488864116de8d54d6, type: 2}
+    symbolCount: 1
+  - symbolData: {fileID: 11400000, guid: 2965aea4f18bb124d963a5f9a5ff040b, type: 2}
+    symbolCount: 1
+  - symbolData: {fileID: 11400000, guid: 3f482f7be8e0786488864116de8d54d6, type: 2}
+    symbolCount: 1
+  - symbolData: {fileID: 11400000, guid: 3f482f7be8e0786488864116de8d54d6, type: 2}
+    symbolCount: 1
 --- !u!4 &1096077664
 Transform:
   m_ObjectHideFlags: 0
