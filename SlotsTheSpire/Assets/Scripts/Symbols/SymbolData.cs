@@ -11,15 +11,14 @@ public class SymbolData : ScriptableObject
 
     public Sprite artwork;
 
-    public int size;
-    public int damage;
-    public int block;
-    public int heal;
-    public int dot;
-    public int position;
-    public int turn;
 
-    
+    public FloatReference size;
+    public FloatReference damage;
+    public FloatReference block;
+    public FloatReference heal;
+    public FloatReference dot;
+    public FloatReference position;
+    public FloatReference turn;
 
     public void Print(){
         Debug.Log(name +": " + description);
