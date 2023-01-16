@@ -44,9 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19a1f9b8723622a489bc2e9c13fc17fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: {fileID: 11400000, guid: a39a27eada4fe7a4c827abd1faa1eda7, type: 2}
+  maxHP: {fileID: 11400000, guid: 78f8ba0bd23a63e4899717ed85896d2f, type: 2}
+  currentHP: {fileID: 11400000, guid: a39a27eada4fe7a4c827abd1faa1eda7, type: 2}
   unit: {fileID: 11400000, guid: 2e155277fcc016d4f97898b2d99b7452, type: 2}
-  ResetHP: 1
+  ResetHP: 0
   StartingHP:
     UseConstant: 0
     ConstantValue: 0

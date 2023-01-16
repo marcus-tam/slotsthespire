@@ -9,17 +9,14 @@ public class BattleSystem : MonoBehaviour
 
     public GameObject PlayerPrefab;
     public GameObject enemyPrefab;
-    public FloatVariable turn, damage, shield, enemyHealth, enemyMaxHealth;
+    public FloatVariable turn, damage, playerShield, enemyHealth, enemyMaxHealth, playerHealth, floorLevel;
     public BoolVariable isShielded;
-    public EnemyAction enemyA;
-
     public Transform PlayerBattleStation;
     public Transform enemyBattleStation;
 
     public BattleState state;
     public SlotMachine slot;
 
-    // Start is called before the first frame update
     void Start()
     {
         state = BattleState.START;
@@ -29,44 +26,89 @@ public class BattleSystem : MonoBehaviour
 
     void setupBattle()
     {
-        damage.SetValue(0);
-        shield.SetValue(0);
-        turn.SetValue(1);
-        enemyHealth.SetValue(enemyMaxHealth.Value);
         GameObject playerGO = Instantiate(PlayerPrefab);
         GameObject enemyGo = Instantiate(enemyPrefab);
+        resetBattle();
         state = BattleState.PLAYERTURN;
-
     }
 
     public void PlayerTurn() {
-        enemyHealth.ApplyChange(damage, true);
-        shield.ApplyChange(shield.Value);
-        if (shield.Value == 0)
-            isShielded.setFalse();
-        else
-            isShielded.setTrue();
-        
+        turn.ApplyChange(1);
+        dealDamage();
+        if (state == BattleState.WON)
+            return;
+        applyShield();
+        endPlayerTurn();
 
     }
 
     public void OnAttackButton() {
-
         if (state != BattleState.PLAYERTURN)
             return;
         slot.SpinMachine();
-        state = BattleState.ENEMYTURN;
+    }
+
+    public void EnemyTurn() {
+        Debug.Log("shielding for " + playerShield.Value + " before enemy");
+        enemyPrefab.GetComponent<EnemyAction>().PerformAction();
+        if (playerHealth.Value <= 0)
+            Defeat();
+        else
+            endEnemyTurn();           
+    }
+
+    public void dealDamage() {
+        enemyHealth.ApplyChange(damage, true);
+        if (enemyHealth.Value <= 0) 
+            Victory();
+    }
+
+    public void applyShield() {
+        playerShield.ApplyChange(playerShield.Value);
+        if (playerShield.Value == 0)
+            isShielded.setFalse();
+        else
+            isShielded.setTrue();
+    }
+
+    public void endPlayerTurn() {
+
         damage.SetValue(0);
+        state = BattleState.ENEMYTURN;
         EnemyTurn();
     }
 
-    void EnemyTurn() {
-        Debug.Log("shielding for " + shield.Value + " before enemy");
-        enemyA.PerformAction();
+    public void endEnemyTurn() {
         turn.ApplyChange(1.0f);
+        Debug.Log("shielding for " + playerShield.Value + " after enemy");
+        playerShield.SetValue(0);
         state = BattleState.PLAYERTURN;
-        Debug.Log("shielding for " + shield.Value + " after enemy");
-        shield.SetValue(0);
     }
 
+    public void resetBattle() {
+        //enemyMaxHealth.Value = enemyPrefab.GetComponent<UnitHealth>().GetMaxHp(enemyMaxHealth.Value);
+        damage.SetValue(0);
+        playerShield.SetValue(0);
+        turn.SetValue(0);
+        
+    }
+
+    public void Victory() {
+        enemyHealth.SetValue(0);
+        state = BattleState.WON;
+        Debug.Log("You Win");
+        //reward screen
+        //change scene to map
+        //resetBattle();
+    }
+
+    public void Defeat() {
+        playerHealth.SetValue(0);
+        state = BattleState.LOSS;
+        Debug.Log("You Lose");
+        //defeat screen
+        //review deck & stats
+        //main menu & retry
+        //resetBattle();
+    }
 }

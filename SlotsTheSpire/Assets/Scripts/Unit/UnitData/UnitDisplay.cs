@@ -7,9 +7,9 @@ public class UnitDisplay : MonoBehaviour
 {
 
     public UnitData unit;
-    public Text unitName, shieldText;
+    public Text unitName, shieldText, hpText;
     public Image artwork;
-    public FloatVariable shield;
+    public FloatVariable shield, unitHealth;
 
     void Start()
     {
@@ -19,6 +19,7 @@ public class UnitDisplay : MonoBehaviour
 
     void Update() {
         shieldText.text = "" + shield.Value;
+        hpText.text = "" + unitHealth.Value;
     }
 
     public void setHp()
