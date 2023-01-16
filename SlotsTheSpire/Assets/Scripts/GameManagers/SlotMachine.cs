@@ -15,11 +15,9 @@ public class SlotMachine : MonoBehaviour
 
     public void Start() {
         Debug.Log("SlotMachine is starting");
-      
         CopyDeck();
-        SpinMachine();
-
-
+        for (int i = 0; i <= SlotSpace; i++)
+            artworkList[i].sprite = newDeck[i].symbolData.artwork;
     }
 
     public void SpinMachine() {
@@ -31,10 +29,6 @@ public class SlotMachine : MonoBehaviour
             damage.ApplyChange(symbol.symbolData.Damage);
             shield.ApplyChange(symbol.symbolData.Shield);
             Debug.Log("Symbol in slot " + i + " is: " + symbol.symbolData.name);
-        }
-
-        for (int i = 0; i <= SlotSpace; i++)
-        {
             artworkList[i].sprite = newDeck[i].symbolData.artwork;
         }
 
