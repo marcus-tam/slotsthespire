@@ -17,9 +17,4 @@ public class UnitHealth : MonoBehaviour
             HP.SetValue(StartingHP);
     }
 
-    public void OnDamage() 
-    {
-        HP.ApplyChange(unit.damage);
-    }
-
 }

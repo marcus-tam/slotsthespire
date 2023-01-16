@@ -7,8 +7,9 @@ public class UnitDisplay : MonoBehaviour
 {
 
     public UnitData unit;
-    public Text unitName;
+    public Text unitName, shieldText;
     public Image artwork;
+    public FloatVariable shield;
 
     void Start()
     {
@@ -16,13 +17,11 @@ public class UnitDisplay : MonoBehaviour
         artwork.sprite = unit.unitArtwork;
     }
 
-    public void setHp()
-    {
-        
+    void Update() {
+        shieldText.text = "" + shield.Value;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void setHp()
     {
         
     }

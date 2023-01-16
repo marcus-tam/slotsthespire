@@ -2,8 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
-public class UnitData : ScriptableObject
+[CreateAssetMenu (menuName = "Unit/Data")]
+public class UnitData : UnitBase
 {
     public string unitName;
     public Sprite unitArtwork;
@@ -13,4 +13,5 @@ public class UnitData : ScriptableObject
 
     public FloatReference damage;
 
+    public override void DoTurn() { }
 }

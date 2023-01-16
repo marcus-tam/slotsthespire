@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c23a78829d2cb6447aeade77eb7b83df, type: 3}
-  m_Name: Rat
+  m_Name: Player
   m_EditorClassIdentifier: 
-  unitName: Rat
-  unitArtwork: {fileID: 21300000, guid: 268169ebdc5435b4eb98a9bf22ec8ebb, type: 3}
+  unitName: Player
+  unitArtwork: {fileID: 21300000, guid: 391eb64dc7897854ca69dc6dcb33a703, type: 3}
   maxHp:
     UseConstant: 0
     ConstantValue: 0
-    Variable: {fileID: 11400000, guid: 8a16a541f1a49544cba8b14d5e4549da, type: 2}
+    Variable: {fileID: 11400000, guid: 78f8ba0bd23a63e4899717ed85896d2f, type: 2}
   currentHp:
     UseConstant: 0
     ConstantValue: 0
-    Variable: {fileID: 11400000, guid: c13a6d2b03cb1b3478a4992ce1288726, type: 2}
+    Variable: {fileID: 11400000, guid: a39a27eada4fe7a4c827abd1faa1eda7, type: 2}
   damage:
-    UseConstant: 0
+    UseConstant: 1
     ConstantValue: 0
-    Variable: {fileID: 11400000, guid: 3bfd96c406723984998385d8c29b743d, type: 2}
+    Variable: {fileID: 0}

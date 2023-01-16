@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Variable/Float")]
 public class FloatVariable : ScriptableObject
 {
    public float Value;
@@ -19,14 +19,24 @@ public class FloatVariable : ScriptableObject
         Value = value.Value;
     }
 
-    public void ApplyChange(float amount)
-    {
+    public void ApplyChange(float amount) {
         Value += amount;
     }
 
-    public void ApplyChange(FloatVariable amount)
+    public void ApplyChange(float amount, bool isDamage)
     {
-        Value += amount.Value;
+        if (isDamage)
+            Value -= amount;
+        else
+            Value += amount;
+    }
+
+    public void ApplyChange(FloatVariable amount, bool isDamage)
+    {
+        if (isDamage)
+            Value -= amount.Value;
+        else
+            Value += amount.Value;
     }
 }
 

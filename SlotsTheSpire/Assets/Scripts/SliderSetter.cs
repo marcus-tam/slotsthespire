@@ -7,11 +7,13 @@ using UnityEngine.UI;
 public class SliderSetter : MonoBehaviour
 {
     public Slider Slider;
+    public FloatVariable maxVariable;
     public FloatVariable Variable;
 
     private void Update()
     {
         if (Slider != null && Variable != null)
+            Slider.maxValue = maxVariable.Value;
             Slider.value = Variable.Value;
     }
 }
