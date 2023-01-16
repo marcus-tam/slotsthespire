@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5eb177b4cec16cd4c8827228c6b25dc0, type: 3}
-  m_Name: Mega Attack
+  m_Name: BloodyStrike
   m_EditorClassIdentifier: 
-  name: Mega Attack
+  name: BloodyStrike
   description: lots o damage
   symbolID: 2
-  artwork: {fileID: 0}
+  artwork: {fileID: 21300000, guid: 06361aa8b30d8b246bfa8f23eba6668d, type: 3}
   Size:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
   Damage:
-    UseConstant: 1
-    ConstantValue: 6
-    Variable: {fileID: 0}
+    UseConstant: 0
+    ConstantValue: 0
+    Variable: {fileID: 11400000, guid: 9d8573eccbebf9444bb2d53bfcecc48c, type: 2}
   Shield:
     UseConstant: 1
     ConstantValue: 0
@@ -44,3 +44,5 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
+  hasEffect: 1
+  symbolEffect: {fileID: 11400000, guid: 0306a79c2ec592a4e89c058eee81ac45, type: 2}

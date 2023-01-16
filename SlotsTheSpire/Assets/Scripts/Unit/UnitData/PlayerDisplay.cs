@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UnitDisplay : MonoBehaviour
+public class PlayerDisplay : MonoBehaviour
 {
 
     public UnitData unit;
@@ -11,15 +11,14 @@ public class UnitDisplay : MonoBehaviour
     public Image artwork;
     public FloatVariable shield, unitHealth;
 
+    void Start()
+    {
+        unitName.text = unit.unitName;
+        artwork.sprite = unit.unitArtwork;
+    }
+
     void Update() {
         shieldText.text = "" + shield.Value;
         hpText.text = "" + unitHealth.Value;
-    }
-
-    public void UpdateDisplay(GameObject unitPrefab)
-    {
-        unit = unitPrefab.GetComponent<UnitHealth>().getData();
-        unitName.text = unit.unitName;
-        artwork.sprite = unit.unitArtwork;
     }
 }

@@ -16,9 +16,12 @@ public class BattleSystem : MonoBehaviour
 
     public BattleState state;
     public SlotMachine slot;
+    public EnemySpawner enemySpawner;
+    public UnitDisplay unitDisplay;
 
     void Start()
     {
+        playerHealth.SetValue(25);
         state = BattleState.START;
         setupBattle();
     }
@@ -26,8 +29,8 @@ public class BattleSystem : MonoBehaviour
 
     void setupBattle()
     {
-        GameObject playerGO = Instantiate(PlayerPrefab);
-        GameObject enemyGo = Instantiate(enemyPrefab);
+        GenerateFloorEnemy();
+        Instantiate(PlayerPrefab);
         resetBattle();
         state = BattleState.PLAYERTURN;
     }
@@ -90,7 +93,7 @@ public class BattleSystem : MonoBehaviour
         damage.SetValue(0);
         playerShield.SetValue(0);
         turn.SetValue(0);
-        
+        slot.ResetSymbols();
     }
 
     public void Victory() {
@@ -110,5 +113,12 @@ public class BattleSystem : MonoBehaviour
         //review deck & stats
         //main menu & retry
         //resetBattle();
+    }
+
+    public void GenerateFloorEnemy(){
+        enemyPrefab = enemySpawner.GenerateCommonEnemy();
+        Instantiate(enemyPrefab);
+        Debug.Log(" Has Spawned");
+        unitDisplay.UpdateDisplay(enemyPrefab);
     }
 }

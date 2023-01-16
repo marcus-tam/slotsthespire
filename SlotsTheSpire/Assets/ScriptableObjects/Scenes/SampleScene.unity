@@ -587,9 +587,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1122661862}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 50
+  m_MaxValue: 33
   m_WholeNumbers: 0
-  m_Value: 40
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -607,7 +607,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Slider: {fileID: 678968706}
   maxVariable: {fileID: 11400000, guid: 8a16a541f1a49544cba8b14d5e4549da, type: 2}
-  Variable: {fileID: 11400000, guid: c13a6d2b03cb1b3478a4992ce1288726, type: 2}
+  Variable: {fileID: 11400000, guid: 3f45eeb8130d61a4aa51fdef678dee99, type: 2}
 --- !u!1 &820627349
 GameObject:
   m_ObjectHideFlags: 0
@@ -849,7 +849,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 25
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 23
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1087,6 +1087,12 @@ MonoBehaviour:
   - symbolData: {fileID: 11400000, guid: 2965aea4f18bb124d963a5f9a5ff040b, type: 2}
     symbolCount: 1
   - symbolData: {fileID: 11400000, guid: 2965aea4f18bb124d963a5f9a5ff040b, type: 2}
+    symbolCount: 1
+  - symbolData: {fileID: 11400000, guid: 2965aea4f18bb124d963a5f9a5ff040b, type: 2}
+    symbolCount: 1
+  - symbolData: {fileID: 11400000, guid: 51bff4752d33de14786fbcbd1fce9123, type: 2}
+    symbolCount: 1
+  - symbolData: {fileID: 11400000, guid: 3f482f7be8e0786488864116de8d54d6, type: 2}
     symbolCount: 1
   - symbolData: {fileID: 11400000, guid: 3f482f7be8e0786488864116de8d54d6, type: 2}
     symbolCount: 1
@@ -1394,13 +1400,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd1fc804e539edf47b0f17417e14c24e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unit: {fileID: 11400000, guid: d8cfd87ea16e30a46b67d28b3c029899, type: 2}
+  unit: {fileID: 11400000, guid: 41f73f92bed8c2146880695a6cd8f303, type: 2}
   unitName: {fileID: 1992120582}
   shieldText: {fileID: 1090392340}
   hpText: {fileID: 1900400847}
   artwork: {fileID: 2026645832}
   shield: {fileID: 11400000, guid: c7c7f526e54791c4ab96169337b1ddc0, type: 2}
-  unitHealth: {fileID: 11400000, guid: c13a6d2b03cb1b3478a4992ce1288726, type: 2}
+  unitHealth: {fileID: 11400000, guid: 3f45eeb8130d61a4aa51fdef678dee99, type: 2}
 --- !u!114 &1300423313
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1688,7 +1694,7 @@ MonoBehaviour:
   cardDeck: {fileID: 1096077663}
   newDeck: []
   SlotSpace: 3
-  damage: {fileID: 11400000, guid: 49c487e0f97e0b54aa1cef04690571c8, type: 2}
+  damage: {fileID: 11400000, guid: 824c3da36c3239f458e659b5be75063a, type: 2}
   shield: {fileID: 11400000, guid: 6fa373a48eb4a9a418a76b60bb43e848, type: 2}
   battleSystem: {fileID: 1413773462}
   symbol:
@@ -2001,6 +2007,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1413773463}
   - component: {fileID: 1413773462}
+  - component: {fileID: 1413773464}
   m_Layer: 0
   m_Name: BattleSystem
   m_TagString: Untagged
@@ -2021,11 +2028,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerPrefab: {fileID: 3027548683151543647, guid: e138fff422a8a5d4ba5bd8e76d9b6666, type: 3}
-  enemyPrefab: {fileID: 184481001499302620, guid: f4a992949014fd54ebda54bec2d377e0, type: 3}
+  enemyPrefab: {fileID: 8981792869180758383, guid: 36df4b724a8fe024487f2014190594f2, type: 3}
   turn: {fileID: 11400000, guid: 3ed5e071c84c5ec44a678537634a1c7f, type: 2}
-  damage: {fileID: 11400000, guid: 49c487e0f97e0b54aa1cef04690571c8, type: 2}
+  damage: {fileID: 11400000, guid: 824c3da36c3239f458e659b5be75063a, type: 2}
   playerShield: {fileID: 11400000, guid: 6fa373a48eb4a9a418a76b60bb43e848, type: 2}
-  enemyHealth: {fileID: 11400000, guid: c13a6d2b03cb1b3478a4992ce1288726, type: 2}
+  enemyHealth: {fileID: 11400000, guid: 3f45eeb8130d61a4aa51fdef678dee99, type: 2}
   enemyMaxHealth: {fileID: 11400000, guid: 8a16a541f1a49544cba8b14d5e4549da, type: 2}
   playerHealth: {fileID: 11400000, guid: a39a27eada4fe7a4c827abd1faa1eda7, type: 2}
   floorLevel: {fileID: 11400000, guid: 2cb0e5e0e1a8f4643b37d2b9336686f2, type: 2}
@@ -2034,6 +2041,8 @@ MonoBehaviour:
   enemyBattleStation: {fileID: 2026645831}
   state: 0
   slot: {fileID: 1328518553}
+  enemySpawner: {fileID: 1413773464}
+  unitDisplay: {fileID: 1300423312}
 --- !u!4 &1413773463
 Transform:
   m_ObjectHideFlags: 0
@@ -2049,6 +2058,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1413773464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413773461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cc7fdb2f63a4ad4996756f400630951, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CommonList:
+  - {fileID: 7931562668598609886, guid: 1c13b1a812b75ed47a5f029f0163c92f, type: 3}
+  - {fileID: 8981792869180758383, guid: 36df4b724a8fe024487f2014190594f2, type: 3}
+  EliteList: []
+  BossList: []
 --- !u!1 &1500577609
 GameObject:
   m_ObjectHideFlags: 0
@@ -2546,7 +2572,7 @@ GameObject:
   - component: {fileID: 1751202740}
   - component: {fileID: 1751202743}
   - component: {fileID: 1751202742}
-  - component: {fileID: 1751202741}
+  - component: {fileID: 1751202744}
   m_Layer: 5
   m_Name: 'PlayerBattleHud '
   m_TagString: Untagged
@@ -2578,25 +2604,6 @@ RectTransform:
   m_AnchoredPosition: {x: -58.3, y: 87}
   m_SizeDelta: {x: 248.45, y: 92.187}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1751202741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1751202739}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd1fc804e539edf47b0f17417e14c24e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unit: {fileID: 11400000, guid: 2e155277fcc016d4f97898b2d99b7452, type: 2}
-  unitName: {fileID: 1323248698}
-  shieldText: {fileID: 1407609859}
-  hpText: {fileID: 1949763562}
-  artwork: {fileID: 1059216433}
-  shield: {fileID: 11400000, guid: 6fa373a48eb4a9a418a76b60bb43e848, type: 2}
-  unitHealth: {fileID: 11400000, guid: a39a27eada4fe7a4c827abd1faa1eda7, type: 2}
 --- !u!114 &1751202742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2635,6 +2642,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1751202739}
   m_CullTransparentMesh: 1
+--- !u!114 &1751202744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1751202739}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d032f6a02629834e914107cb98d1f9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unit: {fileID: 11400000, guid: 2e155277fcc016d4f97898b2d99b7452, type: 2}
+  unitName: {fileID: 1323248698}
+  shieldText: {fileID: 1407609859}
+  hpText: {fileID: 1949763562}
+  artwork: {fileID: 1059216433}
+  shield: {fileID: 11400000, guid: 6fa373a48eb4a9a418a76b60bb43e848, type: 2}
+  unitHealth: {fileID: 11400000, guid: a39a27eada4fe7a4c827abd1faa1eda7, type: 2}
 --- !u!1 &1813436437
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum UNITTYPE { Common, Uncommon, Rare, Elite, Boss, Special }
+public enum UNITTYPE { Common, Uncommon, Rare, Elite, Boss, Special, Player }
 
 [CreateAssetMenu (menuName = "Unit/Data")]
 public class UnitData : ScriptableObject
@@ -11,8 +11,5 @@ public class UnitData : ScriptableObject
     public Sprite unitArtwork;
 
     public UNITTYPE unitType; 
-
-    public FloatReference maxHp;
-    public FloatReference currentHp;
 
 }

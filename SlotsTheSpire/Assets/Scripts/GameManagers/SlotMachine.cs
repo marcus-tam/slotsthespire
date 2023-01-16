@@ -28,6 +28,7 @@ public class SlotMachine : MonoBehaviour
             symbol = newDeck[i];
             damage.ApplyChange(symbol.symbolData.Damage);
             shield.ApplyChange(symbol.symbolData.Shield);
+            symbol.symbolData.PreformEffect();
             Debug.Log("Symbol in slot " + i + " is: " + symbol.symbolData.name);
             artworkList[i].sprite = newDeck[i].symbolData.artwork;
         }
@@ -54,6 +55,15 @@ public class SlotMachine : MonoBehaviour
 
         }
 
+    }
+
+    public void ResetSymbols(){
+        for (int i = 0; i < newDeck.Count; i++)
+        {
+            symbol = newDeck[i];
+            symbol.symbolData.ResetEffect();
+        }
+        
     }
 }
 
