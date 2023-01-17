@@ -7,7 +7,7 @@ public class UnitDisplay : MonoBehaviour
 {
 
     public UnitData unit;
-    public Text unitName, shieldText, hpText;
+    public Text unitName, shieldText, hpText, turnText;
     public Image artwork;
     public FloatVariable shield, unitHealth;
 
@@ -21,5 +21,6 @@ public class UnitDisplay : MonoBehaviour
         unit = unitPrefab.GetComponent<UnitHealth>().getData();
         unitName.text = unit.unitName;
         artwork.sprite = unit.unitArtwork;
+        turnText.text = unitPrefab.GetComponent<EnemyAction>().getAttack();
     }
 }

@@ -9,12 +9,12 @@ public class SlotMachine : MonoBehaviour
     public List<SymbolInventoryItem> newDeck = new List<SymbolInventoryItem>();
     public int SlotSpace;
     public FloatVariable damage, shield;
+    public BoolVariable isShielded;
     public BattleSystem battleSystem;
     public SymbolInventoryItem symbol;
     public List<Image> artworkList = new List<Image>();
 
     public void Start() {
-        Debug.Log("SlotMachine is starting");
         CopyDeck();
         for (int i = 0; i <= SlotSpace; i++)
             artworkList[i].sprite = newDeck[i].symbolData.artwork;
@@ -29,10 +29,14 @@ public class SlotMachine : MonoBehaviour
             damage.ApplyChange(symbol.symbolData.Damage);
             shield.ApplyChange(symbol.symbolData.Shield);
             symbol.symbolData.PreformEffect();
-            Debug.Log("Symbol in slot " + i + " is: " + symbol.symbolData.name);
             artworkList[i].sprite = newDeck[i].symbolData.artwork;
         }
-
+        if (shield.Value <= 0)
+            isShielded.setFalse();
+        else
+            isShielded.setTrue();
+        
+        Debug.Log("Shield value after spin " + shield.Value);
         battleSystem.PlayerTurn();
     }
 

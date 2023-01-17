@@ -7,9 +7,9 @@ public class PlayerDisplay : MonoBehaviour
 {
 
     public UnitData unit;
-    public Text unitName, shieldText, hpText;
+    public Text unitName, shieldText, hpText, turnSummary;
     public Image artwork;
-    public FloatVariable shield, unitHealth;
+    public FloatVariable playerShield, unitHealth, playerDamage;
 
     void Start()
     {
@@ -18,7 +18,10 @@ public class PlayerDisplay : MonoBehaviour
     }
 
     void Update() {
-        shieldText.text = "" + shield.Value;
+        shieldText.text = "" + playerShield.Value;
         hpText.text = "" + unitHealth.Value;
+        turnSummary.text = "Attacking for" + playerDamage.Value + " \nShielding for: " + playerShield.Value;
     }
+
+
 }

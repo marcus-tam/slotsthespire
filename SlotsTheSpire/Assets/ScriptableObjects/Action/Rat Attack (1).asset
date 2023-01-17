@@ -18,3 +18,4 @@ MonoBehaviour:
   playerHealth: {fileID: 11400000, guid: a39a27eada4fe7a4c827abd1faa1eda7, type: 2}
   isShielded: {fileID: 11400000, guid: 693802247d1867143ab30d584da4a556, type: 2}
   isDamage: 1
+  attackSummary: Rat is Attacking for 2 damage
