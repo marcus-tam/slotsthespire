@@ -7,8 +7,10 @@ public class EnemyAction : MonoBehaviour
     public List<Action> actionList = new List<Action>();
 
     public void PerformAction() {
-       // fore what ever turn it is do that action
+
         actionList[0].DoAction(this);
     }
-
+    public string getAttack(){
+        return actionList[0].GetDescription();
+    }
 }

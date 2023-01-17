@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Symbol", menuName = "Symbol")]
+[CreateAssetMenu(menuName = "Symbols/Symbols")]
 public class SymbolData : ScriptableObject
 {
     public new string name;
@@ -19,8 +19,25 @@ public class SymbolData : ScriptableObject
     public FloatReference DOT;
     public FloatReference Pos;
     public FloatReference Turn;
+    public bool hasEffect;
+    public Effect symbolEffect;
+    
 
     public void Print(){
         Debug.Log(name +": " + description);
-    }
+   }
+
+    public void PreformEffect(){
+        if(hasEffect)
+            symbolEffect.DoEffect();
+        else
+            return;
+   }
+
+   public void ResetEffect(){
+    if(hasEffect)
+        symbolEffect.ResetSymbolEffect();
+        else
+        return;
+   }
 }

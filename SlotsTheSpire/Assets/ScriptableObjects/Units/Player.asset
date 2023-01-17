@@ -14,15 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Player
   unitArtwork: {fileID: 21300000, guid: 391eb64dc7897854ca69dc6dcb33a703, type: 3}
-  maxHp:
-    UseConstant: 0
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: 78f8ba0bd23a63e4899717ed85896d2f, type: 2}
-  currentHp:
-    UseConstant: 0
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: a39a27eada4fe7a4c827abd1faa1eda7, type: 2}
-  damage:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
+  unitType: 6

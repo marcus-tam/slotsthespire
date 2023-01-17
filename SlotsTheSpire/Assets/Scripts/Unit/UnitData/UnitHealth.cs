@@ -20,4 +20,7 @@ public class UnitHealth : MonoBehaviour
             
     }
 
+    public UnitData getData(){
+        return unit;
+    }
 }
