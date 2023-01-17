@@ -36,7 +36,6 @@ public class SlotMachine : MonoBehaviour
         else
             isShielded.setTrue();
         
-        Debug.Log("Shield value after spin " + shield.Value);
         battleSystem.PlayerTurn();
     }
 

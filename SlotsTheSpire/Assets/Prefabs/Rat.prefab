@@ -48,8 +48,7 @@ MonoBehaviour:
   actionList:
   - {fileID: 11400000, guid: 133dc03c501333e4f875358ecb5fe95f, type: 2}
   - {fileID: 11400000, guid: 65c38631a8f6c1f488e468f1932bd06b, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
+  turn: {fileID: 11400000, guid: 3ed5e071c84c5ec44a678537634a1c7f, type: 2}
 --- !u!114 &7931562668598609885
 MonoBehaviour:
   m_ObjectHideFlags: 0

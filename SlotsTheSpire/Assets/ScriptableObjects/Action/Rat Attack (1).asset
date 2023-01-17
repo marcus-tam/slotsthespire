@@ -14,8 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DamageAmount: 2
   tempDamage: 6
+  shieldAmount: 0
   playerShield: {fileID: 11400000, guid: 6fa373a48eb4a9a418a76b60bb43e848, type: 2}
   playerHealth: {fileID: 11400000, guid: a39a27eada4fe7a4c827abd1faa1eda7, type: 2}
-  isShielded: {fileID: 11400000, guid: 693802247d1867143ab30d584da4a556, type: 2}
+  enemyShield: {fileID: 11400000, guid: c7c7f526e54791c4ab96169337b1ddc0, type: 2}
+  playerIsShielded: {fileID: 11400000, guid: 693802247d1867143ab30d584da4a556, type: 2}
+  enemyIsShielded: {fileID: 11400000, guid: a120c4c70ebd3bd4f9260f4e0c2454c2, type: 2}
   isDamage: 1
+  isShield: 0
   attackSummary: Rat is Attacking for 2 damage

@@ -5,16 +5,23 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Action/Attack")]
 public class AttackAction : Action
 {
-    public float DamageAmount, tempDamage;
-    public FloatVariable playerShield, playerHealth;
-    public BoolVariable isShielded;
-    public bool isDamage;
+    public float DamageAmount, tempDamage, shieldAmount;
+    public FloatVariable playerShield, playerHealth, enemyShield;
+    public BoolVariable playerIsShielded, enemyIsShielded;
+    public bool isDamage, isShield;
     public string attackSummary;
 
     public override void DoAction(EnemyAction action) {
+        if(isDamage)
+            DealDamage();
+        if(isShield)
+            ShieldSelf();
+        }
+
+    public void DealDamage(){
         tempDamage =  DamageAmount;
         // If player is unshielded, damage affects health
-        if (!isShielded)
+        if (!playerIsShielded)
             {
                 playerHealth.ApplyChange(tempDamage, isDamage);
                 Debug.Log("take " + DamageAmount + " Damage. Direct Attack!");
@@ -39,7 +46,15 @@ public class AttackAction : Action
 
                 }
             }
-        }
+    }
+
+    public void ShieldSelf(){
+        enemyShield.ApplyChange(shieldAmount);
+       if(enemyShield.Value > 0)
+       enemyIsShielded.setTrue();
+       else
+       enemyIsShielded.setFalse();
+    }
 
     public override string GetDescription(){
         return attackSummary;

@@ -9,8 +9,9 @@ public class BattleSystem : MonoBehaviour
 
     public GameObject PlayerPrefab;
     public GameObject enemyPrefab;
-    public FloatVariable turn, damage, playerShield, enemyHealth, enemyMaxHealth, playerHealth, floorLevel;
-    public BoolVariable isShielded;
+    public float tempDamage;
+    public FloatVariable turn, damage, playerShield, enemyHealth, enemyShield, enemyMaxHealth, playerHealth, floorLevel;
+    public BoolVariable isShielded, enemyIsShielded;
     public Transform PlayerBattleStation;
     public Transform enemyBattleStation;
 
@@ -42,7 +43,6 @@ public class BattleSystem : MonoBehaviour
     public void OnEndTurnButton(){
         if (state != BattleState.ENDTURN)
             return;
-        turn.ApplyChange(1);
         dealDamage();
         if (state == BattleState.WON)
             return;
@@ -64,7 +64,26 @@ public class BattleSystem : MonoBehaviour
     }
 
     public void dealDamage() {
-        enemyHealth.ApplyChange(damage, true);
+        tempDamage =  damage.Value;
+        // If enemy is unshielded, damage affects health
+        if (!enemyIsShielded){
+            enemyHealth.ApplyChange(tempDamage, true);
+        }
+        else
+            {
+                //If incoming damage can break shield, subtract shield value from tempDamage and apply new tempDamage to playerHealth. Set playerShield to 0
+                if (tempDamage >= enemyShield.Value){
+                    tempDamage -= enemyShield.Value;
+                    enemyShield.SetValue(0);
+                    Debug.Log("TempDamag is "+ tempDamage);
+                    enemyHealth.ApplyChange(tempDamage, true);
+
+                } 
+                // Else, just change player shield hp
+                else{
+                    enemyShield.ApplyChange(tempDamage, true);
+                }
+            }
         if (enemyHealth.Value <= 0) 
             Victory();
     }
@@ -72,6 +91,7 @@ public class BattleSystem : MonoBehaviour
     public void endPlayerTurn() {
 
         damage.SetValue(0);
+        enemyShield.SetValue(0);
         state = BattleState.ENEMYTURN;
         EnemyTurn();
     }
@@ -79,12 +99,14 @@ public class BattleSystem : MonoBehaviour
     public void endEnemyTurn() {
         turn.ApplyChange(1.0f);
         playerShield.SetValue(0);
+        unitDisplay.UpdateDisplay(enemyPrefab);
         state = BattleState.PLAYERTURN;
     }
 
     public void resetBattle() {
         damage.SetValue(0);
         playerShield.SetValue(0);
+        enemyShield.SetValue(0);
         turn.SetValue(0);
         slot.ResetSymbols();
     }
