@@ -2,10 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public abstract class Effect : ScriptableObject
+[CreateAssetMenu(menuName="Symbols/Effects")]
+public class Effect : BaseEffect
 {
-   public abstract void DoEffect();
+    public FloatReference amount;
+    public FloatVariable target;
+    public bool resetEffect;
 
-   public abstract void ResetSymbolEffect();
+ public override void DoEffect(){
+    target.ApplyChange(amount);
+ }
+
+ public void ResetEffect(){
+  if(resetEffect)
+   target.SetValue(target.StartingValue);
+ }
+
 }

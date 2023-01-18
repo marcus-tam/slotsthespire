@@ -8,8 +8,7 @@ public class SlotMachine : MonoBehaviour
     public Deck cardDeck;
     public List<SymbolInventoryItem> newDeck = new List<SymbolInventoryItem>();
     public int SlotSpace;
-    public FloatVariable damage, shield;
-    public BoolVariable isShielded;
+    public FloatVariable outgoingDamage, incomingShield;
     public BattleSystem battleSystem;
     public SymbolInventoryItem symbol;
     public List<Image> artworkList = new List<Image>();
@@ -26,17 +25,19 @@ public class SlotMachine : MonoBehaviour
         for (int i = 0; i <= SlotSpace; i++)
         {
             symbol = newDeck[i];
-            damage.ApplyChange(symbol.symbolData.Damage);
-            shield.ApplyChange(symbol.symbolData.Shield);
-            symbol.symbolData.PreformEffect();
-            artworkList[i].sprite = newDeck[i].symbolData.artwork;
+            CalculateTurn(i);
         }
-        if (shield.Value <= 0)
-            isShielded.setFalse();
-        else
-            isShielded.setTrue();
-        
+
+        for (int j = 0; j <= SlotSpace; j++)
+            newDeck[j].symbolData.PreformEffect();
+        Debug.Log("Player should receive "+incomingShield.Value+" shield");
         battleSystem.PlayerTurn();
+    }
+
+    public void CalculateTurn(int o){
+        outgoingDamage.ApplyChange(symbol.symbolData.Damage);
+        incomingShield.ApplyChange(symbol.symbolData.Shield);
+        artworkList[o].sprite = newDeck[o].symbolData.artwork;
     }
 
     public void CopyDeck() {
@@ -61,10 +62,11 @@ public class SlotMachine : MonoBehaviour
     }
 
     public void ResetSymbols(){
-        for (int i = 0; i < newDeck.Count; i++)
+        for (int l = 0; l < newDeck.Count; l++)
         {
-            symbol = newDeck[i];
-            symbol.symbolData.ResetEffect();
+            symbol = newDeck[l];
+            if(symbol.symbolData.hasEffect)
+            symbol.symbolData.symbolEffect.ResetEffect();
         }
         
     }

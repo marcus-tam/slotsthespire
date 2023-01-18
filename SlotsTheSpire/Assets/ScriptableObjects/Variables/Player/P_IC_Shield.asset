@@ -10,6 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 077e102b273ee3845b685a7890b99e24, type: 3}
-  m_Name: PlayerDamage
+  m_Name: P_IC_Shield
   m_EditorClassIdentifier: 
   Value: 0
+  StartingValue: 0

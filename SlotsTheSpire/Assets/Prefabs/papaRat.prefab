@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionList:
   - {fileID: 11400000, guid: 9ce2b3c02c33b5a4d95d42e894c786ed, type: 2}
+  turn: {fileID: 11400000, guid: 3ed5e071c84c5ec44a678537634a1c7f, type: 2}
 --- !u!114 &5770411876687826622
 MonoBehaviour:
   m_ObjectHideFlags: 0

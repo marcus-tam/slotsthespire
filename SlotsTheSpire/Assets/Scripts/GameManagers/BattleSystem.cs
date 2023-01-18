@@ -7,11 +7,9 @@ public enum BattleState { START, PLAYERTURN, ENDTURN, ENEMYTURN, WON, LOSS }
 public class BattleSystem : MonoBehaviour
 {
 
-    public GameObject PlayerPrefab;
-    public GameObject enemyPrefab;
-    public float tempDamage;
-    public FloatVariable turn, damage, playerShield, enemyHealth, enemyShield, enemyMaxHealth, playerHealth, floorLevel;
-    public BoolVariable isShielded, enemyIsShielded;
+    public GameObject P_Prefab;
+    public GameObject E_Prefab;
+    public FloatVariable turn, enemyHealth, playerShield, enemyShield, enemyMaxHealth, playerHealth, floorLevel, E_outgoingDamage, P_outgoingDamage, P_incomingShield, E_incomingShield;
     public Transform PlayerBattleStation;
     public Transform enemyBattleStation;
 
@@ -31,19 +29,21 @@ public class BattleSystem : MonoBehaviour
     void setupBattle()
     {
         GenerateFloorEnemy();
-        Instantiate(PlayerPrefab);
+        Instantiate(P_Prefab);
         resetBattle();
         state = BattleState.PLAYERTURN;
     }
 
     public void PlayerTurn() {
-       state = BattleState.ENDTURN;
+        playerShield.SetValue(0);
+        state = BattleState.ENDTURN;
     }
 
     public void OnEndTurnButton(){
         if (state != BattleState.ENDTURN)
             return;
-        dealDamage();
+        dealDamage(E_Prefab);
+        gainShield(P_Prefab);
         if (state == BattleState.WON)
             return;
         endPlayerTurn();
@@ -56,55 +56,42 @@ public class BattleSystem : MonoBehaviour
     }
 
     public void EnemyTurn() {
-        enemyPrefab.GetComponent<EnemyAction>().PerformAction();
+        enemyShield.SetValue(0);
+        E_Prefab.GetComponent<EnemyActioner>().PerformAction();
+        dealDamage(P_Prefab);
+        gainShield(E_Prefab);
         if (playerHealth.Value <= 0)
             Defeat();
         else
             endEnemyTurn();           
     }
 
-    public void dealDamage() {
-        tempDamage =  damage.Value;
-        // If enemy is unshielded, damage affects health
-        if (!enemyIsShielded){
-            enemyHealth.ApplyChange(tempDamage, true);
-        }
-        else
-            {
-                //If incoming damage can break shield, subtract shield value from tempDamage and apply new tempDamage to playerHealth. Set playerShield to 0
-                if (tempDamage >= enemyShield.Value){
-                    tempDamage -= enemyShield.Value;
-                    enemyShield.SetValue(0);
-                    Debug.Log("TempDamag is "+ tempDamage);
-                    enemyHealth.ApplyChange(tempDamage, true);
+    public void dealDamage(GameObject target) {
+        if(target == E_Prefab)
+        E_Prefab.GetComponent<UnitHealth>().TakeDamage(P_outgoingDamage);
+        if(target == P_Prefab)
+        P_Prefab.GetComponent<UnitHealth>().TakeDamage(E_outgoingDamage);
+    }
 
-                } 
-                // Else, just change player shield hp
-                else{
-                    enemyShield.ApplyChange(tempDamage, true);
-                }
-            }
-        if (enemyHealth.Value <= 0) 
-            Victory();
+    public void gainShield(GameObject target){
+        if(target == E_Prefab)
+        E_Prefab.GetComponent<UnitHealth>().TakeShield(E_incomingShield);
+        if(target == P_Prefab)
+        P_Prefab.GetComponent<UnitHealth>().TakeShield(P_incomingShield);
     }
 
     public void endPlayerTurn() {
-
-        damage.SetValue(0);
-        enemyShield.SetValue(0);
         state = BattleState.ENEMYTURN;
         EnemyTurn();
     }
 
     public void endEnemyTurn() {
         turn.ApplyChange(1.0f);
-        playerShield.SetValue(0);
-        unitDisplay.UpdateDisplay(enemyPrefab);
+        unitDisplay.UpdateDisplay(E_Prefab);
         state = BattleState.PLAYERTURN;
     }
 
     public void resetBattle() {
-        damage.SetValue(0);
         playerShield.SetValue(0);
         enemyShield.SetValue(0);
         turn.SetValue(0);
@@ -131,9 +118,9 @@ public class BattleSystem : MonoBehaviour
     }
 
     public void GenerateFloorEnemy(){
-        enemyPrefab = enemySpawner.GenerateCommonEnemy();
-        Instantiate(enemyPrefab);
+        E_Prefab = enemySpawner.GenerateCommonEnemy();
+        Instantiate(E_Prefab);
         Debug.Log(" Has Spawned");
-        unitDisplay.UpdateDisplay(enemyPrefab);
+        unitDisplay.UpdateDisplay(E_Prefab);
     }
 }

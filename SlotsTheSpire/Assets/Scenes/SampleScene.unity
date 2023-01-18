@@ -936,7 +936,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 33
   m_WholeNumbers: 0
-  m_Value: 15
+  m_Value: 14
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1273,7 +1273,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 25
   m_WholeNumbers: 0
-  m_Value: 25
+  m_Value: 23
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1508,13 +1508,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deck:
-  - symbolData: {fileID: 11400000, guid: 2965aea4f18bb124d963a5f9a5ff040b, type: 2}
-    symbolCount: 1
-  - symbolData: {fileID: 11400000, guid: 2965aea4f18bb124d963a5f9a5ff040b, type: 2}
-    symbolCount: 1
-  - symbolData: {fileID: 11400000, guid: 2965aea4f18bb124d963a5f9a5ff040b, type: 2}
-    symbolCount: 1
   - symbolData: {fileID: 11400000, guid: 51bff4752d33de14786fbcbd1fce9123, type: 2}
+    symbolCount: 1
+  - symbolData: {fileID: 11400000, guid: 2965aea4f18bb124d963a5f9a5ff040b, type: 2}
+    symbolCount: 1
+  - symbolData: {fileID: 11400000, guid: 2965aea4f18bb124d963a5f9a5ff040b, type: 2}
+    symbolCount: 1
+  - symbolData: {fileID: 11400000, guid: 2965aea4f18bb124d963a5f9a5ff040b, type: 2}
     symbolCount: 1
   - symbolData: {fileID: 11400000, guid: 3f482f7be8e0786488864116de8d54d6, type: 2}
     symbolCount: 1
@@ -2280,9 +2280,8 @@ MonoBehaviour:
   cardDeck: {fileID: 1096077663}
   newDeck: []
   SlotSpace: 3
-  damage: {fileID: 11400000, guid: 824c3da36c3239f458e659b5be75063a, type: 2}
-  shield: {fileID: 11400000, guid: 6fa373a48eb4a9a418a76b60bb43e848, type: 2}
-  isShielded: {fileID: 11400000, guid: 693802247d1867143ab30d584da4a556, type: 2}
+  outgoingDamage: {fileID: 11400000, guid: 824c3da36c3239f458e659b5be75063a, type: 2}
+  incomingShield: {fileID: 11400000, guid: f1354cf01ded13849b89b331264d8755, type: 2}
   battleSystem: {fileID: 1413773462}
   symbol:
     symbolData: {fileID: 0}
@@ -2427,6 +2426,66 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1348865343}
   m_CullTransparentMesh: 1
+--- !u!1 &1387419344
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1387419346}
+  - component: {fileID: 1387419345}
+  m_Layer: 0
+  m_Name: PlayerHealth
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1387419345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387419344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0125cc1c8deef7747b0697ff6502acd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: c41f45a596a539b49b8d20058c21ac3d, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11500000, guid: 19a1f9b8723622a489bc2e9c13fc17fc, type: 3}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!4 &1387419346
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387419344}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 389.90622, y: 310.41742, z: 8.114426}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1392611590
 GameObject:
   m_ObjectHideFlags: 0
@@ -2614,19 +2673,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3c97963d4d6e1b489e3d4c8f9e47320, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerPrefab: {fileID: 3027548683151543647, guid: e138fff422a8a5d4ba5bd8e76d9b6666, type: 3}
-  enemyPrefab: {fileID: 8981792869180758383, guid: 36df4b724a8fe024487f2014190594f2, type: 3}
-  tempDamage: 0
+  P_Prefab: {fileID: 3027548683151543647, guid: e138fff422a8a5d4ba5bd8e76d9b6666, type: 3}
+  E_Prefab: {fileID: 3027548683151543647, guid: e138fff422a8a5d4ba5bd8e76d9b6666, type: 3}
   turn: {fileID: 11400000, guid: 3ed5e071c84c5ec44a678537634a1c7f, type: 2}
-  damage: {fileID: 11400000, guid: 824c3da36c3239f458e659b5be75063a, type: 2}
-  playerShield: {fileID: 11400000, guid: 6fa373a48eb4a9a418a76b60bb43e848, type: 2}
   enemyHealth: {fileID: 11400000, guid: 3f45eeb8130d61a4aa51fdef678dee99, type: 2}
+  playerShield: {fileID: 11400000, guid: 6fa373a48eb4a9a418a76b60bb43e848, type: 2}
   enemyShield: {fileID: 11400000, guid: c7c7f526e54791c4ab96169337b1ddc0, type: 2}
   enemyMaxHealth: {fileID: 11400000, guid: 8a16a541f1a49544cba8b14d5e4549da, type: 2}
   playerHealth: {fileID: 11400000, guid: a39a27eada4fe7a4c827abd1faa1eda7, type: 2}
   floorLevel: {fileID: 11400000, guid: 2cb0e5e0e1a8f4643b37d2b9336686f2, type: 2}
-  isShielded: {fileID: 11400000, guid: 693802247d1867143ab30d584da4a556, type: 2}
-  enemyIsShielded: {fileID: 11400000, guid: 693802247d1867143ab30d584da4a556, type: 2}
+  E_outgoingDamage: {fileID: 11400000, guid: 1701ddd989ed18746a1cbdc01d7c2341, type: 2}
+  P_outgoingDamage: {fileID: 11400000, guid: 824c3da36c3239f458e659b5be75063a, type: 2}
+  P_incomingShield: {fileID: 11400000, guid: f1354cf01ded13849b89b331264d8755, type: 2}
+  E_incomingShield: {fileID: 11400000, guid: ac13ffbc6e3e421478ba698d9240e0b2, type: 2}
   PlayerBattleStation: {fileID: 1059216432}
   enemyBattleStation: {fileID: 2026645831}
   state: 0
@@ -3251,7 +3310,7 @@ MonoBehaviour:
   hpText: {fileID: 1949763562}
   turnSummary: {fileID: 1171788705}
   artwork: {fileID: 1059216433}
-  playerShield: {fileID: 11400000, guid: 6fa373a48eb4a9a418a76b60bb43e848, type: 2}
+  playerShield: {fileID: 11400000, guid: f1354cf01ded13849b89b331264d8755, type: 2}
   unitHealth: {fileID: 11400000, guid: a39a27eada4fe7a4c827abd1faa1eda7, type: 2}
   playerDamage: {fileID: 11400000, guid: 824c3da36c3239f458e659b5be75063a, type: 2}
 --- !u!1 &1813436437

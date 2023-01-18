@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: BloodyStrike
   m_EditorClassIdentifier: 
   name: BloodyStrike
-  description: lots o damage
+  description: +1 damage to all BloodyStrikes
   symbolID: 2
   artwork: {fileID: 21300000, guid: 06361aa8b30d8b246bfa8f23eba6668d, type: 3}
   Size:
@@ -32,10 +32,6 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
-  DOT:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
   Pos:
     UseConstant: 1
     ConstantValue: 0
@@ -45,4 +41,5 @@ MonoBehaviour:
     ConstantValue: 0
     Variable: {fileID: 0}
   hasEffect: 1
+  resetEffect: 1
   symbolEffect: {fileID: 11400000, guid: 0306a79c2ec592a4e89c058eee81ac45, type: 2}
