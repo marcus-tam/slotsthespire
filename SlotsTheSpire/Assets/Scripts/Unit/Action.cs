@@ -4,6 +4,6 @@ using UnityEngine;
 
 public abstract class Action: ScriptableObject
 {
-    public abstract void DoAction(EnemyAction action);
+    public abstract void DoAction(EnemyActioner action);
     public abstract string GetDescription();
 }

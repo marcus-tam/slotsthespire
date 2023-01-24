@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eb177b4cec16cd4c8827228c6b25dc0, type: 3}
+  m_Name: Vital Strike
+  m_EditorClassIdentifier: 
+  name: Vital Strike
+  description: 0 Damage + 2 Exposed Count
+  symbolID: 0
+  artwork: {fileID: 21300000, guid: c9c94607aaa936d4dbbbec2efa912790, type: 3}
+  Size:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  Damage:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  Shield:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  Heal:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  Pos:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  Turn:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  hasEffect: 1
+  resetEffect: 0
+  countDownEffect: 1
+  symbolEffect: {fileID: 11400000, guid: 8fc3cb996acf15f4eb9fec3e94b5641c, type: 2}

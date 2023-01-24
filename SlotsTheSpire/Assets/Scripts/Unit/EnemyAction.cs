@@ -2,15 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAction : MonoBehaviour
+[CreateAssetMenu(menuName = "Action/Attack")]
+public class EnemyAction : Action
 {
-    public List<Action> actionList = new List<Action>();
+    public FloatReference damageAmount, shieldAmount;
+    public FloatVariable E_incomingShield, E_outgoingDamage;
+    public BoolVariable E_IsShielded;
+    public bool isDamage, isShield;
+    public string attackSummary;
 
-    public void PerformAction() {
+    public override void DoAction(EnemyActioner action) {
+        if(isDamage)
+            CalculateDamage();
+        if(isShield)
+            ShieldSelf();
+        }
 
-        actionList[0].DoAction(this);
+    public void CalculateDamage(){
+       E_outgoingDamage.SetValue(damageAmount);
     }
-    public string getAttack(){
-        return actionList[0].GetDescription();
+
+    public void ShieldSelf(){
+        E_incomingShield.SetValue(shieldAmount);
     }
+
+    public override string GetDescription(){
+        return attackSummary;
+    }
+
+
 }

@@ -21,6 +21,6 @@ public class UnitDisplay : MonoBehaviour
         unit = unitPrefab.GetComponent<UnitHealth>().getData();
         unitName.text = unit.unitName;
         artwork.sprite = unit.unitArtwork;
-        turnText.text = unitPrefab.GetComponent<EnemyAction>().getAttack();
+        turnText.text = unitPrefab.GetComponent<EnemyActioner>().getAttack();
     }
 }

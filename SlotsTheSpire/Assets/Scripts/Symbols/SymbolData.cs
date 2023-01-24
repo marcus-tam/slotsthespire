@@ -16,11 +16,11 @@ public class SymbolData : ScriptableObject
     public FloatReference Damage;
     public FloatReference Shield;
     public FloatReference Heal;
-    public FloatReference DOT;
     public FloatReference Pos;
     public FloatReference Turn;
-    public bool hasEffect;
-    public Effect symbolEffect;
+    public bool hasEffect, resetEffect, countDownEffect;
+
+    public BaseEffect symbolEffect;
     
 
     public void Print(){
@@ -34,10 +34,4 @@ public class SymbolData : ScriptableObject
             return;
    }
 
-   public void ResetEffect(){
-    if(hasEffect)
-        symbolEffect.ResetSymbolEffect();
-        else
-        return;
-   }
 }

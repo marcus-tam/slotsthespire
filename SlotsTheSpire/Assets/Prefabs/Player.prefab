@@ -46,8 +46,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: {fileID: 11400000, guid: 78f8ba0bd23a63e4899717ed85896d2f, type: 2}
   currentHP: {fileID: 11400000, guid: a39a27eada4fe7a4c827abd1faa1eda7, type: 2}
+  shield: {fileID: 11400000, guid: 6fa373a48eb4a9a418a76b60bb43e848, type: 2}
+  exposedCount: {fileID: 11400000, guid: 5297a8f96c2313b43bea25c93f101999, type: 2}
+  fireCount: {fileID: 11400000, guid: 31ed15921d1b5e54097260056460f9e8, type: 2}
+  weakCount: {fileID: 11400000, guid: c97006d013c36814d9effcfc52e0e1a4, type: 2}
+  isShielded: {fileID: 11400000, guid: 693802247d1867143ab30d584da4a556, type: 2}
+  OnFire: {fileID: 11400000, guid: bae9b88d9ee1ba142adc5728bea6e1d4, type: 2}
   unit: {fileID: 11400000, guid: 2e155277fcc016d4f97898b2d99b7452, type: 2}
-  ResetHP: 0
+  ResetHP: 1
   StartingHP:
     UseConstant: 0
     ConstantValue: 0

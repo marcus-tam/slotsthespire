@@ -7,11 +7,11 @@ public class BoolVariable : ScriptableObject
 {
     public bool boolean;
 
-    public void setFalse() {
+    public void SetFalse() {
         boolean = false;
     }
 
-    public void setTrue() {
+    public void SetTrue() {
         boolean = true;
     }
 
