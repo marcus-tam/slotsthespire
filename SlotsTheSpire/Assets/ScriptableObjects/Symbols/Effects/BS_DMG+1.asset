@@ -17,4 +17,4 @@ MonoBehaviour:
     ConstantValue: 1
     Variable: {fileID: 0}
   target: {fileID: 11400000, guid: 9d8573eccbebf9444bb2d53bfcecc48c, type: 2}
-  resetEffect: 1
+  description: +1 damage to bloodystrike

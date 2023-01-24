@@ -43,10 +43,13 @@ public class BattleSystem : MonoBehaviour
         if (state != BattleState.ENDTURN)
             return;
         DealDMG(E_Prefab);
+        slot.TriggerEffects();
         DealFireDMG(E_Prefab);
         GainShield(P_Prefab);
-        if (state == BattleState.WON)
+        if(E_Health.Value <= 0){
+            Victory();
             return;
+        }
         EndPlayerTurn();
     }
 
@@ -58,6 +61,7 @@ public class BattleSystem : MonoBehaviour
 
     public void EnemyTurn() {
         E_Shield.SetValue(0);
+        slot.EffectCountDown();
         E_Prefab.GetComponent<EnemyActioner>().PerformAction();
         DealDMG(P_Prefab);
         DealFireDMG(P_Prefab);
@@ -77,9 +81,9 @@ public class BattleSystem : MonoBehaviour
 
     public void DealFireDMG(GameObject target){
         if(target == E_Prefab)
-        E_Prefab.GetComponent<UnitHealth>().TakeFireDamage(P_OG_Damage);
+        E_Prefab.GetComponent<UnitHealth>().TakeFireDamage(E_IC_FireDamage);
         if(target == P_Prefab)
-        P_Prefab.GetComponent<UnitHealth>().TakeFireDamage(E_OG_Damage);
+        P_Prefab.GetComponent<UnitHealth>().TakeFireDamage(P_IC_FireDamage);
     }
 
     public void GainShield(GameObject target){
@@ -101,9 +105,9 @@ public class BattleSystem : MonoBehaviour
     }
 
     public void ResetBattle() {
-        P_IC_Shield.SetValue(0);
-        E_IC_Shield.SetValue(0);
         turn.SetValue(0);
+        E_IC_FireDamage.SetValue(0);
+        P_IC_FireDamage.SetValue(0);
         slot.ResetSymbols();
     }
 

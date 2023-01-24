@@ -9,7 +9,7 @@ public class PlayerDisplay : MonoBehaviour
     public UnitData unit;
     public Text unitName, shieldText, hpText, turnSummary;
     public Image artwork;
-    public FloatVariable playerShield, unitHealth, playerDamage, E_IC_FireDamage;
+    public FloatVariable playerShield, unitHealth, playerDamage, E_IC_FireDamage, E_FireCount;
 
     void Start()
     {
@@ -20,7 +20,7 @@ public class PlayerDisplay : MonoBehaviour
     void Update() {
         shieldText.text = "" + playerShield.Value;
         hpText.text = "" + unitHealth.Value;
-        turnSummary.text = "Attack: " + playerDamage.Value + " \nShield: " + playerShield.Value + "\nFireDmg: " + E_IC_FireDamage.Value;
+        turnSummary.text = "Attack: " + playerDamage.Value + " \nShield: " + playerShield.Value + "\nFireDmg: " + E_IC_FireDamage.Value + "\nFireCount: " + E_FireCount.Value;
     }
 
 

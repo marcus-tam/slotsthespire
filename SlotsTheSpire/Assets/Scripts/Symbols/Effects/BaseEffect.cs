@@ -12,4 +12,6 @@ public abstract class BaseEffect : ScriptableObject
    public abstract void ResetEffect();
 
    public abstract void CountDown();
+
+   public abstract string GetDescription();
 }

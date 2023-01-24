@@ -18,6 +18,10 @@ public class UnitHealth : MonoBehaviour
         if (ResetHP) {
             maxHP.SetValue(StartingHP);
             currentHP.SetValue(StartingHP);
+            shield.SetValue(0);
+            exposedCount.SetValue(0);
+            fireCount.SetValue(0);
+            weakCount.SetValue(0);
         }
             
     }
@@ -51,7 +55,6 @@ public class UnitHealth : MonoBehaviour
 
     public void TakeShield(FloatVariable incomingShield){
         shield.ApplyChange(incomingShield.Value);
-        Debug.Log(this.unit.unitName + " received "+shield.Value+" shield");
         if(shield.Value > 0)
             isShielded.SetTrue();
             else
@@ -60,10 +63,11 @@ public class UnitHealth : MonoBehaviour
     }
     public void TakeFireDamage(FloatVariable incomingFireDamage){
         if(fireCount.Value>0)
-        currentHP.ApplyChange(incomingFireDamage.Value);
+        currentHP.ApplyChange(incomingFireDamage.Value, true);
     }
 
     public UnitData getData(){
         return unit;
     }
+
 }

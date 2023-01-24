@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f5d05b0161f907447b413a8ae2a02c0a, type: 3}
-  m_Name: E_Exposed+1
+  m_Name: P_Exposed+1
   m_EditorClassIdentifier: 
-  countDownAmount: 1
+  countDownAmount: 2
   E_ExposedCounter: {fileID: 11400000, guid: a31d7d7a29d0f9442abacea743b8de31, type: 2}
+  description: Exposes for 1 turn

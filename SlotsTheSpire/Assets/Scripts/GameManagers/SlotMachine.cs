@@ -28,9 +28,6 @@ public class SlotMachine : MonoBehaviour
             CalculateTurn(i);
         }
 
-        for (int j = 0; j <= SlotSpace; j++)
-            newDeck[j].symbolData.PreformEffect();
-        Debug.Log("Player should receive "+IC_Shield.Value+" shield");
         battleSystem.PlayerTurn();
     }
 
@@ -55,10 +52,27 @@ public class SlotMachine : MonoBehaviour
             T temp = list[k];
             list[k] = list[n];
             list[n] = temp;
-
-
         }
 
+    }
+
+    public void TriggerEffects(){
+        for (int j = 0; j <= SlotSpace; j++){
+            newDeck[j].symbolData.PreformEffect();
+            if(newDeck[j].symbolData.hasEffect)
+            Debug.Log(" "+newDeck[j].symbolData.symbolEffect.GetDescription());
+        }
+            
+    }
+
+
+    public void EffectCountDown(){
+        for (int q = 0; q < newDeck.Count; q++)
+            {
+                symbol = newDeck[q];
+                if(symbol.symbolData.hasEffect)
+                symbol.symbolData.symbolEffect.CountDown();
+            }
     }
 
     public void ResetSymbols(){

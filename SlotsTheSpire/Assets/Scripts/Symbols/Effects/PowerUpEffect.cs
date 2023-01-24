@@ -7,17 +7,21 @@ public class PowerUpEffect : BaseEffect
 {
     public FloatReference amount;
     public FloatVariable target;
+    public string description;
 
  public override void DoEffect(){
     target.ApplyChange(amount);
  }
 
  public override void ResetEffect(){
-   target.SetValue(target.StartingValue);
+   target.SetValue(0);
  }
 
  public override void CountDown(){
-   return;
+  
  }
 
+public override string GetDescription(){
+        return description;
+    }
 }
