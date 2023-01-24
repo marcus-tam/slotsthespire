@@ -9,18 +9,18 @@ public class BattleSystem : MonoBehaviour
 
     public GameObject P_Prefab;
     public GameObject E_Prefab;
-    public FloatVariable turn, enemyHealth, playerShield, enemyShield, enemyMaxHealth, playerHealth, floorLevel, E_outgoingDamage, P_outgoingDamage, P_incomingShield, E_incomingShield;
-    public Transform PlayerBattleStation;
-    public Transform enemyBattleStation;
+    public FloatVariable turn, E_Health, P_Shield, E_Shield, E_MaxHP, P_Health, floorLevel, E_OG_Damage, P_OG_Damage, P_IC_Shield, E_IC_Shield, P_IC_FireDamage, E_IC_FireDamage;
+    public Transform P_BattleStation;
+    public Transform E_BattleStation;
 
     public BattleState state;
     public SlotMachine slot;
-    public EnemySpawner enemySpawner;
+    public EnemySpawner E_Spawner;
     public UnitDisplay unitDisplay;
 
     void Start()
     {
-        playerHealth.SetValue(25);
+        P_Health.SetValue(25);
         state = BattleState.START;
         setupBattle();
     }
@@ -30,23 +30,24 @@ public class BattleSystem : MonoBehaviour
     {
         GenerateFloorEnemy();
         Instantiate(P_Prefab);
-        resetBattle();
+        ResetBattle();
         state = BattleState.PLAYERTURN;
     }
 
     public void PlayerTurn() {
-        playerShield.SetValue(0);
+        P_Shield.SetValue(0);
         state = BattleState.ENDTURN;
     }
 
     public void OnEndTurnButton(){
         if (state != BattleState.ENDTURN)
             return;
-        dealDamage(E_Prefab);
-        gainShield(P_Prefab);
+        DealDMG(E_Prefab);
+        DealFireDMG(E_Prefab);
+        GainShield(P_Prefab);
         if (state == BattleState.WON)
             return;
-        endPlayerTurn();
+        EndPlayerTurn();
     }
 
     public void OnSpinButton() {
@@ -56,69 +57,77 @@ public class BattleSystem : MonoBehaviour
     }
 
     public void EnemyTurn() {
-        enemyShield.SetValue(0);
+        E_Shield.SetValue(0);
         E_Prefab.GetComponent<EnemyActioner>().PerformAction();
-        dealDamage(P_Prefab);
-        gainShield(E_Prefab);
-        if (playerHealth.Value <= 0)
+        DealDMG(P_Prefab);
+        DealFireDMG(P_Prefab);
+        GainShield(E_Prefab);
+        if (P_Health.Value <= 0)
             Defeat();
         else
-            endEnemyTurn();           
+            EndEnemyTurn();           
     }
 
-    public void dealDamage(GameObject target) {
+    public void DealDMG(GameObject target) {
         if(target == E_Prefab)
-        E_Prefab.GetComponent<UnitHealth>().TakeDamage(P_outgoingDamage);
+        E_Prefab.GetComponent<UnitHealth>().TakeDamage(P_OG_Damage);
         if(target == P_Prefab)
-        P_Prefab.GetComponent<UnitHealth>().TakeDamage(E_outgoingDamage);
+        P_Prefab.GetComponent<UnitHealth>().TakeDamage(E_OG_Damage);
     }
 
-    public void gainShield(GameObject target){
+    public void DealFireDMG(GameObject target){
         if(target == E_Prefab)
-        E_Prefab.GetComponent<UnitHealth>().TakeShield(E_incomingShield);
+        E_Prefab.GetComponent<UnitHealth>().TakeFireDamage(P_OG_Damage);
         if(target == P_Prefab)
-        P_Prefab.GetComponent<UnitHealth>().TakeShield(P_incomingShield);
+        P_Prefab.GetComponent<UnitHealth>().TakeFireDamage(E_OG_Damage);
     }
 
-    public void endPlayerTurn() {
+    public void GainShield(GameObject target){
+        if(target == E_Prefab)
+        E_Prefab.GetComponent<UnitHealth>().TakeShield(E_IC_Shield);
+        if(target == P_Prefab)
+        P_Prefab.GetComponent<UnitHealth>().TakeShield(P_IC_Shield);
+    }
+
+    public void EndPlayerTurn() {
         state = BattleState.ENEMYTURN;
         EnemyTurn();
     }
 
-    public void endEnemyTurn() {
+    public void EndEnemyTurn() {
         turn.ApplyChange(1.0f);
         unitDisplay.UpdateDisplay(E_Prefab);
         state = BattleState.PLAYERTURN;
     }
 
-    public void resetBattle() {
-        playerShield.SetValue(0);
-        enemyShield.SetValue(0);
+    public void ResetBattle() {
+        P_IC_Shield.SetValue(0);
+        E_IC_Shield.SetValue(0);
         turn.SetValue(0);
         slot.ResetSymbols();
     }
 
     public void Victory() {
-        enemyHealth.SetValue(0);
+        E_Health.SetValue(0);
         state = BattleState.WON;
         Debug.Log("You Win");
         //reward screen
         //change scene to map
-        //resetBattle();
+        //ResetBattle();
     }
 
     public void Defeat() {
-        playerHealth.SetValue(0);
+        P_Health.SetValue(0);
         state = BattleState.LOSS;
         Debug.Log("You Lose");
         //defeat screen
         //review deck & stats
         //main menu & retry
-        //resetBattle();
+        //ResetBattle();
     }
 
     public void GenerateFloorEnemy(){
-        E_Prefab = enemySpawner.GenerateCommonEnemy();
+        E_Prefab = E_Spawner.GenerateCommonEnemy();
         Instantiate(E_Prefab);
         Debug.Log(" Has Spawned");
         unitDisplay.UpdateDisplay(E_Prefab);

@@ -934,9 +934,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1122661862}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 33
+  m_MaxValue: 42
   m_WholeNumbers: 0
-  m_Value: 14
+  m_Value: 9
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1273,7 +1273,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 25
   m_WholeNumbers: 0
-  m_Value: 23
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1516,7 +1516,7 @@ MonoBehaviour:
     symbolCount: 1
   - symbolData: {fileID: 11400000, guid: 2965aea4f18bb124d963a5f9a5ff040b, type: 2}
     symbolCount: 1
-  - symbolData: {fileID: 11400000, guid: 3f482f7be8e0786488864116de8d54d6, type: 2}
+  - symbolData: {fileID: 11400000, guid: adedddbdf55c2054d98e7e5f64843f2c, type: 2}
     symbolCount: 1
   - symbolData: {fileID: 11400000, guid: 3f482f7be8e0786488864116de8d54d6, type: 2}
     symbolCount: 1
@@ -2682,10 +2682,12 @@ MonoBehaviour:
   enemyMaxHealth: {fileID: 11400000, guid: 8a16a541f1a49544cba8b14d5e4549da, type: 2}
   playerHealth: {fileID: 11400000, guid: a39a27eada4fe7a4c827abd1faa1eda7, type: 2}
   floorLevel: {fileID: 11400000, guid: 2cb0e5e0e1a8f4643b37d2b9336686f2, type: 2}
-  E_outgoingDamage: {fileID: 11400000, guid: 1701ddd989ed18746a1cbdc01d7c2341, type: 2}
-  P_outgoingDamage: {fileID: 11400000, guid: 824c3da36c3239f458e659b5be75063a, type: 2}
-  P_incomingShield: {fileID: 11400000, guid: f1354cf01ded13849b89b331264d8755, type: 2}
-  E_incomingShield: {fileID: 11400000, guid: ac13ffbc6e3e421478ba698d9240e0b2, type: 2}
+  E_OG_Damage: {fileID: 11400000, guid: 1701ddd989ed18746a1cbdc01d7c2341, type: 2}
+  P_OG_Damage: {fileID: 11400000, guid: 824c3da36c3239f458e659b5be75063a, type: 2}
+  P_IC_Shield: {fileID: 11400000, guid: f1354cf01ded13849b89b331264d8755, type: 2}
+  E_IC_Shield: {fileID: 11400000, guid: ac13ffbc6e3e421478ba698d9240e0b2, type: 2}
+  P_IC_FireDamage: {fileID: 11400000, guid: 7196a37c9edb06b46893f2e3105237ce, type: 2}
+  E_IC_FireDamage: {fileID: 11400000, guid: 5cc4b9b7209bb5748bf60c6522f8ef29, type: 2}
   PlayerBattleStation: {fileID: 1059216432}
   enemyBattleStation: {fileID: 2026645831}
   state: 0
@@ -2722,6 +2724,7 @@ MonoBehaviour:
   CommonList:
   - {fileID: 7931562668598609886, guid: 1c13b1a812b75ed47a5f029f0163c92f, type: 3}
   - {fileID: 8981792869180758383, guid: 36df4b724a8fe024487f2014190594f2, type: 3}
+  - {fileID: 2338795686795957472, guid: 71e2adf556c6c7e409e216329907cd66, type: 3}
   EliteList: []
   BossList: []
 --- !u!1 &1500577609
@@ -3313,6 +3316,7 @@ MonoBehaviour:
   playerShield: {fileID: 11400000, guid: f1354cf01ded13849b89b331264d8755, type: 2}
   unitHealth: {fileID: 11400000, guid: a39a27eada4fe7a4c827abd1faa1eda7, type: 2}
   playerDamage: {fileID: 11400000, guid: 824c3da36c3239f458e659b5be75063a, type: 2}
+  E_IC_FireDamage: {fileID: 11400000, guid: 5cc4b9b7209bb5748bf60c6522f8ef29, type: 2}
 --- !u!1 &1813436437
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using System;
 
 public class UnitHealth : MonoBehaviour
 {
-    public FloatVariable maxHP, currentHP, shield;
-    public BoolVariable isShielded, OnFire, isWeakened, isExposed;
+    public FloatVariable maxHP, currentHP, shield, exposedCount, fireCount, weakCount;
+    public BoolVariable isShielded;
     public UnitData unit;
 
     public bool ResetHP;
@@ -22,6 +23,10 @@ public class UnitHealth : MonoBehaviour
     }
 
     public void TakeDamage(FloatVariable incomingDamage){
+        if(exposedCount.Value > 0){
+            incomingDamage.ApplyChange((float)Math.Ceiling(incomingDamage.Value/2));
+            Debug.Log("Incoming damage (Exposed) is: " + incomingDamage);
+        }
         // If enemy is unshielded, damage affects health
         if (!isShielded){
             currentHP.ApplyChange(incomingDamage, true);
@@ -40,6 +45,7 @@ public class UnitHealth : MonoBehaviour
                     shield.ApplyChange(incomingDamage, true);
                 }
             }
+        
         incomingDamage.SetValue(0);
     }
 
@@ -51,6 +57,10 @@ public class UnitHealth : MonoBehaviour
             else
                 isShielded.SetFalse();
         incomingShield.SetValue(0);
+    }
+    public void TakeFireDamage(FloatVariable incomingFireDamage){
+        if(fireCount.Value>0)
+        currentHP.ApplyChange(incomingFireDamage.Value);
     }
 
     public UnitData getData(){

@@ -8,7 +8,7 @@ public class SlotMachine : MonoBehaviour
     public Deck cardDeck;
     public List<SymbolInventoryItem> newDeck = new List<SymbolInventoryItem>();
     public int SlotSpace;
-    public FloatVariable outgoingDamage, incomingShield;
+    public FloatVariable OG_Damage, IC_Shield;
     public BattleSystem battleSystem;
     public SymbolInventoryItem symbol;
     public List<Image> artworkList = new List<Image>();
@@ -30,13 +30,13 @@ public class SlotMachine : MonoBehaviour
 
         for (int j = 0; j <= SlotSpace; j++)
             newDeck[j].symbolData.PreformEffect();
-        Debug.Log("Player should receive "+incomingShield.Value+" shield");
+        Debug.Log("Player should receive "+IC_Shield.Value+" shield");
         battleSystem.PlayerTurn();
     }
 
     public void CalculateTurn(int o){
-        outgoingDamage.ApplyChange(symbol.symbolData.Damage);
-        incomingShield.ApplyChange(symbol.symbolData.Shield);
+        OG_Damage.ApplyChange(symbol.symbolData.Damage);
+        IC_Shield.ApplyChange(symbol.symbolData.Shield);
         artworkList[o].sprite = newDeck[o].symbolData.artwork;
     }
 
