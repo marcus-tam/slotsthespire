@@ -42,4 +42,5 @@ MonoBehaviour:
     Variable: {fileID: 0}
   hasEffect: 1
   resetEffect: 0
+  countDownEffect: 1
   symbolEffect: {fileID: 11400000, guid: 0306a79c2ec592a4e89c058eee81ac45, type: 2}

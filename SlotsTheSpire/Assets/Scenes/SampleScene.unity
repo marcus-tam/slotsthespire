@@ -936,7 +936,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 42
   m_WholeNumbers: 0
-  m_Value: 9
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2280,8 +2280,8 @@ MonoBehaviour:
   cardDeck: {fileID: 1096077663}
   newDeck: []
   SlotSpace: 3
-  outgoingDamage: {fileID: 11400000, guid: 824c3da36c3239f458e659b5be75063a, type: 2}
-  incomingShield: {fileID: 11400000, guid: f1354cf01ded13849b89b331264d8755, type: 2}
+  OG_Damage: {fileID: 11400000, guid: 824c3da36c3239f458e659b5be75063a, type: 2}
+  IC_Shield: {fileID: 11400000, guid: f1354cf01ded13849b89b331264d8755, type: 2}
   battleSystem: {fileID: 1413773462}
   symbol:
     symbolData: {fileID: 0}
@@ -2676,11 +2676,11 @@ MonoBehaviour:
   P_Prefab: {fileID: 3027548683151543647, guid: e138fff422a8a5d4ba5bd8e76d9b6666, type: 3}
   E_Prefab: {fileID: 3027548683151543647, guid: e138fff422a8a5d4ba5bd8e76d9b6666, type: 3}
   turn: {fileID: 11400000, guid: 3ed5e071c84c5ec44a678537634a1c7f, type: 2}
-  enemyHealth: {fileID: 11400000, guid: 3f45eeb8130d61a4aa51fdef678dee99, type: 2}
-  playerShield: {fileID: 11400000, guid: 6fa373a48eb4a9a418a76b60bb43e848, type: 2}
-  enemyShield: {fileID: 11400000, guid: c7c7f526e54791c4ab96169337b1ddc0, type: 2}
-  enemyMaxHealth: {fileID: 11400000, guid: 8a16a541f1a49544cba8b14d5e4549da, type: 2}
-  playerHealth: {fileID: 11400000, guid: a39a27eada4fe7a4c827abd1faa1eda7, type: 2}
+  E_Health: {fileID: 11400000, guid: 3f45eeb8130d61a4aa51fdef678dee99, type: 2}
+  P_Shield: {fileID: 11400000, guid: 6fa373a48eb4a9a418a76b60bb43e848, type: 2}
+  E_Shield: {fileID: 11400000, guid: c7c7f526e54791c4ab96169337b1ddc0, type: 2}
+  E_MaxHP: {fileID: 11400000, guid: 8a16a541f1a49544cba8b14d5e4549da, type: 2}
+  P_Health: {fileID: 11400000, guid: a39a27eada4fe7a4c827abd1faa1eda7, type: 2}
   floorLevel: {fileID: 11400000, guid: 2cb0e5e0e1a8f4643b37d2b9336686f2, type: 2}
   E_OG_Damage: {fileID: 11400000, guid: 1701ddd989ed18746a1cbdc01d7c2341, type: 2}
   P_OG_Damage: {fileID: 11400000, guid: 824c3da36c3239f458e659b5be75063a, type: 2}
@@ -2688,11 +2688,11 @@ MonoBehaviour:
   E_IC_Shield: {fileID: 11400000, guid: ac13ffbc6e3e421478ba698d9240e0b2, type: 2}
   P_IC_FireDamage: {fileID: 11400000, guid: 7196a37c9edb06b46893f2e3105237ce, type: 2}
   E_IC_FireDamage: {fileID: 11400000, guid: 5cc4b9b7209bb5748bf60c6522f8ef29, type: 2}
-  PlayerBattleStation: {fileID: 1059216432}
-  enemyBattleStation: {fileID: 2026645831}
+  P_BattleStation: {fileID: 1751202740}
+  E_BattleStation: {fileID: 1300423311}
   state: 0
   slot: {fileID: 1328518553}
-  enemySpawner: {fileID: 1413773464}
+  E_Spawner: {fileID: 1413773464}
   unitDisplay: {fileID: 1300423312}
 --- !u!4 &1413773463
 Transform:
