@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5d05b0161f907447b413a8ae2a02c0a, type: 3}
+  m_Name: E_Exposed+1
+  m_EditorClassIdentifier: 
+  amount: 2
+  StatusCounter: {fileID: 11400000, guid: a31d7d7a29d0f9442abacea743b8de31, type: 2}
+  description: Exposes for 1 / 2 turns

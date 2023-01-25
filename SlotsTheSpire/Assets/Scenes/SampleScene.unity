@@ -1010,9 +1010,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1122661862}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 33
+  m_MaxValue: 42
   m_WholeNumbers: 0
-  m_Value: 0
+  m_Value: 19
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1349,7 +1349,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 25
   m_WholeNumbers: 0
-  m_Value: 21
+  m_Value: 13
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1584,13 +1584,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deck:
-  - symbolData: {fileID: 11400000, guid: 3f482f7be8e0786488864116de8d54d6, type: 2}
+  - symbolData: {fileID: 11400000, guid: 6616e2592a4042c4a80514c071c88e4f, type: 2}
     symbolCount: 1
-  - symbolData: {fileID: 11400000, guid: 3f482f7be8e0786488864116de8d54d6, type: 2}
+  - symbolData: {fileID: 11400000, guid: 6616e2592a4042c4a80514c071c88e4f, type: 2}
     symbolCount: 1
   - symbolData: {fileID: 11400000, guid: 5bf2bab1182ad4d42b9a040199471a80, type: 2}
     symbolCount: 1
-  - symbolData: {fileID: 11400000, guid: 2965aea4f18bb124d963a5f9a5ff040b, type: 2}
+  - symbolData: {fileID: 11400000, guid: 6616e2592a4042c4a80514c071c88e4f, type: 2}
     symbolCount: 1
   - symbolData: {fileID: 11400000, guid: 2965aea4f18bb124d963a5f9a5ff040b, type: 2}
     symbolCount: 1
@@ -1599,6 +1599,10 @@ MonoBehaviour:
   - symbolData: {fileID: 11400000, guid: 2965aea4f18bb124d963a5f9a5ff040b, type: 2}
     symbolCount: 1
   - symbolData: {fileID: 11400000, guid: adedddbdf55c2054d98e7e5f64843f2c, type: 2}
+    symbolCount: 1
+  - symbolData: {fileID: 11400000, guid: 3f482f7be8e0786488864116de8d54d6, type: 2}
+    symbolCount: 1
+  - symbolData: {fileID: 11400000, guid: 51bff4752d33de14786fbcbd1fce9123, type: 2}
     symbolCount: 1
   - symbolData: {fileID: 11400000, guid: 2965aea4f18bb124d963a5f9a5ff040b, type: 2}
     symbolCount: 1
