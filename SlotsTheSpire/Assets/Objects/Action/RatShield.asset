@@ -18,7 +18,7 @@ MonoBehaviour:
     Variable: {fileID: 0}
   shieldAmount:
     UseConstant: 1
-    ConstantValue: 4
+    ConstantValue: 2
     Variable: {fileID: 0}
   E_incomingShield: {fileID: 11400000, guid: ac13ffbc6e3e421478ba698d9240e0b2, type: 2}
   E_outgoingDamage: {fileID: 11400000, guid: 1701ddd989ed18746a1cbdc01d7c2341, type: 2}
@@ -26,4 +26,6 @@ MonoBehaviour:
   E_IsShielded: {fileID: 11400000, guid: a120c4c70ebd3bd4f9260f4e0c2454c2, type: 2}
   isDamage: 0
   isShield: 1
-  attackSummary: Rat Shields for 4
+  hasEffect: 1
+  attackSummary: Shields 2 fire +1
+  effect: {fileID: 11400000, guid: e63338990441d79478e70a631774fff3, type: 2}

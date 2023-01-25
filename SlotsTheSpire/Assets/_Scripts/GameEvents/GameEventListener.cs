@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+[System.Serializable]
+public class CustomGameEvent : UnityEvent<Component, object>{}
+
 public class GameEventListener : MonoBehaviour
 {
 
@@ -10,7 +13,7 @@ public class GameEventListener : MonoBehaviour
     public GameEvent Event;
 
     [Tooltip("Response to invoke when Event is raised.")]
-    public UnityEvent Response;
+    public CustomGameEvent Response;
 
     private void OnEnable()
     {
@@ -22,8 +25,8 @@ public class GameEventListener : MonoBehaviour
         Event.UnregisterListener(this);
     }
 
-    public void OnEventRaised()
+    public void OnEventRaised(Component sender, object data)
     {
-        Response.Invoke();
+        Response.Invoke(sender, data);
     }
 }

@@ -18,7 +18,7 @@ public class SymbolData : ScriptableObject
     public FloatReference Heal;
     public FloatReference Pos;
     public FloatReference Turn;
-    public bool hasEffect, resetEffect, countDownEffect;
+    public bool hasEffect;
 
     public BaseEffect symbolEffect;
     //add list of effects

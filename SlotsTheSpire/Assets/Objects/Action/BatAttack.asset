@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageAmount:
     UseConstant: 1
-    ConstantValue: 6
+    ConstantValue: 4
     Variable: {fileID: 0}
   shieldAmount:
     UseConstant: 1
@@ -26,4 +26,6 @@ MonoBehaviour:
   E_IsShielded: {fileID: 11400000, guid: a120c4c70ebd3bd4f9260f4e0c2454c2, type: 2}
   isDamage: 1
   isShield: 0
-  attackSummary: Bat is Attacking for 6 Damage
+  hasEffect: 1
+  attackSummary: Bat is Attacking for 4 Damage
+  effect: {fileID: 11400000, guid: 463efe73e7111a241bc89cf33783de0d, type: 2}

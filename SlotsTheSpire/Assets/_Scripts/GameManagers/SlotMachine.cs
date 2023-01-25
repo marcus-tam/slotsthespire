@@ -13,10 +13,18 @@ public class SlotMachine : MonoBehaviour
     public SymbolInventoryItem symbol;
     public List<Image> artworkList = new List<Image>();
 
+    System.Random spin = new System.Random();
+    int slotNum, symbNum;
+    bool spinning; 
+
     public void Start() {
         CopyDeck();
-        for (int i = 0; i <= SlotSpace; i++)
-            artworkList[i].sprite = newDeck[i].symbolData.artwork;
+        SetupArt();
+    }
+
+    public void Update(){
+        if(battleSystem.state == BattleState.PLAYERTURN)
+            RandomizeArt();
     }
 
     public void SpinMachine() {
@@ -29,6 +37,19 @@ public class SlotMachine : MonoBehaviour
         }
 
         battleSystem.PlayerTurn();
+    }
+
+    public void SetupArt(){
+        for (int i = 0; i <= SlotSpace; i++)
+            artworkList[i].sprite = newDeck[i].symbolData.artwork;
+        
+    
+    }
+
+    public void RandomizeArt(){
+        symbNum = spin.Next(0, newDeck.Count);
+        slotNum = spin.Next(0, SlotSpace+1);
+        artworkList[slotNum].sprite = newDeck[symbNum].symbolData.artwork;
     }
 
     public void CalculateTurn(int o){

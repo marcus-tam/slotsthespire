@@ -18,6 +18,8 @@ public class BattleSystem : MonoBehaviour
     public EnemySpawner E_Spawner;
     public UnitDisplay unitDisplay;
 
+    public GameEvent P_ChangeTurn;
+
     void Start()
     {
         P_Health.SetValue(25);
@@ -46,6 +48,7 @@ public class BattleSystem : MonoBehaviour
         slot.TriggerEffects();
         DealFireDMG(E_Prefab);
         GainShield(P_Prefab);
+        P_Prefab.GetComponent<UnitHealth>().DecreaseStatusEffects();
         if(E_Health.Value <= 0){
             Victory();
             return;
@@ -57,6 +60,7 @@ public class BattleSystem : MonoBehaviour
         if (state != BattleState.PLAYERTURN)
             return;
         slot.SpinMachine();
+        P_ChangeTurn.Raise(this, true);
     }
 
     public void EnemyTurn() {
@@ -108,6 +112,10 @@ public class BattleSystem : MonoBehaviour
         turn.SetValue(0);
         E_IC_FireDamage.SetValue(0);
         P_IC_FireDamage.SetValue(0);
+        P_OG_Damage.SetValue(0);
+        E_OG_Damage.SetValue(0);
+        P_IC_Shield.SetValue(0);
+        E_IC_Shield.SetValue(0);
         slot.ResetSymbols();
     }
 

@@ -9,14 +9,18 @@ public class EnemyAction : Action
     public FloatReference damageAmount, shieldAmount;
     public FloatVariable E_incomingShield, E_outgoingDamage, E_WeakCount;
     public BoolVariable E_IsShielded;
-    public bool isDamage, isShield;
+    public bool isDamage, isShield, hasEffect;
     public string attackSummary;
+    public BaseEffect effect;
 
     public override void DoAction(EnemyActioner action) {
         if(isDamage)
             CalculateDamage();
         if(isShield)
             ShieldSelf();
+        if(hasEffect)
+            PreformEffect();
+
         }
 
     public void CalculateDamage(){
@@ -38,5 +42,11 @@ public class EnemyAction : Action
         return attackSummary;
     }
 
+    public void PreformEffect(){
+        if(hasEffect)
+            effect.DoEffect();
+        else
+            return;
+   }
 
 }

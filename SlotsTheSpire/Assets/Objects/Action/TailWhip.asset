@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damageAmount:
     UseConstant: 1
-    ConstantValue: 5
+    ConstantValue: 3
     Variable: {fileID: 0}
   shieldAmount:
     UseConstant: 1
@@ -26,4 +26,6 @@ MonoBehaviour:
   E_IsShielded: {fileID: 11400000, guid: a120c4c70ebd3bd4f9260f4e0c2454c2, type: 2}
   isDamage: 1
   isShield: 0
-  attackSummary: 'Tail whip: 5 damage'
+  hasEffect: 1
+  attackSummary: 3 Damage 1 Weak
+  effect: {fileID: 11400000, guid: 3b5cbca7f4f85534e90a57820e174c7f, type: 2}

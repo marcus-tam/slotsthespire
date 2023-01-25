@@ -9,6 +9,9 @@ public class UnitHealth : MonoBehaviour
     public FloatVariable maxHP, currentHP, shield, exposedCount, fireCount, weakCount;
     public BoolVariable isShielded;
     public UnitData unit;
+    
+    public GameEvent DamageEvent,shieldEvent;
+    public GameEvent DeathEvent;
 
     public bool ResetHP;
     public FloatReference StartingHP;
@@ -18,12 +21,11 @@ public class UnitHealth : MonoBehaviour
         if (ResetHP) {
             maxHP.SetValue(StartingHP);
             currentHP.SetValue(StartingHP);
+        }
             shield.SetValue(0);
             exposedCount.SetValue(0);
             fireCount.SetValue(0);
             weakCount.SetValue(0);
-        }
-            
     }
 
     public void TakeDamage(FloatVariable incomingDamage){
@@ -51,6 +53,9 @@ public class UnitHealth : MonoBehaviour
             }
         
         incomingDamage.SetValue(0);
+        DamageEvent.Raise(this, currentHP.Value);
+        if(currentHP.Value <= 0)
+            DeathEvent.Raise(this, true);
     }
 
     public void TakeShield(FloatVariable incomingShield){
@@ -60,10 +65,12 @@ public class UnitHealth : MonoBehaviour
             else
                 isShielded.SetFalse();
         incomingShield.SetValue(0);
+        shieldEvent.Raise(this, shield.Value);
     }
     public void TakeFireDamage(FloatVariable incomingFireDamage){
         if(fireCount.Value>0)
         currentHP.ApplyChange(incomingFireDamage.Value, true);
+        DamageEvent.Raise(this,currentHP.Value);
     }
 
     public UnitData getData(){
