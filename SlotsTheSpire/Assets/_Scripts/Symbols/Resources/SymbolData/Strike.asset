@@ -10,20 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5eb177b4cec16cd4c8827228c6b25dc0, type: 3}
-  m_Name: BloodyStrike
+  m_Name: Strike
   m_EditorClassIdentifier: 
-  name: BloodyStrike
-  description: +1 damage to all BloodyStrikes
-  symbolID: 2
-  artwork: {fileID: 21300000, guid: 06361aa8b30d8b246bfa8f23eba6668d, type: 3}
+  name: Strike
+  description: Deals 1 damage
+  ID: 1
+  artwork: {fileID: 21300000, guid: a9d08c860115a27408d03560c7c62549, type: 3}
   Size:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
   Damage:
-    UseConstant: 0
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: 9d8573eccbebf9444bb2d53bfcecc48c, type: 2}
+    UseConstant: 1
+    ConstantValue: 5
+    Variable: {fileID: 0}
   Shield:
     UseConstant: 1
     ConstantValue: 0
@@ -37,12 +37,8 @@ MonoBehaviour:
     ConstantValue: 0
     Variable: {fileID: 0}
   Turn:
-    UseConstant: 1
+    UseConstant: 0
     ConstantValue: 0
-    Variable: {fileID: 0}
-  hasEffect: 1
-  resetEffect: 1
-  countDownEffect: 0
-  symbolEffectList:
-  - {fileID: 11400000, guid: 0306a79c2ec592a4e89c058eee81ac45, type: 2}
-  symbolEffect: {fileID: 11400000, guid: 0306a79c2ec592a4e89c058eee81ac45, type: 2}
+    Variable: {fileID: 11400000, guid: 3ed5e071c84c5ec44a678537634a1c7f, type: 2}
+  hasEffect: 0
+  symbolEffect: {fileID: 0}

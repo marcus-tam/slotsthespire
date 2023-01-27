@@ -16,12 +16,9 @@ public class Deck : MonoBehaviour
     public void RemoveFromDeck(SymbolData symbolData){
 
         if(symbolDictionary.TryGetValue(symbolData, out SymbolInventoryItem symbol)){
-            symbol.RemoveFromCount();
-            if(symbol.symbolCount == 0){
                 SymbolInventoryItem newSymbol = new SymbolInventoryItem(symbolData);
                 deck.Remove(symbol);
                 symbolDictionary.Remove(symbolData);
-            }
         }
     }
 

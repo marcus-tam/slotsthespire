@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5eb177b4cec16cd4c8827228c6b25dc0, type: 3}
-  m_Name: FireBall
+  m_Name: Defend
   m_EditorClassIdentifier: 
-  name: FireBall
-  description: Sets the Target on fire
-  symbolID: 3
-  artwork: {fileID: 21300000, guid: de9d8e24d90a41948861ead147617cf7, type: 3}
+  name: Defend
+  description: Block for 1
+  ID: 1
+  artwork: {fileID: 21300000, guid: 4e35412c6acf7da4b93a779caef8e5b9, type: 3}
   Size:
     UseConstant: 1
     ConstantValue: 0
@@ -26,7 +26,7 @@ MonoBehaviour:
     Variable: {fileID: 0}
   Shield:
     UseConstant: 1
-    ConstantValue: 0
+    ConstantValue: 1
     Variable: {fileID: 0}
   Heal:
     UseConstant: 1
@@ -37,12 +37,8 @@ MonoBehaviour:
     ConstantValue: 0
     Variable: {fileID: 0}
   Turn:
-    UseConstant: 1
+    UseConstant: 0
     ConstantValue: 0
-    Variable: {fileID: 0}
-  hasEffect: 1
-  resetEffect: 0
-  countDownEffect: 1
-  symbolEffectList:
-  - {fileID: 11400000, guid: 903240361c24fe043a5c317771d806a0, type: 2}
-  symbolEffect: {fileID: 11400000, guid: 903240361c24fe043a5c317771d806a0, type: 2}
+    Variable: {fileID: 11400000, guid: 3ed5e071c84c5ec44a678537634a1c7f, type: 2}
+  hasEffect: 0
+  symbolEffect: {fileID: 0}

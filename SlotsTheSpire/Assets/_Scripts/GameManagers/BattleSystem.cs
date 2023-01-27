@@ -18,7 +18,7 @@ public class BattleSystem : MonoBehaviour
     public EnemySpawner E_Spawner;
     public UnitDisplay unitDisplay;
 
-    public GameEvent P_ChangeTurn;
+    public GameEvent P_ChangeTurn, P_Death, P_Victory;
 
     void Start()
     {
@@ -124,6 +124,7 @@ public class BattleSystem : MonoBehaviour
         state = BattleState.WON;
         Debug.Log("You Win");
         //reward screen
+        P_Victory.Raise(this, true);
         //change scene to map
         //ResetBattle();
     }
@@ -133,6 +134,7 @@ public class BattleSystem : MonoBehaviour
         state = BattleState.LOSS;
         Debug.Log("You Lose");
         //defeat screen
+        P_Death.Raise(this, true);
         //review deck & stats
         //main menu & retry
         //ResetBattle();

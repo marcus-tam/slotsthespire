@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5eb177b4cec16cd4c8827228c6b25dc0, type: 3}
-  m_Name: Strike
+  m_Name: Vital Strike
   m_EditorClassIdentifier: 
-  name: Strike
-  description: Deals 1 damage
-  symbolID: 1
-  artwork: {fileID: 21300000, guid: a9d08c860115a27408d03560c7c62549, type: 3}
+  name: Vital Strike
+  description: 0 Damage + 2 Exposed Count
+  ID: 4
+  artwork: {fileID: 21300000, guid: c9c94607aaa936d4dbbbec2efa912790, type: 3}
   Size:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
   Damage:
     UseConstant: 1
-    ConstantValue: 1
+    ConstantValue: 0
     Variable: {fileID: 0}
   Shield:
     UseConstant: 1
@@ -32,15 +32,13 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
-  DOT:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
   Pos:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
   Turn:
-    UseConstant: 0
+    UseConstant: 1
     ConstantValue: 0
-    Variable: {fileID: 11400000, guid: 3ed5e071c84c5ec44a678537634a1c7f, type: 2}
+    Variable: {fileID: 0}
+  hasEffect: 1
+  symbolEffect: {fileID: 11400000, guid: 316c55a607a729448b5453d226385d5a, type: 2}

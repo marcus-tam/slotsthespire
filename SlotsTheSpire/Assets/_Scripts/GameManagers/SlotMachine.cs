@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class SlotMachine : MonoBehaviour
 {
     public Deck cardDeck;
     public List<SymbolInventoryItem> newDeck = new List<SymbolInventoryItem>();
     public int SlotSpace;
-    public FloatVariable OG_Damage, IC_Shield;
+    public FloatVariable OG_Damage, IC_Shield, P_WeakCount;
     public BattleSystem battleSystem;
     public SymbolInventoryItem symbol;
     public List<Image> artworkList = new List<Image>();
@@ -35,6 +36,10 @@ public class SlotMachine : MonoBehaviour
             symbol = newDeck[i];
             CalculateTurn(i);
         }
+        if(P_WeakCount.Value > 0){
+            OG_Damage.ApplyChange((float)Math.Ceiling(OG_Damage.Value/2), true);
+            Debug.Log("you are weak: " + OG_Damage.Value);
+        }
 
         battleSystem.PlayerTurn();
     }
@@ -42,8 +47,6 @@ public class SlotMachine : MonoBehaviour
     public void SetupArt(){
         for (int i = 0; i <= SlotSpace; i++)
             artworkList[i].sprite = newDeck[i].symbolData.artwork;
-        
-    
     }
 
     public void RandomizeArt(){
@@ -80,8 +83,6 @@ public class SlotMachine : MonoBehaviour
     public void TriggerEffects(){
         for (int j = 0; j <= SlotSpace; j++){
             newDeck[j].symbolData.PreformEffect();
-            if(newDeck[j].symbolData.hasEffect)
-            Debug.Log(" "+newDeck[j].symbolData.symbolEffect.GetDescription());
         }
             
     }

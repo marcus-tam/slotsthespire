@@ -24,10 +24,7 @@ public class PlayerDisplay : MonoBehaviour
         fireIcon.sprite = fireSpirte;
         weakIcon.sprite = weakSpirte;
     }
-
-    void Update() {
-    }
-
+    
     public void UpdateHealth(){
         hpText.text = "" + unitHealth.Value;
     }

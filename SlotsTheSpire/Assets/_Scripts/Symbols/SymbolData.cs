@@ -7,7 +7,7 @@ public class SymbolData : ScriptableObject
 {
     public new string name;
     public string description;
-    public int symbolID;
+    public int ID = -1;
 
     public Sprite artwork;
 
