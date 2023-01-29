@@ -51,8 +51,10 @@ MonoBehaviour:
   fireCount: {fileID: 11400000, guid: 31ed15921d1b5e54097260056460f9e8, type: 2}
   weakCount: {fileID: 11400000, guid: c97006d013c36814d9effcfc52e0e1a4, type: 2}
   isShielded: {fileID: 11400000, guid: 693802247d1867143ab30d584da4a556, type: 2}
-  OnFire: {fileID: 11400000, guid: bae9b88d9ee1ba142adc5728bea6e1d4, type: 2}
   unit: {fileID: 11400000, guid: 2e155277fcc016d4f97898b2d99b7452, type: 2}
+  DamageEvent: {fileID: 11400000, guid: af75e6bac24955d4d983b575abbec2f1, type: 2}
+  shieldEvent: {fileID: 11400000, guid: 90ec6c2e9e9bdfe48b439cac4f41249a, type: 2}
+  DeathEvent: {fileID: 11400000, guid: 652e00924875bf144b48520db7cbd181, type: 2}
   ResetHP: 1
   StartingHP:
     UseConstant: 0
