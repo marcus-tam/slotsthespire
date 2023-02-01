@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class EndCombatReward : MonoBehaviour
 {
@@ -14,30 +15,30 @@ public class EndCombatReward : MonoBehaviour
     public Deck deck;
     public SymbolDatabase symbolDatabase;
     public FloatVariable gold;
-    public GameEvent OnCardSelect;
-    public SymbolData tempSymbol,newSymbol;
-
+    public GameEvent OnCardSelect, OnChangeGold;
+    //public SymbolData tempSymbol,newSymbol;
+    public TMPro.TMP_Text goldText;
     public List<Image> symbolImageList;
     public List<SymbolData> symbolList;
+    int randGold;
+    string symbolDescription;
 
     public void SetupRewards(){
-        for(int x = 0; x < cardRewardAmount; x++){
+         randGold = Random.Range(10, 21);
+         goldText.text = "Gold: " + randGold;
+       /* for(int x = 0; x < cardRewardAmount; x++){
             newSymbol = GenerateCardReward();
-            if(tempSymbol != newSymbol)
-            {
-                symbolList.Add(newSymbol);
-            }
-            else{
-                while(tempSymbol == newSymbol)
-                newSymbol = GenerateCardReward();
-            }
-
+                while(tempSymbol == newSymbol){
+                    newSymbol = GenerateCardReward();
+                }
+            Debug.Log("Adding " + newSymbol.name + " to deck");
+            symbolList.Add(newSymbol);
             tempSymbol = newSymbol;
-
-        }
+        
+        }*/
+        symbolList = GenerateCardReward();
         for(int i = 0; i < cardRewardAmount; i++){
             symbolImageList[i].sprite = symbolList[i].artwork;
-            Debug.Log("Setting image "+ i);
         }
     }
 
@@ -74,12 +75,12 @@ public class EndCombatReward : MonoBehaviour
 
 
     public void GiveGold(){
-        int randomNumber = Random.Range(10, 21); //gives 10 - 20 gold * mulitplayer
-        goldAmount = Mathf.Round(randomNumber * goldDropMultiplyer);
+        goldAmount = Mathf.Round(randGold * goldDropMultiplyer);
         gold.ApplyChange(goldAmount);
+        OnChangeGold.Raise(this, gold.Value);
     }
 
-    public SymbolData GenerateCardReward(){
+    public List<SymbolData> GenerateCardReward(){
          cardChance = Random.Range(1, 101);
        /* if(cardChance < S_rareDropChance){
             //drop rare
@@ -89,13 +90,18 @@ public class EndCombatReward : MonoBehaviour
             //drop common
         }
         */
-        return symbolDatabase.GenerateRandom();
+        Debug.Log("Calling Generate Random with an count of " + cardRewardAmount);
+        return symbolDatabase.GenerateRandomList(cardRewardAmount);
     }
 
     public void AddCard(int index){
         deck.AddToDeck(symbolList[index]);
+        OnCardSelect.Raise(this, symbolList[index]);
     }
 
-
+    public void OnCardHover(int index){
+        symbolDescription = symbolList[index].GetDescription();
+        Debug.Log(symbolDescription);
+    }
 
 }

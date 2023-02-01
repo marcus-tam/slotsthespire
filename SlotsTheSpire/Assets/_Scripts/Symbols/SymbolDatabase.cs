@@ -51,8 +51,21 @@ public class SymbolDatabase : ScriptableObject
         return _symbolDataBase.Find(i=> i.ID == id);
     }
 
-    public SymbolData GenerateRandom(){
-        int random = Random.Range(0, _symbolDataBase.Count);
-        return _symbolDataBase.Find(i=> i.ID == random);
+    public List<SymbolData> GenerateRandomList(int amount){
+        int rand;
+        List<SymbolData> generatedList = new List<SymbolData>();
+        List<SymbolData> tempList = new List<SymbolData>();
+        for(int x = 0; x < _symbolDataBase.Count; x++){
+            tempList.Add(_symbolDataBase.Find(i=> i.ID == x));
+        }
+        SymbolData symbolToGenerate;
+        for(int y = 0; y < amount; y++){
+            rand = Random.Range(0, tempList.Count);
+            Debug.Log("Adding: " + tempList[rand].name);
+            symbolToGenerate = tempList[rand];
+            generatedList.Add(symbolToGenerate);
+            tempList.Remove(symbolToGenerate);
+        }
+        return generatedList;
     }
 }
