@@ -61,7 +61,6 @@ public class SymbolDatabase : ScriptableObject
         SymbolData symbolToGenerate;
         for(int y = 0; y < amount; y++){
             rand = Random.Range(0, tempList.Count);
-            Debug.Log("Adding: " + tempList[rand].name);
             symbolToGenerate = tempList[rand];
             generatedList.Add(symbolToGenerate);
             tempList.Remove(symbolToGenerate);

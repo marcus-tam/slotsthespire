@@ -7,7 +7,7 @@ using TMPro;
 public class EndCombatReward : MonoBehaviour
 {
     // 0 = common, 1 = uncommon, 2 = rare, 3 = elite, 4 = boss
-    public int fightRarity, cardChance, newSymbolID, cardRewardAmount;
+    public int fightRarity, cardChance, newSymbolID, symbolRewardAmount;
     //S_ Symbol
     public float goldDropMultiplyer, S_uncommonDropChance, S_rareDropChance, goldAmount;
 
@@ -26,18 +26,18 @@ public class EndCombatReward : MonoBehaviour
     public void SetupRewards(){
          randGold = Random.Range(10, 21);
          goldText.text = "Gold: " + randGold;
-       /* for(int x = 0; x < cardRewardAmount; x++){
-            newSymbol = GenerateCardReward();
+       /* for(int x = 0; x < symbolRewardAmount; x++){
+            newSymbol = GenerateSymbolReward();
                 while(tempSymbol == newSymbol){
-                    newSymbol = GenerateCardReward();
+                    newSymbol = GenerateSymbolReward();
                 }
             Debug.Log("Adding " + newSymbol.name + " to deck");
             symbolList.Add(newSymbol);
             tempSymbol = newSymbol;
         
         }*/
-        symbolList = GenerateCardReward();
-        for(int i = 0; i < cardRewardAmount; i++){
+        symbolList = GenerateSymbolReward();
+        for(int i = 0; i < symbolRewardAmount; i++){
             symbolImageList[i].sprite = symbolList[i].artwork;
         }
     }
@@ -80,7 +80,8 @@ public class EndCombatReward : MonoBehaviour
         OnChangeGold.Raise(this, gold.Value);
     }
 
-    public List<SymbolData> GenerateCardReward(){
+    public List<SymbolData> GenerateSymbolReward(){
+        Debug.Log("Im generating symbols");
          cardChance = Random.Range(1, 101);
        /* if(cardChance < S_rareDropChance){
             //drop rare
@@ -90,8 +91,8 @@ public class EndCombatReward : MonoBehaviour
             //drop common
         }
         */
-        Debug.Log("Calling Generate Random with an count of " + cardRewardAmount);
-        return symbolDatabase.GenerateRandomList(cardRewardAmount);
+        Debug.Log("Calling Generate Random with an count of " + symbolRewardAmount);
+        return symbolDatabase.GenerateRandomList(symbolRewardAmount);
     }
 
     public void AddCard(int index){

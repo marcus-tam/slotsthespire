@@ -1415,7 +1415,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 8458986017208708308}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8413748525463061129
 GameObject:
   m_ObjectHideFlags: 0
@@ -1465,7 +1477,7 @@ MonoBehaviour:
   fightRarity: 0
   cardChance: 0
   newSymbolID: 0
-  cardRewardAmount: 3
+  symbolRewardAmount: 3
   goldDropMultiplyer: 1
   S_uncommonDropChance: 0
   S_rareDropChance: 0
@@ -1476,8 +1488,6 @@ MonoBehaviour:
   gold: {fileID: 11400000, guid: 9d70964efaf2c3a408dfda09066a4eed, type: 2}
   OnCardSelect: {fileID: 11400000, guid: 713d6f254392892408133795bf7c2c9d, type: 2}
   OnChangeGold: {fileID: 11400000, guid: bbdc2a5a33e047741a401e61277eff7e, type: 2}
-  tempSymbol: {fileID: 0}
-  newSymbol: {fileID: 0}
   goldText: {fileID: 2862516987759453268}
   symbolImageList:
   - {fileID: 5017812219149939434}
