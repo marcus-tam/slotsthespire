@@ -8,8 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3027548683151543640}
+  - component: {fileID: 6224360915416299910}
   - component: {fileID: 791871179807513682}
+  - component: {fileID: 732651402333341422}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -17,8 +18,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3027548683151543640
-Transform:
+--- !u!224 &6224360915416299910
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -32,6 +33,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -24.200018, y: -34.2645}
+  m_SizeDelta: {x: 48.4, y: 32.871}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &791871179807513682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60,3 +66,11 @@ MonoBehaviour:
     UseConstant: 0
     ConstantValue: 0
     Variable: {fileID: 11400000, guid: 78f8ba0bd23a63e4899717ed85896d2f, type: 2}
+--- !u!222 &732651402333341422
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3027548683151543647}
+  m_CullTransparentMesh: 1
