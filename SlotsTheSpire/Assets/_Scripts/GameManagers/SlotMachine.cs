@@ -10,8 +10,8 @@ public class SlotMachine : MonoBehaviour
 {
     public Deck cardDeck;
     public List<SymbolInventoryItem> newDeck = new List<SymbolInventoryItem>();
-    public int SlotSpace, LockIndex;
-    public FloatVariable OG_Damage, IC_Shield, P_WeakCount, P_Rolls;
+    public int  LockIndex;
+    public FloatVariable OG_Damage, IC_Shield, P_WeakCount, P_Rolls, slotSpace;
     public BoolVariable P_Locked;
     public BattleSystem battleSystem;
     public SymbolInventoryItem symbol;
@@ -40,7 +40,7 @@ public class SlotMachine : MonoBehaviour
         ResetValues();
         Shuffle(newDeck);
 
-        for (int i = 0; i <= SlotSpace; i++)
+        for (int i = 0; i < slotSpace.Value; i++)
         {
             symbol = newDeck[i];
             CalculateTurn(i);
@@ -57,13 +57,13 @@ public class SlotMachine : MonoBehaviour
     }
 
     public void SetupArt(){
-        for (int i = 0; i <= SlotSpace; i++)
+        for (int i = 0; i < slotSpace.Value; i++)
             artworkList[i].sprite = newDeck[i].symbolData.artwork;
     }
 
     public void RandomizeArt(){
         symbNum = spin.Next(0, newDeck.Count);
-        slotNum = spin.Next(0, SlotSpace+1);
+        slotNum = spin.Next(0, (int)slotSpace.Value);
         artworkList[slotNum].sprite = newDeck[symbNum].symbolData.artwork;
     }
 
@@ -98,7 +98,7 @@ public class SlotMachine : MonoBehaviour
     }
 
     public void TriggerEffects(){
-        for (int j = 0; j <= SlotSpace; j++){
+        for (int j = 0; j < slotSpace.Value; j++){
             newDeck[j].symbolData.PreformEffect();
         }
             

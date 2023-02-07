@@ -13,4 +13,9 @@ public class EnemySpawner : MonoBehaviour
         return CommonList[randomNumber];
     }
 
+    public GameObject GenerateBoss(){
+        int randomNumber = Random.Range(0,BossList.Count);
+        return BossList[randomNumber];
+    }
+
 }

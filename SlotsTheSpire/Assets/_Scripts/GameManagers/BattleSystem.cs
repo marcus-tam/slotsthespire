@@ -13,6 +13,7 @@ public class BattleSystem : MonoBehaviour
     public Transform P_BattleStation;
     public Transform E_BattleStation;
     public bool hasRolled;
+    GameObject P_GameObject, E_GameObject;
 
     public BattleState state;
     public SlotMachine slot;
@@ -32,7 +33,7 @@ public class BattleSystem : MonoBehaviour
     void setupBattle()
     {
         GenerateFloorEnemy();
-        Instantiate(P_Prefab);
+        P_GameObject = Instantiate(P_Prefab, P_BattleStation);
         ResetBattle();
         state = BattleState.PLAYERTURN;
     }
@@ -40,11 +41,11 @@ public class BattleSystem : MonoBehaviour
     public void OnEndTurnButton(){
         if (state != BattleState.PLAYERTURN || !hasRolled)
             return;
-        DealDMG(E_Prefab);
+        DealDMG(E_GameObject);
         slot.TriggerEffects();
-        DealFireDMG(E_Prefab);
-        GainShield(P_Prefab);
-        P_Prefab.GetComponent<UnitHealth>().DecreaseStatusEffects();
+        DealFireDMG(E_GameObject);
+        GainShield(P_GameObject);
+        P_GameObject.GetComponent<UnitHealth>().DecreaseStatusEffects();
         if(E_Health.Value <= 0){
             Victory();
             return;
@@ -62,11 +63,11 @@ public class BattleSystem : MonoBehaviour
 
     public void EnemyTurn() {
         E_Shield.SetValue(0);
-        E_Prefab.GetComponent<UnitHealth>().DecreaseStatusEffects();
-        E_Prefab.GetComponent<EnemyActioner>().PerformAction();
-        DealDMG(P_Prefab);
-        DealFireDMG(P_Prefab);
-        GainShield(E_Prefab);
+        E_GameObject.GetComponent<UnitHealth>().DecreaseStatusEffects();
+        E_GameObject.GetComponent<EnemyActioner>().PerformAction();
+        DealDMG(P_GameObject);
+        DealFireDMG(P_GameObject);
+        GainShield(E_GameObject);
         if (P_Health.Value <= 0)
             Defeat();
         else
@@ -74,24 +75,24 @@ public class BattleSystem : MonoBehaviour
     }
 
     public void DealDMG(GameObject target) {
-        if(target == E_Prefab)
-        E_Prefab.GetComponent<UnitHealth>().TakeDamage(P_OG_Damage);
-        if(target == P_Prefab)
-        P_Prefab.GetComponent<UnitHealth>().TakeDamage(E_OG_Damage);
+        if(target == E_GameObject)
+        E_GameObject.GetComponent<UnitHealth>().TakeDamage(P_OG_Damage);
+        if(target == P_GameObject)
+        P_GameObject.GetComponent<UnitHealth>().TakeDamage(E_OG_Damage);
     }
 
     public void DealFireDMG(GameObject target){
-        if(target == E_Prefab)
-        E_Prefab.GetComponent<UnitHealth>().TakeFireDamage(E_IC_FireDamage);
-        if(target == P_Prefab)
-        P_Prefab.GetComponent<UnitHealth>().TakeFireDamage(P_IC_FireDamage);
+        if(target == E_GameObject)
+        E_GameObject.GetComponent<UnitHealth>().TakeFireDamage(E_IC_FireDamage);
+        if(target == P_GameObject)
+        P_GameObject.GetComponent<UnitHealth>().TakeFireDamage(P_IC_FireDamage);
     }
 
     public void GainShield(GameObject target){
-        if(target == E_Prefab)
-        E_Prefab.GetComponent<UnitHealth>().TakeShield(E_IC_Shield);
-        if(target == P_Prefab)
-        P_Prefab.GetComponent<UnitHealth>().TakeShield(P_IC_Shield);
+        if(target == E_GameObject)
+        E_GameObject.GetComponent<UnitHealth>().TakeShield(E_IC_Shield);
+        if(target == P_GameObject)
+        P_GameObject.GetComponent<UnitHealth>().TakeShield(P_IC_Shield);
     }
 
     public void EndPlayerTurn() {
@@ -105,7 +106,8 @@ public class BattleSystem : MonoBehaviour
     public void EndEnemyTurn() {
         turn.ApplyChange(1.0f);
         P_Shield.SetValue(0);
-        unitDisplay.UpdateDisplay(E_Prefab);
+        E_GameObject.GetComponent<UnitHealth>().animator.SetTrigger("OnAttack");
+        unitDisplay.UpdateDisplay(E_GameObject);
         state = BattleState.PLAYERTURN;
     }
 
@@ -127,6 +129,8 @@ public class BattleSystem : MonoBehaviour
         Debug.Log("You Win");
         //reward screen
         P_Victory.Raise(this, true);
+        Destroy(P_GameObject);
+        Destroy(E_GameObject);
         //change scene to map
         //ResetBattle();
     }
@@ -137,15 +141,19 @@ public class BattleSystem : MonoBehaviour
         Debug.Log("You Lose");
         //defeat screen
         P_Death.Raise(this, true);
+        Destroy(P_GameObject);
+        Destroy(E_GameObject);
         //review deck & stats
         //main menu & retry
         //ResetBattle();
     }
 
     public void GenerateFloorEnemy(){
-        E_Prefab = E_Spawner.GenerateCommonEnemy();
-        Instantiate(E_Prefab);
+        //E_Prefab = E_Spawner.GenerateCommonEnemy();
+        E_Prefab = E_Spawner.GenerateBoss();
+        E_BattleStation.Rotate(new Vector3(0,180f, 0));
+        E_GameObject = Instantiate(E_Prefab, E_BattleStation);
         Debug.Log(" Has Spawned");
-        unitDisplay.UpdateDisplay(E_Prefab);
+        unitDisplay.UpdateDisplay(E_GameObject);
     }
 }

@@ -9,6 +9,7 @@ public class UnitHealth : MonoBehaviour
     public FloatVariable maxHP, currentHP, shield, exposedCount, fireCount, weakCount;
     public BoolVariable isShielded;
     public UnitData unit;
+    public Animator animator;
     
     public GameEvent DamageEvent,shieldEvent;
     public GameEvent DeathEvent;
@@ -18,6 +19,7 @@ public class UnitHealth : MonoBehaviour
 
     private void Start()
     {
+        animator = this.GetComponent<Animator>();
         if (ResetHP) {
             maxHP.SetValue(StartingHP);
             currentHP.SetValue(StartingHP);
@@ -54,8 +56,13 @@ public class UnitHealth : MonoBehaviour
         
         incomingDamage.SetValue(0);
         DamageEvent.Raise(this, currentHP.Value);
-        if(currentHP.Value <= 0)
+        if(currentHP.Value <= 0){
             DeathEvent.Raise(this, true);
+            animator.SetTrigger("OnDeath");
+        } else{
+            animator.SetTrigger("OnDamaged");
+        }
+            
     }
 
     public void TakeShield(FloatVariable incomingShield){

@@ -18,10 +18,7 @@ public class EnemyActioner : MonoBehaviour
 
         
     }
-    public string getAttack(){
-        if(turn.Value == 1 || turn.Value == 0)
-            return actionList[1].GetDescription();
-            else
-                return actionList[randomNumber].GetDescription();
+    public int getAttack(){
+        return actionList[randomNumber].GetAttackType();
     }
 }

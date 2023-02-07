@@ -13,7 +13,7 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene(gameStartScene);
     }
 
-    public void CombatDefeat(){
+    public void MainMenu(){
         SceneManager.LoadScene(mainMenuScene);
     }
 
