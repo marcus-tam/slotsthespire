@@ -6,7 +6,7 @@ using System.Linq;
 [CreateAssetMenu(menuName = "DataBase/Symbols")]
 public class SymbolDatabase : ScriptableObject
 {
-    [SerializeField] private List<SymbolData> _symbolDataBase;
+    [SerializeField] private List<SymbolData> _symbolDataBase, tempList, generatedList;
 
     [ContextMenu("Set IDs")]
     public void SetSymbolIDs()
@@ -51,8 +51,20 @@ public class SymbolDatabase : ScriptableObject
         return _symbolDataBase.Find(i=> i.ID == id);
     }
 
-    public SymbolData GenerateRandom(){
-        int random = Random.Range(0, _symbolDataBase.Count);
-        return _symbolDataBase.Find(i=> i.ID == random);
+    public List<SymbolData> GenerateRandomList(int amount){
+        int rand;
+        generatedList = new List<SymbolData>();
+        tempList = new List<SymbolData>();
+        for(int x = 0; x < _symbolDataBase.Count; x++){
+            tempList.Add(_symbolDataBase.Find(i=> i.ID == x));
+        }
+        SymbolData symbolToGenerate;
+        for(int y = 0; y < amount; y++){
+            rand = Random.Range(0, tempList.Count);
+            symbolToGenerate = tempList[rand];
+            generatedList.Add(symbolToGenerate);
+            tempList.Remove(symbolToGenerate);
+        }
+        return generatedList;
     }
 }

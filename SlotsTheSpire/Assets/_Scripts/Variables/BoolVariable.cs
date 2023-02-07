@@ -5,14 +5,13 @@ using UnityEngine;
 [CreateAssetMenu (menuName="Variable/Bool")]
 public class BoolVariable : ScriptableObject
 {
-    public bool boolean;
+    public bool Value;
 
     public void SetFalse() {
-        boolean = false;
+        Value = false;
     }
 
     public void SetTrue() {
-        boolean = true;
+        Value = true;
     }
-
 }

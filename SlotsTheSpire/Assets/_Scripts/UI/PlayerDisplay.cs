@@ -7,16 +7,14 @@ public class PlayerDisplay : MonoBehaviour
 {
 
     public UnitData unit;
-    public Text unitName, shieldText, hpText, turnSummary;
-    public Image artwork, weakIcon, exposedIcon, fireIcon;
+    public Text  shieldText, hpText, turnSummary;
+    public Image weakIcon, exposedIcon, fireIcon;
     public Sprite exposedSpirte, fireSpirte, weakSpirte;
     public FloatVariable playerShield, unitHealth, playerDamage, E_IC_FireDamage, E_FireCount, P_exposedCount, P_fireCount, P_weakCount;
 
 
     void Start()
     {
-        unitName.text = unit.unitName;
-        artwork.sprite = unit.unitArtwork;
         UpdateHealth();
         UpdateShield();
         checkStatusEffects();

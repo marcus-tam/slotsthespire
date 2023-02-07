@@ -38,8 +38,21 @@ public class EnemyAction : Action
         E_incomingShield.SetValue(shieldAmount);
     }
 
-    public override string GetDescription(){
-        return attackSummary;
+    public override int GetAttackType(){
+        if(isDamage == true && isShield == true && hasEffect == true)
+            return 0;
+        else if(isDamage == true && isShield == true && hasEffect == false)
+            return 1;
+        else if (isDamage == true && isShield == false && hasEffect == true)
+            return 2;
+        else if(isDamage == true && isShield == false && hasEffect == false)
+            return 3;
+        else if(isDamage == false && isShield == true && hasEffect == true)
+            return 4;
+        else if(isDamage == false && isShield == true && hasEffect == false)
+            return 5;
+        else
+            return 6;
     }
 
     public void PreformEffect(){

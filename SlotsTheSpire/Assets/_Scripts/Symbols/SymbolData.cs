@@ -22,17 +22,16 @@ public class SymbolData : ScriptableObject
 
     public BaseEffect symbolEffect;
     //add list of effects
-    
-
-    public void Print(){
-        Debug.Log(name +": " + description);
-   }
 
     public void PreformEffect(){
         if(hasEffect)
             symbolEffect.DoEffect();
         else
             return;
+   }
+
+   public string GetDescription(){
+        return description;
    }
 
 }
