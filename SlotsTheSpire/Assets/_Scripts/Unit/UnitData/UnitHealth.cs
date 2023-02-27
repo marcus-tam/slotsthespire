@@ -6,19 +6,21 @@ using System;
 
 public class UnitHealth : MonoBehaviour
 {
-    public FloatVariable maxHP, currentHP, shield, exposedCount, fireCount, weakCount;
+    public FloatVariable maxHP, currentHP, shield, exposedCount, fireCount, weakCount,DMG;
     public BoolVariable isShielded;
     public UnitData unit;
     public Animator animator;
+    public bool hasAnimator;
     
-    public GameEvent DamageEvent,shieldEvent;
-    public GameEvent DeathEvent;
+    public GameEvent DamageEvent, shieldEvent, DeathEvent;
 
     public bool ResetHP;
     public FloatReference StartingHP;
 
     private void Start()
     {
+
+        if(hasAnimator)
         animator = this.GetComponent<Animator>();
         if (ResetHP) {
             maxHP.SetValue(StartingHP);
@@ -28,6 +30,7 @@ public class UnitHealth : MonoBehaviour
             exposedCount.SetValue(0);
             fireCount.SetValue(0);
             weakCount.SetValue(0);
+            DMG.SetValue(0);
     }
 
     public void TakeDamage(FloatVariable incomingDamage){
@@ -58,11 +61,19 @@ public class UnitHealth : MonoBehaviour
         DamageEvent.Raise(this, currentHP.Value);
         if(currentHP.Value <= 0){
             DeathEvent.Raise(this, true);
+            if(hasAnimator)
             animator.SetTrigger("OnDeath");
         } else{
+            if(hasAnimator)
             animator.SetTrigger("OnDamaged");
         }
             
+    }
+
+    public void TakeDamage(float IC_Damage){
+        
+        DMG.SetValue(IC_Damage);
+        TakeDamage(DMG);
     }
 
     public void TakeShield(FloatVariable incomingShield){
@@ -74,6 +85,7 @@ public class UnitHealth : MonoBehaviour
         incomingShield.SetValue(0);
         shieldEvent.Raise(this, shield.Value);
     }
+
     public void TakeFireDamage(FloatVariable incomingFireDamage){
         if(fireCount.Value>0)
         currentHP.ApplyChange(incomingFireDamage.Value, true);
@@ -84,6 +96,10 @@ public class UnitHealth : MonoBehaviour
         return unit;
     }
 
+    public void GetTarget(){
+        
+    }
+
     public void DecreaseStatusEffects(){
         if(exposedCount.Value > 0)
         exposedCount.ApplyChange(1,true);
@@ -92,4 +108,10 @@ public class UnitHealth : MonoBehaviour
         if(weakCount.Value > 0)
         weakCount.ApplyChange(1,true);
     }
+    
+    public void Heal(float amount){
+        currentHP.ApplyChange(amount);
+        DamageEvent.Raise(this, amount);
+    }
+
 }

@@ -13,18 +13,32 @@ MonoBehaviour:
   m_Name: Vital Strike
   m_EditorClassIdentifier: 
   name: Vital Strike
-  description: 0 Damage + 2 Exposed Count
+  description: 2 Exposed
+  upgradedDescription: 3 Exposed
+  startingDescription: 2 Exposed
   ID: 4
   artwork: {fileID: 21300000, guid: c9c94607aaa936d4dbbbec2efa912790, type: 3}
-  Size:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
   Damage:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
+  upgradedDamage:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  startingDamage:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
   Shield:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  upgradedShield:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  startingShield:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
@@ -36,9 +50,7 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
-  Turn:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
   hasEffect: 1
+  upgradeEffect: 0
+  upgraded: 0
   symbolEffect: {fileID: 11400000, guid: 316c55a607a729448b5453d226385d5a, type: 2}

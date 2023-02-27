@@ -5,9 +5,9 @@ using UnityEngine;
 [CreateAssetMenu (menuName ="Symbols/Effects/Status")]
 public class StatusEffect : BaseEffect
 {
-    public float amount;
+    public float amount, upgradedAmount, startingAmount;
     public FloatVariable StatusCounter;
-    public string description;
+    public string description, upgradedDescription, startingDescription;
 
     public override void DoEffect(){
         StatusCounter.ApplyChange(amount);
@@ -19,10 +19,19 @@ public class StatusEffect : BaseEffect
     }
 
     public override void ResetEffect(){
-
     }
 
     public override string GetDescription(){
         return description;
+    }
+
+    public override void Upgrade(){
+        amount = upgradedAmount;
+        description = upgradedDescription;
+    }
+
+    public override void Downgrade(){
+        amount = startingAmount;
+        description = startingDescription;
     }
 }

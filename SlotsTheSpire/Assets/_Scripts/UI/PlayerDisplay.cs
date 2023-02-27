@@ -25,6 +25,7 @@ public class PlayerDisplay : MonoBehaviour
     
     public void UpdateHealth(){
         hpText.text = "" + unitHealth.Value;
+        checkStatusEffects();
     }
 
     public void UpdateShield(){

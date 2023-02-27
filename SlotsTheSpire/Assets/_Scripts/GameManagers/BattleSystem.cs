@@ -7,24 +7,22 @@ public enum BattleState { START, PLAYERTURN, ENEMYTURN, WON, LOSS }
 public class BattleSystem : MonoBehaviour
 {
 
-    public GameObject P_Prefab;
-    public GameObject E_Prefab;
-    public FloatVariable turn, E_Health, P_Shield, E_Shield, E_MaxHP, P_Health, floorLevel, E_OG_Damage, P_OG_Damage, P_IC_Shield, E_IC_Shield, P_IC_FireDamage, E_IC_FireDamage, P_Rolls;
+    public GameObject P_Prefab, E_Prefab, selectedTarget;
+    public FloatVariable turn, E_Health, P_Shield, E_Shield, E_MaxHP, P_Health, floorLevel, E_OG_Damage, P_OG_Damage, P_IC_Shield, E_IC_Shield, P_IC_FireDamage, E_IC_FireDamage, P_Rolls, P_MaxRolls;
     public Transform P_BattleStation;
     public Transform E_BattleStation;
     public bool hasRolled;
     GameObject P_GameObject, E_GameObject;
 
     public BattleState state;
-    public SlotMachine slot;
     public EnemySpawner E_Spawner;
     public UnitDisplay unitDisplay;
+    public List<GameObject> unitList = new List<GameObject>();
 
-    public GameEvent P_ChangeTurn, P_Death, P_Victory;
+    public GameEvent P_Spin, P_Death, P_Victory, CombatStart, P_EndTurn, P_Reroll, OnUnitTarget;
 
     void Start()
     {
-        P_Health.SetValue(25);
         state = BattleState.START;
         setupBattle();
     }
@@ -32,8 +30,9 @@ public class BattleSystem : MonoBehaviour
 
     void setupBattle()
     {
-        GenerateFloorEnemy();
         P_GameObject = Instantiate(P_Prefab, P_BattleStation);
+        unitList.Add(P_GameObject);
+        GenerateFloorEnemy();
         ResetBattle();
         state = BattleState.PLAYERTURN;
     }
@@ -42,7 +41,6 @@ public class BattleSystem : MonoBehaviour
         if (state != BattleState.PLAYERTURN || !hasRolled)
             return;
         DealDMG(E_GameObject);
-        slot.TriggerEffects();
         DealFireDMG(E_GameObject);
         GainShield(P_GameObject);
         P_GameObject.GetComponent<UnitHealth>().DecreaseStatusEffects();
@@ -50,14 +48,18 @@ public class BattleSystem : MonoBehaviour
             Victory();
             return;
         }
+        P_EndTurn.Raise(this, 1);
         EndPlayerTurn();
     }
 
     public void OnSpinButton() {
         if (state != BattleState.PLAYERTURN || P_Rolls.Value == 0)
             return;
-        slot.SpinMachine();
-        P_ChangeTurn.Raise(this, true);
+        if(P_Rolls.Value != P_MaxRolls.Value){   
+            P_Reroll.Raise(this, 1);
+        }
+       Debug.Log("SPINNING");
+        P_Spin.Raise(this, true);
         hasRolled = true;
     }
 
@@ -97,15 +99,15 @@ public class BattleSystem : MonoBehaviour
 
     public void EndPlayerTurn() {
         state = BattleState.ENEMYTURN;
-        P_Rolls.SetValue(2);
-        slot.rerollsText.text = "Spin (" + P_Rolls.Value.ToString()+")";
         hasRolled = false;
+        P_GameObject.GetComponent<UnitHealth>().animator.SetTrigger("OnAttack");
         EnemyTurn();
     }
 
     public void EndEnemyTurn() {
         turn.ApplyChange(1.0f);
         P_Shield.SetValue(0);
+        if(E_GameObject.GetComponent<UnitHealth>().hasAnimator)
         E_GameObject.GetComponent<UnitHealth>().animator.SetTrigger("OnAttack");
         unitDisplay.UpdateDisplay(E_GameObject);
         state = BattleState.PLAYERTURN;
@@ -119,8 +121,8 @@ public class BattleSystem : MonoBehaviour
         E_OG_Damage.SetValue(0);
         P_IC_Shield.SetValue(0);
         E_IC_Shield.SetValue(0);
-        slot.ResetSymbols();
         hasRolled = false;
+        CombatStart.Raise(this,1);
     }
 
     public void Victory() {
@@ -155,5 +157,12 @@ public class BattleSystem : MonoBehaviour
         E_GameObject = Instantiate(E_Prefab, E_BattleStation);
         Debug.Log(" Has Spawned");
         unitDisplay.UpdateDisplay(E_GameObject);
+        unitList.Add(E_GameObject);
+    }
+
+    public void SelectGameObject(int index){
+        selectedTarget = unitList[index];
+        OnUnitTarget.Raise(this, selectedTarget);
+        Debug.Log(selectedTarget + " pressed");
     }
 }

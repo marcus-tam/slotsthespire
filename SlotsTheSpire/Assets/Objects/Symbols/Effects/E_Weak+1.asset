@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: E_Weak+1
   m_EditorClassIdentifier: 
   amount: 2
+  upgradedAmount: 3
+  startingAmount: 3
   StatusCounter: {fileID: 11400000, guid: bc4bf9c5452a48a4aa1836d209cb670c, type: 2}
   description: Weak enemy 2 turns
+  upgradedDescription: Weak enemy 3 turns
+  startingDescription: Weak enemy 2 turns
