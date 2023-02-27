@@ -66,7 +66,7 @@ MonoBehaviour:
   DamageEvent: {fileID: 11400000, guid: af75e6bac24955d4d983b575abbec2f1, type: 2}
   shieldEvent: {fileID: 11400000, guid: 90ec6c2e9e9bdfe48b439cac4f41249a, type: 2}
   DeathEvent: {fileID: 11400000, guid: 652e00924875bf144b48520db7cbd181, type: 2}
-  ResetHP: 0
+  ResetHP: 1
   StartingHP:
     UseConstant: 0
     ConstantValue: 0
