@@ -13,7 +13,13 @@ MonoBehaviour:
   m_Name: E_Fire+1+2
   m_EditorClassIdentifier: 
   amount: 1
+  upgradedAmount: 2
+  startingAmount: 1
   countAmount: 2
+  upgradedCountAmount: 3
+  startingCountAmount: 2
   FireDMG: {fileID: 11400000, guid: 7196a37c9edb06b46893f2e3105237ce, type: 2}
   FireDMGCount: {fileID: 11400000, guid: 31ed15921d1b5e54097260056460f9e8, type: 2}
   description: 1 damage 2 turns
+  upgradedDescription: 2 damage 3 turns
+  startingDescription: 1 damage 2 turns

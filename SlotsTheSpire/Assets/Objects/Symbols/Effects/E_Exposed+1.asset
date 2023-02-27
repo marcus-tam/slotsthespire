@@ -13,5 +13,9 @@ MonoBehaviour:
   m_Name: E_Exposed+1
   m_EditorClassIdentifier: 
   amount: 2
+  upgradedAmount: 4
+  startingAmount: 2
   StatusCounter: {fileID: 11400000, guid: a31d7d7a29d0f9442abacea743b8de31, type: 2}
-  description: Exposes for 1 / 2 turns
+  description: Exposes for 2 turns
+  upgradedDescription: Exposes for 4 turns
+  startingDescription: Exposes for 2 turns

@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2d5b6b5bb4b023439ba755a837ec8a1, type: 3}
   m_Name: BS_DMG+1
   m_EditorClassIdentifier: 
-  amount:
-    UseConstant: 1
-    ConstantValue: 1
-    Variable: {fileID: 0}
+  amount: 1
+  upgradedAmount: 2
+  startingAmount: 1
   target: {fileID: 11400000, guid: 9d8573eccbebf9444bb2d53bfcecc48c, type: 2}
-  description: +1 damage to bloodystrike
+  description: +1 Damage to BloodyStrikes
+  upgradedDescription: +2 Damage to BloodyStrikes
+  startingDescription: +1 Damage to BloodyStrikes

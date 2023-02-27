@@ -15,7 +15,7 @@ public class EndCombatReward : MonoBehaviour
     public Deck deck;
     public SymbolDatabase symbolDatabase;
     public FloatVariable gold;
-    public GameEvent OnCardSelect, OnChangeGold;
+    public GameEvent OnCardSelect, OnChangeGold, OnHoveredEvent, OnUnfocusEvent;
     //public SymbolData tempSymbol,newSymbol;
     public TMPro.TMP_Text goldText;
     public List<Image> symbolImageList;
@@ -100,9 +100,12 @@ public class EndCombatReward : MonoBehaviour
         OnCardSelect.Raise(this, symbolList[index]);
     }
 
-    public void OnCardHover(int index){
+     public void OnHovered(int index){
         symbolDescription = symbolList[index].GetDescription();
-        Debug.Log(symbolDescription);
+        OnHoveredEvent.Raise(this, symbolDescription);
     }
 
+    public void OnUnfocus(){
+        OnUnfocusEvent.Raise(this, true);
+    }
 }

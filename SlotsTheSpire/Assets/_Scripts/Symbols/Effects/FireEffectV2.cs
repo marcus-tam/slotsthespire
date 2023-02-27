@@ -5,9 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName="Symbols/Effects/FireV2")]
 public class FireEffectV2 : BaseEffect
 {
-    public float amount, countAmount;
+    public float amount, upgradedAmount, startingAmount, countAmount, upgradedCountAmount, startingCountAmount;
     public FloatVariable FireDMG, FireDMGCount;
-    public string description;
+    public string description, upgradedDescription, startingDescription;
 
  public override void DoEffect(){
     FireDMG.ApplyChange(amount);
@@ -27,7 +27,20 @@ public class FireEffectV2 : BaseEffect
     
  }
 
-public override string GetDescription(){
+ public override string GetDescription(){
         return description;
     }
+
+ public override void Upgrade(){
+        amount = upgradedAmount;
+        countAmount = upgradedCountAmount;
+        description = upgradedDescription;
+    }
+
+ public override void Downgrade(){
+        amount = startingAmount;
+        countAmount = startingCountAmount;
+        description = startingDescription;
+    }
+
 }

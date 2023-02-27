@@ -1,0 +1,450 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &394091872
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 394091873}
+  - component: {fileID: 394091875}
+  - component: {fileID: 394091874}
+  - component: {fileID: 869580576}
+  - component: {fileID: 869580577}
+  - component: {fileID: 869580578}
+  - component: {fileID: 869580579}
+  - component: {fileID: 869580580}
+  m_Layer: 0
+  m_Name: EventListener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &394091873
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394091872}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8531689716050172943}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &394091875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394091872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0125cc1c8deef7747b0697ff6502acd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 3ad6753dec61b174b9870e56b6502279, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &394091874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394091872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0125cc1c8deef7747b0697ff6502acd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 652e00924875bf144b48520db7cbd181, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &869580576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394091872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0125cc1c8deef7747b0697ff6502acd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: cec8fb1e59bf4b04a807aea74a5ae915, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: DeckScreen, Assembly-CSharp
+        m_MethodName: getDeck
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+--- !u!114 &869580577
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394091872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0125cc1c8deef7747b0697ff6502acd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 5f7c9bc230c03244dafc64277837672d, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1678821434}
+        m_TargetAssemblyTypeName: SlotMachine, Assembly-CSharp
+        m_MethodName: OnEndTurn
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &869580578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394091872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0125cc1c8deef7747b0697ff6502acd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 4a9951bb69ee0564f87aa50355cd468b, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1678821434}
+        m_TargetAssemblyTypeName: SlotMachine, Assembly-CSharp
+        m_MethodName: OnReRoll
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PlayerDisplay, Assembly-CSharp
+        m_MethodName: UpdateTurnText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &869580579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394091872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0125cc1c8deef7747b0697ff6502acd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: c6c65b4defcbdd149903e72bdf000feb, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1678821434}
+        m_TargetAssemblyTypeName: SlotMachine, Assembly-CSharp
+        m_MethodName: SpinMachine
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: PlayerDisplay, Assembly-CSharp
+        m_MethodName: UpdateTurnText
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &869580580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 394091872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0125cc1c8deef7747b0697ff6502acd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 0fa7b02a99beda94dab3e5a1f35002aa, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: DeckScreen, Assembly-CSharp
+        m_MethodName: getDeck
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!1 &8531689716050172942
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8531689716050172943}
+  - component: {fileID: 8531689716050172928}
+  - component: {fileID: 8531689716050172929}
+  - component: {fileID: 1678821434}
+  m_Layer: 0
+  m_Name: BattleSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8531689716050172943
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8531689716050172942}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 394091873}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8531689716050172928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8531689716050172942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3c97963d4d6e1b489e3d4c8f9e47320, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  P_Prefab: {fileID: 3027548683151543647, guid: e138fff422a8a5d4ba5bd8e76d9b6666, type: 3}
+  E_Prefab: {fileID: 8802468815888689798, guid: 1751ce51eb82de54aaeb06943c43eaac, type: 3}
+  selectedTarget: {fileID: 0}
+  turn: {fileID: 11400000, guid: 3ed5e071c84c5ec44a678537634a1c7f, type: 2}
+  E_Health: {fileID: 11400000, guid: 3f45eeb8130d61a4aa51fdef678dee99, type: 2}
+  P_Shield: {fileID: 11400000, guid: 6fa373a48eb4a9a418a76b60bb43e848, type: 2}
+  E_Shield: {fileID: 11400000, guid: c7c7f526e54791c4ab96169337b1ddc0, type: 2}
+  E_MaxHP: {fileID: 11400000, guid: 8a16a541f1a49544cba8b14d5e4549da, type: 2}
+  P_Health: {fileID: 11400000, guid: a39a27eada4fe7a4c827abd1faa1eda7, type: 2}
+  floorLevel: {fileID: 11400000, guid: 2cb0e5e0e1a8f4643b37d2b9336686f2, type: 2}
+  E_OG_Damage: {fileID: 11400000, guid: 1701ddd989ed18746a1cbdc01d7c2341, type: 2}
+  P_OG_Damage: {fileID: 11400000, guid: 824c3da36c3239f458e659b5be75063a, type: 2}
+  P_IC_Shield: {fileID: 11400000, guid: f1354cf01ded13849b89b331264d8755, type: 2}
+  E_IC_Shield: {fileID: 11400000, guid: ac13ffbc6e3e421478ba698d9240e0b2, type: 2}
+  P_IC_FireDamage: {fileID: 11400000, guid: 7196a37c9edb06b46893f2e3105237ce, type: 2}
+  E_IC_FireDamage: {fileID: 11400000, guid: 5cc4b9b7209bb5748bf60c6522f8ef29, type: 2}
+  P_Rolls: {fileID: 11400000, guid: e6527f24c623559468b2e5e1241c10bb, type: 2}
+  P_BattleStation: {fileID: 0}
+  E_BattleStation: {fileID: 0}
+  hasRolled: 0
+  state: 0
+  E_Spawner: {fileID: 8531689716050172929}
+  unitDisplay: {fileID: 0}
+  unitList: []
+  P_Spin: {fileID: 11400000, guid: c6c65b4defcbdd149903e72bdf000feb, type: 2}
+  P_Death: {fileID: 11400000, guid: 652e00924875bf144b48520db7cbd181, type: 2}
+  P_Victory: {fileID: 11400000, guid: 3ad6753dec61b174b9870e56b6502279, type: 2}
+  CombatStart: {fileID: 11400000, guid: c3720602eb69353499648971980e21bd, type: 2}
+  P_EndTurn: {fileID: 11400000, guid: 5f7c9bc230c03244dafc64277837672d, type: 2}
+  P_Reroll: {fileID: 11400000, guid: 4a9951bb69ee0564f87aa50355cd468b, type: 2}
+  OnUnitTarget: {fileID: 11400000, guid: 7689d542325897a43b623b327fdc637c, type: 2}
+--- !u!114 &8531689716050172929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8531689716050172942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cc7fdb2f63a4ad4996756f400630951, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CommonList:
+  - {fileID: 7931562668598609886, guid: 1c13b1a812b75ed47a5f029f0163c92f, type: 3}
+  - {fileID: 2338795686795957472, guid: 71e2adf556c6c7e409e216329907cd66, type: 3}
+  - {fileID: 8981792869180758383, guid: 36df4b724a8fe024487f2014190594f2, type: 3}
+  EliteList: []
+  BossList:
+  - {fileID: 8802468815888689798, guid: 1751ce51eb82de54aaeb06943c43eaac, type: 3}
+--- !u!114 &1678821434
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8531689716050172942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 198ef16a61cdee847beddeabff2e2b49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardDeck: {fileID: 0}
+  newDeck: []
+  discardDeck: []
+  activeDeck: []
+  container:
+  - symbolData: {fileID: 0}
+  LockIndex: 0
+  listSize: 0
+  OG_Damage: {fileID: 11400000, guid: 824c3da36c3239f458e659b5be75063a, type: 2}
+  IC_Shield: {fileID: 11400000, guid: f1354cf01ded13849b89b331264d8755, type: 2}
+  P_WeakCount: {fileID: 11400000, guid: c97006d013c36814d9effcfc52e0e1a4, type: 2}
+  P_Rolls: {fileID: 11400000, guid: e6527f24c623559468b2e5e1241c10bb, type: 2}
+  slotSpace: {fileID: 11400000, guid: f1f39c6cdb60d4d46aa53183a06d55ed, type: 2}
+  P_Locked: {fileID: 11400000, guid: 5b44f65720ae2dc45b5e6088a2c20ba5, type: 2}
+  battleSystem: {fileID: 8531689716050172928}
+  symbol:
+    symbolData: {fileID: 0}
+  artworkList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  rerollsText: {fileID: 0}
+  deckText: {fileID: 0}
+  discardText: {fileID: 0}
+  OnHoveredEvent: {fileID: 11400000, guid: 7039bf182bee181488bb2e5284c835a1, type: 2}
+  OnUnfocusEvent: {fileID: 11400000, guid: a038411950e2808489fc79b9b5349c6c, type: 2}
+  CheckDeck: {fileID: 11400000, guid: cec8fb1e59bf4b04a807aea74a5ae915, type: 2}
+  CheckDiscard: {fileID: 11400000, guid: 0fa7b02a99beda94dab3e5a1f35002aa, type: 2}
+  EndTurn: {fileID: 11400000, guid: 5f7c9bc230c03244dafc64277837672d, type: 2}
+  reroll: {fileID: 11400000, guid: 4a9951bb69ee0564f87aa50355cd468b, type: 2}
+  deckButton: {fileID: 0}
+  discardButton: {fileID: 0}

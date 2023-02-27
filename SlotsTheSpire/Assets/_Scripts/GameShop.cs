@@ -16,7 +16,7 @@ public class GameShop : MonoBehaviour
     string symbolDescription;
     public SymbolDatabase symbolDatabase;
     public Deck deck;
-    public GameEvent onGoldChange;
+    public GameEvent onGoldChange, OnHoveredEvent, OnUnfocusEvent;
 
     [ContextMenu("GenerateShop")]
     public void GenerateShop()
@@ -43,12 +43,6 @@ public class GameShop : MonoBehaviour
     return symbolDatabase.GenerateRandomList(AmountofSymbols);
     }
 
-    public void OnCardHover(int index)
-    {
-        symbolDescription = symbolList[index].GetDescription();
-        Debug.Log(symbolDescription);
-    }
-
     public void BuySymbol(int index){
         if(P_Gold.Value >= symbolCost[index]){
             deck.AddToDeck(symbolList[index]);
@@ -58,5 +52,13 @@ public class GameShop : MonoBehaviour
             Debug.Log("YOU CANNOT AFFORD THAT!");
         }
         
+    }
+    public void OnHovered(int index){
+        symbolDescription = symbolList[index].GetDescription();
+        OnHoveredEvent.Raise(this, symbolDescription);
+    }
+
+    public void OnUnfocus(){
+        OnUnfocusEvent.Raise(this, true);
     }
 }
