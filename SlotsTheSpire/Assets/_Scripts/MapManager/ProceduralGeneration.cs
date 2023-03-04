@@ -1,4 +1,4 @@
-using System;
+ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -68,6 +68,15 @@ public class ProceduralGeneration : MonoBehaviour
 
     }
 
+    public void setBossLevel()
+    {
+        for (int i = 0; i < width; i++)
+        {
+            _arr[i, levels - 1] = 0;
+        }
+        
+        _arr[width/2, levels - 1] = 1;
+    }
     private static Node GetNode(Point p)
     {
         if (p.y >= nodes.Count) return null;
@@ -79,7 +88,7 @@ public class ProceduralGeneration : MonoBehaviour
     {
         for (int x = 0; x < width; x++)
         {
-            for (int y = 0; y < levels; y++)
+            for (int y = 0; y < levels - 1; y++)
             {
                 //TODO: Create dictionary to assign mapNode to specific type (battleNode, marketNode, eventNode, etc)
                 if (_arr[x, y] == 1)
@@ -95,6 +104,10 @@ public class ProceduralGeneration : MonoBehaviour
                 }
             }
         }
+        Node bossNode = new Node(bossBattleNode, new Point(width/2, levels - 1));
+        SpawnObj(bossNode.gameObject, "bossBattleNode", new Point(width/2, levels - 1));
+
+        setBossLevel();
     }
     void MapGeneration()
     {
@@ -105,7 +118,7 @@ public class ProceduralGeneration : MonoBehaviour
                 _arr[x, y] = Random.Range(0, 2);
             }
         }
-        SpawnGeneration();
+        SpawnGeneration(); 
     }
 
     void SpawnObj(GameObject obj, string objName, Point p)
@@ -148,8 +161,39 @@ public class ProceduralGeneration : MonoBehaviour
                 }
             }
         }
-    }   
-
+    }
+    
+    void DFSPathGeneration(int buffer)
+    {
+        //Perhaps we will accomplish this with a 2d matrix int version and translate to a 2d matrix Node version after 
+        //Start at bottom layer.
+        List<Node> nodeList = new List<Node>();
+        for (int level = 0; level < levels; level++)
+        {
+            //First detect existing node.
+            for (int col = 0; col < width; col++)
+            {
+                //Traverse upward starting at left buffer.
+                continue;
+            }   
+            
+        }
+        
+        //If success, repeat previous until failure:
+        
+        //If Failure, check to see if next node (left buffer node + 1) exists
+        
+        //If success, continue upwards; else:
+        
+        //If failure; goto 1st failure and increment by 1. If this fails while we have not reached battle boss node, mark this path as a failure.
+        
+        //Backtrack through path until we find a path that works.
+        
+        //If no path works, remove all nodes from matrix.
+        
+        
+        
+    }
     void CreateLineBetweenNodes(Node from, Node to)
     {
 
@@ -176,6 +220,7 @@ public class ProceduralGeneration : MonoBehaviour
         //TODO: Design algorithm to remove some paths between paths. 
         //TODO: Design validator to ensure paths don't have dead ends or cross over each other.
 
+        
     }
 
     void GetDetailsOnInstantiatedObject(GameObject obj)
