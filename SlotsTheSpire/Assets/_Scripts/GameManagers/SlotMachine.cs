@@ -8,12 +8,13 @@ using System;
 public class SlotMachine : MonoBehaviour
 {
     public Deck cardDeck;
+    public AttackData frontAttack, flankAttack, AOEAttack;
     public List<SymbolInventoryItem> newDeck = new List<SymbolInventoryItem>();
     public List<SymbolInventoryItem> discardDeck = new List<SymbolInventoryItem>();
     public List<SymbolInventoryItem> activeDeck = new List<SymbolInventoryItem>();
     public List<SymbolInventoryItem> container = new List<SymbolInventoryItem>();
     public int  LockIndex, listSize;
-    public FloatVariable OG_Damage, IC_Shield, P_WeakCount, P_Rolls, slotSpace;
+    public FloatVariable P_WeakCount, P_Rolls, slotSpace;
     public BoolVariable P_Locked;
     public BattleSystem battleSystem;
     public SymbolInventoryItem symbol, lockInSymbol;
@@ -33,7 +34,7 @@ public class SlotMachine : MonoBehaviour
         LockIndex = -1;
         P_Locked.SetFalse();
         P_Rolls.SetValue(2);
-        updateText();
+        UpdateText();
     }
 
     public void Update(){
@@ -42,7 +43,6 @@ public class SlotMachine : MonoBehaviour
     }
 
     public void SpinMachine() {
-        ResetValues();
         for (int i = 0; i < slotSpace.Value; i++)
         {
             if(i >= newDeck.Count)
@@ -51,18 +51,12 @@ public class SlotMachine : MonoBehaviour
             }
              if(i == LockIndex){
                symbol = lockInSymbol; 
-               Debug.Log("(lock)Adding in: " + symbol.symbolData.name);
             }else {
                 symbol = newDeck[i];
-                Debug.Log("Adding in: " + symbol.symbolData.name);
             }
             activeDeck.Add(symbol);
             CalculateTurn(i);            
             
-        }
-        if(P_WeakCount.Value > 0){
-            OG_Damage.ApplyChange((float)Math.Ceiling(OG_Damage.Value/2), true);
-            Debug.Log("you are weak: " + OG_Damage.Value);
         }
 
         Discard();
@@ -73,7 +67,7 @@ public class SlotMachine : MonoBehaviour
         if(newDeck.Count == 0 ){
             ShuffleNewDeck();
         }
-        updateText();
+        UpdateText();
     }
 
     public void ShuffleNewDeck(){
@@ -108,9 +102,65 @@ public class SlotMachine : MonoBehaviour
     }
 
     public void CalculateTurn(int o){
-        OG_Damage.ApplyChange(symbol.symbolData.Damage);
-        IC_Shield.ApplyChange(symbol.symbolData.Shield);
+
+            switch (symbol.symbolData.Pos.Value)
+            {
+                case 0:
+                //Front Enemy
+                    IncrementDamage(frontAttack, symbol.symbolData.damage);
+                    IncrementShield(frontAttack, symbol.symbolData.shield);
+                    IncrementFire(frontAttack, symbol.symbolData.fire);
+                    IncrementWeak(frontAttack, symbol.symbolData.weak);
+                    IncrementExpose(frontAttack, symbol.symbolData.expose);
+                    frontAttack.AddCount();
+                    break;
+                case 1:
+                //Flank Enemy
+                    IncrementDamage(flankAttack, symbol.symbolData.damage);
+                    IncrementShield(flankAttack, symbol.symbolData.shield);
+                    IncrementFire(flankAttack, symbol.symbolData.fire);
+                    IncrementWeak(flankAttack, symbol.symbolData.weak);
+                    IncrementExpose(flankAttack, symbol.symbolData.expose);
+                    flankAttack.AddCount();
+                    break;
+                case 2:
+                //AOE (All enemies)
+                    IncrementDamage(AOEAttack, symbol.symbolData.damage);
+                    IncrementShield(AOEAttack, symbol.symbolData.shield);
+                    IncrementFire(AOEAttack, symbol.symbolData.fire);
+                    IncrementWeak(AOEAttack, symbol.symbolData.weak);
+                    IncrementExpose(AOEAttack, symbol.symbolData.expose);
+                    AOEAttack.AddCount();
+                    break;
+                default:
+                    Debug.Log("Symbol " + symbol.symbolData.name + " doesnt not have a position target");
+                    break;
+            }
+
         artworkList[o].sprite = newDeck[o].symbolData.artwork;
+    }
+
+    public void IncrementDamage(AttackData attack, float amount){
+        if(P_WeakCount.Value == 0)
+            attack.AddDamage(amount);
+        else 
+            attack.AddDamage((float)Math.Ceiling(amount/2));
+    }
+
+    public void IncrementShield(AttackData attack, float amount){
+        attack.AddICShield(amount);
+    }
+
+    public void IncrementFire(AttackData attack, float amount){
+        attack.AddFire(amount);
+    }
+
+    public void IncrementWeak(AttackData attack, float amount){
+        attack.AddWeak(amount);
+    }
+
+    public void IncrementExpose(AttackData attack, float amount){
+        attack.AddExpose(amount);
     }
 
     public void CopyDeck() {
@@ -142,7 +192,6 @@ public class SlotMachine : MonoBehaviour
         else{
             for(int i = 0; i < listSize; i++)
             {
-            Debug.Log("shuffling index "+ i);
             container[0] = list[i];
             randomIndex = (int)rand.Next(i, listSize);
             list[i] = list[randomIndex];
@@ -152,24 +201,11 @@ public class SlotMachine : MonoBehaviour
         return list;
     }
 
-    public void TriggerEffects(){
-        for (int j = 0; j < slotSpace.Value; j++){
-            activeDeck[j].symbolData.PreformEffect();
-        }
-    }
-
     public void ResetSymbols(){
         for (int l = 0; l < newDeck.Count; l++)
         {
             symbol = newDeck[l];
-            if(symbol.symbolData.hasEffect)
-            symbol.symbolData.symbolEffect.ResetEffect();
         }
-    }
-
-    public void ResetValues(){
-        OG_Damage.SetValue(0);
-        IC_Shield.SetValue(0);
     }
 
     public void LockIn(int index){
@@ -213,19 +249,24 @@ public class SlotMachine : MonoBehaviour
     }
 
     public void OnEndTurn(){
-        TriggerEffects();
         P_Rolls.SetValue(2);
-        updateText();
+        UpdateText();
         activeDeck.Clear();    
     }
 
     public void OnReRoll(){
         activeDeck.Clear();
-        ResetValues();
-        updateText();
+        ResetAttacks();
+        UpdateText();
     }
 
-    public void updateText(){
+    public void ResetAttacks(){
+        frontAttack.ResetAttack();
+        flankAttack.ResetAttack();
+        AOEAttack.ResetAttack();
+    }
+
+    public void UpdateText(){
         rerollsText.text = "Spin (" + P_Rolls.Value.ToString()+")";
         deckText.text = ""+newDeck.Count;
         discardText.text = ""+discardDeck.Count;

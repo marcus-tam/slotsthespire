@@ -8,16 +8,21 @@ public class BattleSystem : MonoBehaviour
 {
 
     public GameObject P_Prefab, E_Prefab, selectedTarget;
-    public FloatVariable turn, E_Health, P_Shield, E_Shield, E_MaxHP, P_Health, floorLevel, E_OG_Damage, P_OG_Damage, P_IC_Shield, E_IC_Shield, P_IC_FireDamage, E_IC_FireDamage, P_Rolls, P_MaxRolls;
+    public AttackData frontAttack, flankAttack, AOEAttack;
+    public FloatVariable turn, P_Shield, E_Shield, floorLevel,P_Rolls, P_MaxRolls,E_OG_Damage;
+    public FloatVariable[] E_Health, E_MaxHP, E_IC_Shield = new FloatVariable[4];
     public Transform P_BattleStation;
-    public Transform E_BattleStation;
-    public bool hasRolled;
-    GameObject P_GameObject, E_GameObject;
+    public Transform[] E_BattleStation = new Transform[4];
+    public bool hasRolled, E_Alive;
+    GameObject P_GameObject;
+    public GameObject[] E_GameObject = new GameObject[4];
+    public GameObject[] E_BattleHUD = new GameObject[4];
 
     public BattleState state;
     public EnemySpawner E_Spawner;
-    public UnitDisplay unitDisplay;
-    public List<GameObject> unitList = new List<GameObject>();
+    public UnitDisplay[] unitDisplay;
+    GameObject[] Units = new GameObject[5];
+    public int check;
 
     public GameEvent P_Spin, P_Death, P_Victory, CombatStart, P_EndTurn, P_Reroll, OnUnitTarget;
 
@@ -30,8 +35,12 @@ public class BattleSystem : MonoBehaviour
 
     void setupBattle()
     {
+        for(int i = 0; i < E_BattleHUD.Length; i++){
+            E_BattleHUD[i].SetActive(true);
+        }
+        
         P_GameObject = Instantiate(P_Prefab, P_BattleStation);
-        unitList.Add(P_GameObject);
+        Units[0] = P_GameObject;
         GenerateFloorEnemy();
         ResetBattle();
         state = BattleState.PLAYERTURN;
@@ -40,13 +49,14 @@ public class BattleSystem : MonoBehaviour
     public void OnEndTurnButton(){
         if (state != BattleState.PLAYERTURN || !hasRolled)
             return;
-        DealDMG(E_GameObject);
-        DealFireDMG(E_GameObject);
+        DealDMG(E_GameObject[1], 0);
+        for(int j = 0; j < E_GameObject.Length; j++)
         GainShield(P_GameObject);
-        P_GameObject.GetComponent<UnitHealth>().DecreaseStatusEffects();
-        if(E_Health.Value <= 0){
-            Victory();
-            return;
+        P_GameObject.GetComponent<PlayerHealth>().DecreaseStatusEffects();
+        for(int k = 0; k<E_GameObject.Length; k++)
+        {
+            if(E_GameObject[k] != null)
+            unitDisplay[k].UpdateDisplay(E_GameObject[k]);
         }
         P_EndTurn.Raise(this, 1);
         EndPlayerTurn();
@@ -58,110 +68,191 @@ public class BattleSystem : MonoBehaviour
         if(P_Rolls.Value != P_MaxRolls.Value){   
             P_Reroll.Raise(this, 1);
         }
-       Debug.Log("SPINNING");
         P_Spin.Raise(this, true);
         hasRolled = true;
     }
 
     public void EnemyTurn() {
-        E_Shield.SetValue(0);
-        E_GameObject.GetComponent<UnitHealth>().DecreaseStatusEffects();
-        E_GameObject.GetComponent<EnemyActioner>().PerformAction();
-        DealDMG(P_GameObject);
-        DealFireDMG(P_GameObject);
-        GainShield(E_GameObject);
-        if (P_Health.Value <= 0)
-            Defeat();
-        else
-            EndEnemyTurn();           
+        for(int i = 0; i < E_GameObject.Length; i++)
+        {
+            if(E_GameObject[i] != null)
+            {
+                Debug.Log(E_GameObject[i]+" turn");
+            E_GameObject[i].GetComponent<UnitHealth>().Maintance();
+            E_GameObject[i].GetComponent<EnemyActioner>().PerformAction();
+            DealDMG(P_GameObject, i);
+            }
+        }   
+        for(int i = 0; i < E_GameObject.Length; i++){
+            if(E_GameObject[i] != null)
+            GainShield(E_GameObject[i]);
+        }
+        EndEnemyTurn();           
     }
 
-    public void DealDMG(GameObject target) {
-        if(target == E_GameObject)
-        E_GameObject.GetComponent<UnitHealth>().TakeDamage(P_OG_Damage);
+    public void DealDMG(GameObject target, int index) {
         if(target == P_GameObject)
-        P_GameObject.GetComponent<UnitHealth>().TakeDamage(E_OG_Damage);
-    }
-
-    public void DealFireDMG(GameObject target){
-        if(target == E_GameObject)
-        E_GameObject.GetComponent<UnitHealth>().TakeFireDamage(E_IC_FireDamage);
-        if(target == P_GameObject)
-        P_GameObject.GetComponent<UnitHealth>().TakeFireDamage(P_IC_FireDamage);
+        {
+            Debug.Log(E_GameObject[index]+ " is hitting the player for " + E_OG_Damage.Value);
+            P_GameObject.GetComponent<PlayerHealth>().TakeDamage(E_OG_Damage.Value);
+        }
+        
+        else{
+            if(AOEAttack.count != 0)
+            {
+                Debug.Log("Dealing aoe damage");
+                for(int i = 0; i > E_GameObject.Length; i++)
+                    {
+                        if(E_GameObject[i]== null)
+                        continue;
+                        E_GameObject[i].GetComponent<UnitHealth>().TakeDamage(AOEAttack.damage);
+                        E_GameObject[i].GetComponent<UnitHealth>().ApplyStatus(AOEAttack.fire, AOEAttack.weak, AOEAttack.expose);
+                        if(E_GameObject[i].GetComponent<UnitHealth>().currentHP <= 0)
+                        EnemyDeath(i);
+                    }
+            }
+            if(frontAttack.count != 0) //front damage
+            {
+                Debug.Log("Dealing Front damage");
+                for(int i = 0; i < E_GameObject.Length; i++)
+                {
+                    if(E_GameObject[i] == null)
+                        continue;
+                    E_GameObject[i].GetComponent<UnitHealth>().TakeDamage(frontAttack.damage);
+                    E_GameObject[i].GetComponent<UnitHealth>().ApplyStatus(frontAttack.fire, frontAttack.weak, frontAttack.expose);
+                    if(E_GameObject[i].GetComponent<UnitHealth>().currentHP <= 0)
+                        EnemyDeath(i);
+                    break;
+                }
+            }
+            if(flankAttack.count != 0) //flank damage
+            {
+                for(int j = E_GameObject.Length - 1; j >= 0; j--)
+                {
+                    if(E_GameObject[j] == null)
+                        continue;
+                    E_GameObject[j].GetComponent<UnitHealth>().TakeDamage(flankAttack.damage);
+                    E_GameObject[j].GetComponent<UnitHealth>().ApplyStatus(flankAttack.fire, flankAttack.weak, flankAttack.expose);
+                    if(E_GameObject[j].GetComponent<UnitHealth>().currentHP <= 0)
+                        EnemyDeath(j);
+                    break;
+                }
+            }
+        }
     }
 
     public void GainShield(GameObject target){
-        if(target == E_GameObject)
-        E_GameObject.GetComponent<UnitHealth>().TakeShield(E_IC_Shield);
-        if(target == P_GameObject)
-        P_GameObject.GetComponent<UnitHealth>().TakeShield(P_IC_Shield);
+        float shield;
+        if(target == P_GameObject){
+            shield = frontAttack.IC_Shield + flankAttack.IC_Shield + AOEAttack.IC_Shield;
+            P_GameObject.GetComponent<PlayerHealth>().TakeShield(shield);
+        }
+        
+        else{
+            for(int i = 0; i < E_GameObject.Length; i++)
+            {
+                if(E_GameObject[i] == null)
+                continue;
+                E_GameObject[i].GetComponent<UnitHealth>().TakeShield(E_IC_Shield[i]);
+            }
+        }
     }
 
     public void EndPlayerTurn() {
         state = BattleState.ENEMYTURN;
         hasRolled = false;
-        P_GameObject.GetComponent<UnitHealth>().animator.SetTrigger("OnAttack");
+        P_GameObject.GetComponent<PlayerHealth>().animator.SetTrigger("OnAttack");
         EnemyTurn();
     }
 
     public void EndEnemyTurn() {
         turn.ApplyChange(1.0f);
         P_Shield.SetValue(0);
-        if(E_GameObject.GetComponent<UnitHealth>().hasAnimator)
-        E_GameObject.GetComponent<UnitHealth>().animator.SetTrigger("OnAttack");
-        unitDisplay.UpdateDisplay(E_GameObject);
+        for(int i = 0; i < E_GameObject.Length; i++){
+            if(E_GameObject[i] == null)
+            continue;
+        if(E_GameObject[i].GetComponent<UnitHealth>().hasAnimator)
+            E_GameObject[i].GetComponent<UnitHealth>().animator.SetTrigger("OnAttack");
+            unitDisplay[i].UpdateDisplay(E_GameObject[i]);
+        }
+        
         state = BattleState.PLAYERTURN;
+    }
+
+    public void EnemyDeath(int index){
+        Destroy(E_GameObject[index]);
+        check = 0;
+        E_BattleHUD[index].SetActive(false);
+        E_GameObject[index] = null;
+        for(int i = 0; i < E_GameObject.Length; i++){
+
+            if(E_GameObject[i] != null){
+                check++;
+                break;
+            }
+        }
+        if(check == 0){
+           Victory();
+        }
     }
 
     public void ResetBattle() {
         turn.SetValue(0);
-        E_IC_FireDamage.SetValue(0);
-        P_IC_FireDamage.SetValue(0);
-        P_OG_Damage.SetValue(0);
+        for(int i = 0; i < E_GameObject.Length; i++){
+            E_IC_Shield[i].SetValue(0);
+        }
         E_OG_Damage.SetValue(0);
-        P_IC_Shield.SetValue(0);
-        E_IC_Shield.SetValue(0);
+        frontAttack.ResetAttack();
+        flankAttack.ResetAttack();
+        AOEAttack.ResetAttack();
         hasRolled = false;
         CombatStart.Raise(this,1);
     }
 
     public void Victory() {
-        E_Health.SetValue(0);
+        for(int i = 0; i < E_Health.Length; i++)
+        E_Health[i].SetValue(0);
         state = BattleState.WON;
         Debug.Log("You Win");
         //reward screen
         P_Victory.Raise(this, true);
         Destroy(P_GameObject);
-        Destroy(E_GameObject);
+        for(int i = 0; i < E_GameObject.Length; i++){
+            Destroy(E_GameObject[i]);
+        }
         //change scene to map
         //ResetBattle();
     }
 
     public void Defeat() {
-        P_Health.SetValue(0);
         state = BattleState.LOSS;
         Debug.Log("You Lose");
         //defeat screen
-        P_Death.Raise(this, true);
         Destroy(P_GameObject);
-        Destroy(E_GameObject);
+        for(int i = 0; i < E_GameObject.Length; i++){
+            Destroy(E_GameObject[i]);
+        }
+        
         //review deck & stats
         //main menu & retry
         //ResetBattle();
     }
 
     public void GenerateFloorEnemy(){
-        //E_Prefab = E_Spawner.GenerateCommonEnemy();
-        E_Prefab = E_Spawner.GenerateBoss();
-        E_BattleStation.Rotate(new Vector3(0,180f, 0));
-        E_GameObject = Instantiate(E_Prefab, E_BattleStation);
-        Debug.Log(" Has Spawned");
-        unitDisplay.UpdateDisplay(E_GameObject);
-        unitList.Add(E_GameObject);
+        GameObject[] enemies = E_Spawner.GenerateEnemies();
+        int count = 1;
+        for(int i = 0; i < enemies.Length; i++){
+            Units[count] = enemies[i];
+            E_Prefab = Units[count];
+            E_BattleStation[i].Rotate(new Vector3(0,180f, 0));
+            E_GameObject[i] = Instantiate(E_Prefab, E_BattleStation[i]);
+            unitDisplay[i].UpdateDisplay(E_GameObject[i]);
+            count++;
+        } 
     }
 
     public void SelectGameObject(int index){
-        selectedTarget = unitList[index];
+        selectedTarget = Units[index];
         OnUnitTarget.Raise(this, selectedTarget);
         Debug.Log(selectedTarget + " pressed");
     }

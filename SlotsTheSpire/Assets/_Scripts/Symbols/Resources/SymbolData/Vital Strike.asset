@@ -18,7 +18,7 @@ MonoBehaviour:
   startingDescription: 2 Exposed
   ID: 4
   artwork: {fileID: 21300000, guid: c9c94607aaa936d4dbbbec2efa912790, type: 3}
-  Damage:
+  damage:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
@@ -30,7 +30,7 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
-  Shield:
+  shield:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
@@ -50,7 +50,7 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
-  hasEffect: 1
-  upgradeEffect: 0
+  weak: 0
+  expose: 2
+  fire: 0
   upgraded: 0
-  symbolEffect: {fileID: 11400000, guid: 316c55a607a729448b5453d226385d5a, type: 2}

@@ -71,6 +71,10 @@ public class Inventory : MonoBehaviour
      public void SelectTarget(Component sender, object data){
         if(stateManager.GetState() == state && potionIndex != -1){
             target = (GameObject) data;
+
+            if(target.tag == "Player")
+            consumables[potionIndex].P_Consume(target);
+            else
             consumables[potionIndex].Consume(target);
             RemoveConsumable(consumables[potionIndex]);
             potionIndex = -1;

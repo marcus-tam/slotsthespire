@@ -10,7 +10,8 @@ public class PlayerDisplay : MonoBehaviour
     public Text  shieldText, hpText, turnSummary;
     public Image weakIcon, exposedIcon, fireIcon;
     public Sprite exposedSpirte, fireSpirte, weakSpirte;
-    public FloatVariable playerShield, unitHealth, playerDamage, E_IC_FireDamage, E_FireCount, P_exposedCount, P_fireCount, P_weakCount;
+    public FloatVariable playerShield, playerHealth, playerDamage, E_IC_FireDamage, E_FireCount, P_exposedCount, P_fireCount, P_weakCount;
+    public PlayerData playerData;
 
 
     void Start()
@@ -24,7 +25,7 @@ public class PlayerDisplay : MonoBehaviour
     }
     
     public void UpdateHealth(){
-        hpText.text = "" + unitHealth.Value;
+        hpText.text = "" + playerHealth.Value;
         checkStatusEffects();
     }
 
@@ -33,7 +34,7 @@ public class PlayerDisplay : MonoBehaviour
     }
 
     public void UpdateTurnText(){
-        turnSummary.text = "Attack: " + playerDamage.Value + " \nShield: " + playerShield.Value + "\nFireDmg: " + E_IC_FireDamage.Value;
+        turnSummary.text = "Attack: " + playerData.OG_FrontDamage + " \nShield: " + playerData.IC_Shield;
         checkStatusEffects();
     }
 

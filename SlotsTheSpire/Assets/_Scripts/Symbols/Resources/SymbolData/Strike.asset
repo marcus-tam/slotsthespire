@@ -14,17 +14,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Strike
   description: Deals 5 damage
+  upgradedDescription: 
+  startingDescription: 
   ID: 0
   artwork: {fileID: 21300000, guid: a9d08c860115a27408d03560c7c62549, type: 3}
-  Size:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  Damage:
+  damage:
     UseConstant: 1
     ConstantValue: 5
     Variable: {fileID: 0}
-  Shield:
+  upgradedDamage:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  startingDamage:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  shield:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  upgradedShield:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  startingShield:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
@@ -36,9 +50,7 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
-  Turn:
-    UseConstant: 0
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: 3ed5e071c84c5ec44a678537634a1c7f, type: 2}
-  hasEffect: 0
-  symbolEffect: {fileID: 0}
+  weak: 0
+  expose: 0
+  fire: 0
+  upgraded: 0

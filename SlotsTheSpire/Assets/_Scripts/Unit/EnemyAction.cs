@@ -6,12 +6,11 @@ using System;
 [CreateAssetMenu(menuName = "Action/Attack")]
 public class EnemyAction : Action
 {
-    public FloatReference damageAmount, shieldAmount;
-    public FloatVariable E_incomingShield, E_outgoingDamage, E_WeakCount;
+    public FloatReference damageAmount, shieldAmount, weak, expose, fire;
+    public FloatVariable E_incomingShield, E_OG_Damage, E_WeakCount;
     public BoolVariable E_IsShielded;
     public bool isDamage, isShield, hasEffect;
     public string attackSummary;
-    public BaseEffect effect;
 
     public override void DoAction(EnemyActioner action) {
         if(isDamage)
@@ -20,16 +19,15 @@ public class EnemyAction : Action
             ShieldSelf();
         if(hasEffect)
             PreformEffect();
-
         }
 
     public void CalculateDamage(){
         if(E_WeakCount.Value > 0){
-            E_outgoingDamage.SetValue((float)Math.Ceiling(damageAmount.Value/2));
-            Debug.Log("Enemy is weak incoming damage: " + E_outgoingDamage.Value);
+            E_OG_Damage.SetValue((float)Math.Ceiling(damageAmount.Value/2));
+            Debug.Log("Enemy is weak incoming damage: " + E_OG_Damage.Value);
         }
         else{
-            E_outgoingDamage.SetValue(damageAmount);
+            E_OG_Damage.SetValue(damageAmount);
         }
         
     }
@@ -56,10 +54,7 @@ public class EnemyAction : Action
     }
 
     public void PreformEffect(){
-        if(hasEffect)
-            effect.DoEffect();
-        else
-            return;
+
    }
 
 }
