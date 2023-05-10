@@ -8,9 +8,9 @@ public class EnemyActioner : MonoBehaviour
     public FloatVariable turn;
     int randomNumber;
 
-    public void PerformAction() {
+    public void PerformAction(UnitHealth unit) {
                 randomNumber = Random.Range(0,actionList.Count);
-                actionList[randomNumber].DoAction(this);
+                actionList[randomNumber].DoAction(this, unit);
     }
     public int getAttack(){
         return actionList[randomNumber].GetAttackType();

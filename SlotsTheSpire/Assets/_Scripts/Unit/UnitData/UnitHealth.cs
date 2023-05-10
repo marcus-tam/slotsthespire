@@ -78,14 +78,17 @@ public class UnitHealth : MonoBehaviour
         DMG.SetValue(0);
     }
 
-    public void TakeShield(FloatVariable incomingShield){
-        shield += incomingShield.Value;
+    public void TakeShield(float incomingShield){
+        shield += incomingShield;
         if(shield > 0)
             isShielded = true;
             else
                 isShielded= false;
-        incomingShield.SetValue(0);
         shieldEvent.Raise(this, shield);
+    }
+
+    public void ZeroShield(){
+        shield = 0;
     }
 
     public UnitData getData(){

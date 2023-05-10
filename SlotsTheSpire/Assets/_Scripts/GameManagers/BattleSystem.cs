@@ -10,7 +10,7 @@ public class BattleSystem : MonoBehaviour
     public GameObject P_Prefab, E_Prefab, selectedTarget;
     public AttackData frontAttack, flankAttack, AOEAttack;
     public FloatVariable turn, P_Shield, E_Shield, floorLevel,P_Rolls, P_MaxRolls,E_OG_Damage;
-    public FloatVariable[] E_Health, E_MaxHP, E_IC_Shield = new FloatVariable[4];
+    public FloatVariable[] E_Health, E_MaxHP= new FloatVariable[4];
     public Transform P_BattleStation;
     public Transform[] E_BattleStation = new Transform[4];
     public bool hasRolled, E_Alive;
@@ -50,8 +50,6 @@ public class BattleSystem : MonoBehaviour
         if (state != BattleState.PLAYERTURN || !hasRolled)
             return;
         DealDMG(E_GameObject[1], 0);
-        for(int j = 0; j < E_GameObject.Length; j++)
-        GainShield(P_GameObject);
         P_GameObject.GetComponent<PlayerHealth>().DecreaseStatusEffects();
         for(int k = 0; k<E_GameObject.Length; k++)
         {
@@ -79,13 +77,9 @@ public class BattleSystem : MonoBehaviour
             {
                 Debug.Log(E_GameObject[i]+" turn");
             E_GameObject[i].GetComponent<UnitHealth>().Maintance();
-            E_GameObject[i].GetComponent<EnemyActioner>().PerformAction();
+            E_GameObject[i].GetComponent<EnemyActioner>().PerformAction(E_GameObject[i].GetComponent<UnitHealth>());
             DealDMG(P_GameObject, i);
             }
-        }   
-        for(int i = 0; i < E_GameObject.Length; i++){
-            if(E_GameObject[i] != null)
-            GainShield(E_GameObject[i]);
         }
         EndEnemyTurn();           
     }
@@ -141,23 +135,6 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
-    public void GainShield(GameObject target){
-        float shield;
-        if(target == P_GameObject){
-            shield = frontAttack.IC_Shield + flankAttack.IC_Shield + AOEAttack.IC_Shield;
-            P_GameObject.GetComponent<PlayerHealth>().TakeShield(shield);
-        }
-        
-        else{
-            for(int i = 0; i < E_GameObject.Length; i++)
-            {
-                if(E_GameObject[i] == null)
-                continue;
-                E_GameObject[i].GetComponent<UnitHealth>().TakeShield(E_IC_Shield[i]);
-            }
-        }
-    }
-
     public void EndPlayerTurn() {
         state = BattleState.ENEMYTURN;
         hasRolled = false;
@@ -199,7 +176,7 @@ public class BattleSystem : MonoBehaviour
     public void ResetBattle() {
         turn.SetValue(0);
         for(int i = 0; i < E_GameObject.Length; i++){
-            E_IC_Shield[i].SetValue(0);
+            E_GameObject[i].GetComponent<UnitHealth>().ZeroShield();
         }
         E_OG_Damage.SetValue(0);
         frontAttack.ResetAttack();

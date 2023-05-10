@@ -12,11 +12,11 @@ public class EnemyAction : Action
     public bool isDamage, isShield, hasEffect;
     public string attackSummary;
 
-    public override void DoAction(EnemyActioner action) {
+    public override void DoAction(EnemyActioner action, UnitHealth unit) {
         if(isDamage)
             CalculateDamage();
         if(isShield)
-            ShieldSelf();
+            ShieldSelf(unit);
         if(hasEffect)
             PreformEffect();
         }
@@ -32,8 +32,8 @@ public class EnemyAction : Action
         
     }
 
-    public void ShieldSelf(){
-        E_incomingShield.SetValue(shieldAmount);
+    public void ShieldSelf(UnitHealth unit){
+        unit.TakeShield(shieldAmount.Value);
     }
 
     public override int GetAttackType(){

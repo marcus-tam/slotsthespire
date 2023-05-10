@@ -37,6 +37,6 @@ MonoBehaviour:
   E_WeakCount: {fileID: 11400000, guid: bc4bf9c5452a48a4aa1836d209cb670c, type: 2}
   E_IsShielded: {fileID: 11400000, guid: a120c4c70ebd3bd4f9260f4e0c2454c2, type: 2}
   isDamage: 1
-  isShield: 0
+  isShield: 1
   hasEffect: 0
   attackSummary: 15 damage 22 shield exposes
