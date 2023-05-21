@@ -6,11 +6,12 @@ using System;
 
 public class UnitHealth : MonoBehaviour
 {
-    public FloatVariable maxHP, currentHP, shield, exposedCount, fireCount, weakCount,DMG;
-    public BoolVariable isShielded;
+    public float maxHP, currentHP, shield, exposeCount, fireCount, weakCount;
+    public FloatVariable DMG;
+    public bool isShielded;
     public UnitData unit;
     public Animator animator;
-    public bool hasAnimator;
+    public bool hasAnimator, isDead;
     
     public GameEvent DamageEvent, shieldEvent, DeathEvent;
 
@@ -19,48 +20,49 @@ public class UnitHealth : MonoBehaviour
 
     private void Start()
     {
-
         if(hasAnimator)
         animator = this.GetComponent<Animator>();
         if (ResetHP) {
-            maxHP.SetValue(StartingHP);
-            currentHP.SetValue(StartingHP);
+            maxHP = StartingHP;
+            currentHP = StartingHP;
+            DamageEvent.Raise(this, currentHP);
         }
-            shield.SetValue(0);
-            exposedCount.SetValue(0);
-            fireCount.SetValue(0);
-            weakCount.SetValue(0);
+            shield = 0f;
+            exposeCount = 0;
+            fireCount = 0;
+            weakCount = 0;
             DMG.SetValue(0);
+            isDead = false;
     }
 
     public void TakeDamage(FloatVariable incomingDamage){
-        if(exposedCount.Value > 0){
+        if(exposeCount > 0){
             incomingDamage.ApplyChange((float)Math.Ceiling(incomingDamage.Value/2));
-            Debug.Log("Incoming damage (Exposed) is: " + incomingDamage.Value);
         }
         // If enemy is unshielded, damage affects health
         if (!isShielded){
-            currentHP.ApplyChange(incomingDamage, true);
+            currentHP -= incomingDamage.Value;
+            Debug.Log("hit "+this+": " + incomingDamage.Value);
         }
         else
             {
                 //If incoming damage can break shield, subtract shield value from tempDamage and apply new tempDamage to playerHealth. Set playerShield to 0
-                if (incomingDamage.Value >= shield.Value){
-                    incomingDamage.ApplyChange(shield.Value, true);
-                    shield.SetValue(0);
-                    currentHP.ApplyChange(incomingDamage, true);
-
+                if (incomingDamage.Value>= shield){
+                    incomingDamage.ApplyChange(shield, true);
+                    shield = 0f;
+                    currentHP -= incomingDamage.Value;
                 } 
                 // Else, just change player shield hp
                 else{
-                    shield.ApplyChange(incomingDamage, true);
+                    shield -= incomingDamage.Value;
                 }
             }
         
         incomingDamage.SetValue(0);
-        DamageEvent.Raise(this, currentHP.Value);
-        if(currentHP.Value <= 0){
+        DamageEvent.Raise(this, currentHP);
+        if(currentHP <= 0){
             DeathEvent.Raise(this, true);
+            isDead = true;
             if(hasAnimator)
             animator.SetTrigger("OnDeath");
         } else{
@@ -70,48 +72,56 @@ public class UnitHealth : MonoBehaviour
             
     }
 
-    public void TakeDamage(float IC_Damage){
-        
-        DMG.SetValue(IC_Damage);
+    public void TakeDamage(float IC_Damage){ 
+        DMG.Value = IC_Damage;
         TakeDamage(DMG);
+        DMG.SetValue(0);
     }
 
-    public void TakeShield(FloatVariable incomingShield){
-        shield.ApplyChange(incomingShield.Value);
-        if(shield.Value > 0)
-            isShielded.SetTrue();
+    public void TakeShield(float incomingShield){
+        shield += incomingShield;
+        if(shield > 0)
+            isShielded = true;
             else
-                isShielded.SetFalse();
-        incomingShield.SetValue(0);
-        shieldEvent.Raise(this, shield.Value);
+                isShielded= false;
+        shieldEvent.Raise(this, shield);
     }
 
-    public void TakeFireDamage(FloatVariable incomingFireDamage){
-        if(fireCount.Value>0)
-        currentHP.ApplyChange(incomingFireDamage.Value, true);
-        DamageEvent.Raise(this,currentHP.Value);
+    public void ZeroShield(){
+        shield = 0;
     }
 
     public UnitData getData(){
         return unit;
     }
 
-    public void GetTarget(){
+    public void Maintance(){
+        shield = 0;
+        if(exposeCount > 0)
+        exposeCount--;
+        if(fireCount > 0)
+        {
+            TakeDamage(fireCount);
+            fireCount--;
+        }
         
-    }
-
-    public void DecreaseStatusEffects(){
-        if(exposedCount.Value > 0)
-        exposedCount.ApplyChange(1,true);
-        if(fireCount.Value > 0)
-        fireCount.ApplyChange(1,true);
-        if(weakCount.Value > 0)
-        weakCount.ApplyChange(1,true);
+        if(weakCount > 0)
+        weakCount--;
     }
     
+    public void ApplyStatus(float fire, float weak, float expose){
+        Debug.Log(this+"; fire: " + fire + " weak: " + weak +" Expose: " + expose );
+        fireCount += fire;
+        weakCount += weak;
+        exposeCount += expose;
+    }
+
     public void Heal(float amount){
-        currentHP.ApplyChange(amount);
+        currentHP += amount;
         DamageEvent.Raise(this, amount);
     }
 
+    public float getHealth(){
+        return currentHP;
+    }
 }

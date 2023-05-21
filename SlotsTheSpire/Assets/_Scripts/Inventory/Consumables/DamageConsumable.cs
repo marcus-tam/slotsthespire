@@ -10,4 +10,7 @@ public class DamageConsumable : BaseConsumable
     public override void Consume(GameObject Target){
         Target.GetComponent<UnitHealth>().TakeDamage(amount);
     }
+    public override void P_Consume(GameObject Target){
+        Target.GetComponent<PlayerHealth>().TakeDamage(amount);
+    }
 }

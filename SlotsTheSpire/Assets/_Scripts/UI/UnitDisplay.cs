@@ -8,37 +8,36 @@ public class UnitDisplay : MonoBehaviour
 
     public UnitData unit;
     public Text shieldText, hpText;
-    public Image exposedIcon,fireIcon,weakIcon, attackTypeIcon;
-    public Sprite exposedSpirte, fireSpirte, weakSpirte;
+    public Image exposeIcon,fireIcon,weakIcon, attackTypeIcon;
+    public Sprite exposeSpirte, fireSpirte, weakSpirte;
     public List<Sprite> attackTypeSpirte = new List<Sprite>();
-    public FloatVariable shield, unitHealth, E_exposedCount, E_fireCount, E_weakCount;
+    public float shield, unitHealth, unitMaxHealth;
     int attackType;
 
     void Start(){
-    exposedIcon.sprite = exposedSpirte;
+    exposeIcon.sprite = exposeSpirte;
     fireIcon.sprite = fireSpirte;
     weakIcon.sprite = weakSpirte;
     }
 
-    void Update() {
-        shieldText.text = "" + shield.Value;
-        hpText.text = "" + unitHealth.Value;
-        checkStatusEffects();
-    }
-
     public void UpdateDisplay(GameObject unitPrefab)
     {
+        unitMaxHealth = unitPrefab.GetComponent<UnitHealth>().StartingHP;
+        unitHealth = unitPrefab.GetComponent<UnitHealth>().currentHP;
+        shield = unitPrefab.GetComponent<UnitHealth>().shield;
+        shieldText.text = "" + shield;
+        hpText.text = "" + unitHealth;
         unit = unitPrefab.GetComponent<UnitHealth>().getData();
         attackType = unitPrefab.GetComponent<EnemyActioner>().getAttack();
         switch (attackType)
         {
-            case 0:
+            case 0: //attack only
             attackTypeIcon.sprite = attackTypeSpirte[0];
             break;
-            case 1:
+            case 1://defend only
             attackTypeIcon.sprite = attackTypeSpirte[1];
             break;
-            case 2:
+            case 2://attack and defend
             attackTypeIcon.sprite = attackTypeSpirte[2];
             break;
             case 3:
@@ -57,24 +56,27 @@ public class UnitDisplay : MonoBehaviour
             Debug.Log("AttackType Cases defaulted");
             break;
         }
-
-    }
-
-    public void checkStatusEffects(){
-        if(E_exposedCount.Value > 0)
-        exposedIcon.enabled = true;
+        if(unitPrefab.GetComponent<UnitHealth>().exposeCount > 0)
+        exposeIcon.enabled = true;
         else{
-            exposedIcon.enabled = false;
+            exposeIcon.enabled = false;
         }
-        if(E_fireCount.Value > 0)
+        if(unitPrefab.GetComponent<UnitHealth>().fireCount > 0)
        fireIcon.enabled = true;
         else{
             fireIcon.enabled = false;
         }
-        if(E_weakCount.Value > 0)
+        if(unitPrefab.GetComponent<UnitHealth>().weakCount > 0)
         weakIcon.enabled = true;
         else{
             weakIcon.enabled = false;
         }
+    }
+
+    public void Death(){
+        exposeIcon.enabled = false;
+        fireIcon.enabled = false;
+        weakIcon.enabled = false;
+        attackTypeIcon.enabled = false;
     }
 }

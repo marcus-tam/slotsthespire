@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1261470571}
   - component: {fileID: 1261470572}
   - component: {fileID: 1261470573}
+  - component: {fileID: 1324665077}
   m_Layer: 0
   m_Name: EventListener
   m_TagString: Untagged
@@ -217,6 +218,34 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1324665077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1261470566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0125cc1c8deef7747b0697ff6502acd0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Event: {fileID: 11400000, guid: 7689d542325897a43b623b327fdc637c, type: 2}
+  Response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 132632073148074904}
+        m_TargetAssemblyTypeName: Inventory, Assembly-CSharp
+        m_MethodName: SelectTarget
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1794780336760912556
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,13 +314,14 @@ MonoBehaviour:
   target: {fileID: 0}
   inventory: []
   consumables:
-  - {fileID: 11400000, guid: 4ccb052a4a68b374092d93c2db9a2379, type: 2}
+  - {fileID: 11400000, guid: 1b2e802a79ec6394a81d1749874195fe, type: 2}
   - {fileID: 11400000, guid: 1b2e802a79ec6394a81d1749874195fe, type: 2}
   - {fileID: 11400000, guid: 1f83a72fd28f99b45b4e1f5044b9a253, type: 2}
-  - {fileID: 11400000, guid: 1f83a72fd28f99b45b4e1f5044b9a253, type: 2}
+  - {fileID: 11400000, guid: 4ccb052a4a68b374092d93c2db9a2379, type: 2}
   consumableBeltCapacity: {fileID: 11400000, guid: 4c9546d9224d63245b27cac0aa43d344, type: 2}
-  index: 0
+  potionIndex: 0
   stateManager: {fileID: 1803004565}
+  state: 0
 --- !u!114 &132632073148074903
 MonoBehaviour:
   m_ObjectHideFlags: 0

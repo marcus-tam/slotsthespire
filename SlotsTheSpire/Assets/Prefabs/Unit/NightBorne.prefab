@@ -49,7 +49,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionList:
   - {fileID: 11400000, guid: d22d36a5d2d6f7943bb044af4b387a6b, type: 2}
-  - {fileID: 11400000, guid: d22d36a5d2d6f7943bb044af4b387a6b, type: 2}
   turn: {fileID: 11400000, guid: 3ed5e071c84c5ec44a678537634a1c7f, type: 2}
 --- !u!114 &7428239942130976318
 MonoBehaviour:
@@ -63,17 +62,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19a1f9b8723622a489bc2e9c13fc17fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: {fileID: 11400000, guid: 8a16a541f1a49544cba8b14d5e4549da, type: 2}
-  currentHP: {fileID: 11400000, guid: 3f45eeb8130d61a4aa51fdef678dee99, type: 2}
-  shield: {fileID: 11400000, guid: c7c7f526e54791c4ab96169337b1ddc0, type: 2}
-  exposedCount: {fileID: 11400000, guid: a31d7d7a29d0f9442abacea743b8de31, type: 2}
-  fireCount: {fileID: 11400000, guid: efdb5816acb250c4aae7864c6bcf5162, type: 2}
-  weakCount: {fileID: 11400000, guid: bc4bf9c5452a48a4aa1836d209cb670c, type: 2}
+  maxHP: 0
+  currentHP: 0
+  shield: 0
+  exposedCount: 0
+  fireCount: 0
+  weakCount: 0
   DMG: {fileID: 11400000, guid: 1acf58d0a0a40cb46a1bc4390ef51dde, type: 2}
-  isShielded: {fileID: 11400000, guid: a120c4c70ebd3bd4f9260f4e0c2454c2, type: 2}
+  isShielded: 0
   unit: {fileID: 11400000, guid: 4b99f6dac2c353844aa48af90182bdff, type: 2}
   animator: {fileID: 2566471260462638562}
   hasAnimator: 1
+  isDead: 0
   DamageEvent: {fileID: 11400000, guid: 3acf5c927f147a947ab6534eabf4db52, type: 2}
   shieldEvent: {fileID: 11400000, guid: 2620fe293ca2df64cb880097445b2705, type: 2}
   DeathEvent: {fileID: 11400000, guid: fffadad7e8a4a6c44963e3104aac07f1, type: 2}

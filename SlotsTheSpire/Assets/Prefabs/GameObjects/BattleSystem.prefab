@@ -364,19 +364,32 @@ MonoBehaviour:
   P_Health: {fileID: 11400000, guid: a39a27eada4fe7a4c827abd1faa1eda7, type: 2}
   floorLevel: {fileID: 11400000, guid: 2cb0e5e0e1a8f4643b37d2b9336686f2, type: 2}
   E_OG_Damage: {fileID: 11400000, guid: 1701ddd989ed18746a1cbdc01d7c2341, type: 2}
-  P_OG_Damage: {fileID: 11400000, guid: 824c3da36c3239f458e659b5be75063a, type: 2}
   P_IC_Shield: {fileID: 11400000, guid: f1354cf01ded13849b89b331264d8755, type: 2}
   E_IC_Shield: {fileID: 11400000, guid: ac13ffbc6e3e421478ba698d9240e0b2, type: 2}
   P_IC_FireDamage: {fileID: 11400000, guid: 7196a37c9edb06b46893f2e3105237ce, type: 2}
   E_IC_FireDamage: {fileID: 11400000, guid: 5cc4b9b7209bb5748bf60c6522f8ef29, type: 2}
   P_Rolls: {fileID: 11400000, guid: e6527f24c623559468b2e5e1241c10bb, type: 2}
+  P_MaxRolls: {fileID: 11400000, guid: fde2397bb17110141af994a7ec4af91f, type: 2}
+  P_OG_Damage:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   P_BattleStation: {fileID: 0}
-  E_BattleStation: {fileID: 0}
+  E_BattleStation:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   hasRolled: 0
   state: 0
   E_Spawner: {fileID: 8531689716050172929}
   unitDisplay: {fileID: 0}
-  unitList: []
+  Units:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   P_Spin: {fileID: 11400000, guid: c6c65b4defcbdd149903e72bdf000feb, type: 2}
   P_Death: {fileID: 11400000, guid: 652e00924875bf144b48520db7cbd181, type: 2}
   P_Victory: {fileID: 11400000, guid: 3ad6753dec61b174b9870e56b6502279, type: 2}
@@ -403,6 +416,11 @@ MonoBehaviour:
   EliteList: []
   BossList:
   - {fileID: 8802468815888689798, guid: 1751ce51eb82de54aaeb06943c43eaac, type: 3}
+  EnemiesToSpawn:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1678821434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -431,6 +449,8 @@ MonoBehaviour:
   P_Locked: {fileID: 11400000, guid: 5b44f65720ae2dc45b5e6088a2c20ba5, type: 2}
   battleSystem: {fileID: 8531689716050172928}
   symbol:
+    symbolData: {fileID: 0}
+  lockInSymbol:
     symbolData: {fileID: 0}
   artworkList:
   - {fileID: 0}

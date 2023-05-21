@@ -14,19 +14,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Defend
   description: Block for 1
+  upgradedDescription: 
+  startingDescription: 
   ID: 1
   artwork: {fileID: 21300000, guid: 4e35412c6acf7da4b93a779caef8e5b9, type: 3}
-  Size:
+  damage:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
-  Damage:
+  upgradedDamage:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
-  Shield:
+  startingDamage:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  shield:
     UseConstant: 1
     ConstantValue: 1
+    Variable: {fileID: 0}
+  upgradedShield:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  startingShield:
+    UseConstant: 1
+    ConstantValue: 0
     Variable: {fileID: 0}
   Heal:
     UseConstant: 1
@@ -36,9 +50,7 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
-  Turn:
-    UseConstant: 0
-    ConstantValue: 0
-    Variable: {fileID: 11400000, guid: 3ed5e071c84c5ec44a678537634a1c7f, type: 2}
-  hasEffect: 0
-  symbolEffect: {fileID: 0}
+  weak: 0
+  expose: 0
+  fire: 0
+  upgraded: 0

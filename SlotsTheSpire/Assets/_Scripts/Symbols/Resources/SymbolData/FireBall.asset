@@ -14,17 +14,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: FireBall
   description: Sets the Target on fire
+  upgradedDescription: 
+  startingDescription: 
   ID: 3
   artwork: {fileID: 21300000, guid: de9d8e24d90a41948861ead147617cf7, type: 3}
-  Size:
+  damage:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
-  Damage:
+  upgradedDamage:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
-  Shield:
+  startingDamage:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  shield:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  upgradedShield:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  startingShield:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
@@ -36,9 +50,7 @@ MonoBehaviour:
     UseConstant: 1
     ConstantValue: 0
     Variable: {fileID: 0}
-  Turn:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  hasEffect: 1
-  symbolEffect: {fileID: 11400000, guid: 903240361c24fe043a5c317771d806a0, type: 2}
+  weak: 0
+  expose: 0
+  fire: 2
+  upgraded: 0

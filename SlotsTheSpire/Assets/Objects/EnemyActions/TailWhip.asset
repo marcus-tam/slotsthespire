@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7109babfad75394e89df56f5f44c982, type: 3}
+  m_Name: TailWhip
+  m_EditorClassIdentifier: 
+  damageAmount:
+    UseConstant: 1
+    ConstantValue: 3
+    Variable: {fileID: 0}
+  shieldAmount:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  weak:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  expose:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  fire:
+    UseConstant: 1
+    ConstantValue: 0
+    Variable: {fileID: 0}
+  E_incomingShield: {fileID: 11400000, guid: ac13ffbc6e3e421478ba698d9240e0b2, type: 2}
+  E_OG_Damage: {fileID: 11400000, guid: 1701ddd989ed18746a1cbdc01d7c2341, type: 2}
+  E_WeakCount: {fileID: 11400000, guid: bc4bf9c5452a48a4aa1836d209cb670c, type: 2}
+  E_IsShielded: {fileID: 11400000, guid: a120c4c70ebd3bd4f9260f4e0c2454c2, type: 2}
+  isDamage: 1
+  isShield: 0
+  hasEffect: 0
+  attackSummary: 3 Damage 1 Weak
