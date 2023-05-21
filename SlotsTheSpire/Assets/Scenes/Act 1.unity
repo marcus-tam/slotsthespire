@@ -11803,7 +11803,7 @@ PrefabInstance:
     - target: {fileID: 1678821434, guid: ce21257cfdcd8d54da0ca8a538f40dc2, type: 3}
       propertyPath: playerData
       value: 
-      objectReference: {fileID: 11400000, guid: df0db8bc537c5174194413a61c007d1c, type: 2}
+      objectReference: {fileID: 11400000, guid: 1f54adc791ba81e42a7665167bf80e92, type: 2}
     - target: {fileID: 1678821434, guid: ce21257cfdcd8d54da0ca8a538f40dc2, type: 3}
       propertyPath: discardText
       value: 
@@ -11875,7 +11875,7 @@ PrefabInstance:
     - target: {fileID: 8531689716050172928, guid: ce21257cfdcd8d54da0ca8a538f40dc2, type: 3}
       propertyPath: playerData
       value: 
-      objectReference: {fileID: 11400000, guid: df0db8bc537c5174194413a61c007d1c, type: 2}
+      objectReference: {fileID: 11400000, guid: 1f54adc791ba81e42a7665167bf80e92, type: 2}
     - target: {fileID: 8531689716050172928, guid: ce21257cfdcd8d54da0ca8a538f40dc2, type: 3}
       propertyPath: flankAttack
       value: 

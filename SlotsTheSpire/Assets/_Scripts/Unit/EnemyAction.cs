@@ -17,8 +17,6 @@ public class EnemyAction : Action
             CalculateDamage();
         if(isShield)
             ShieldSelf(unit);
-        if(hasEffect)
-            PreformEffect();
         }
 
     public void CalculateDamage(){
@@ -52,9 +50,5 @@ public class EnemyAction : Action
         else
             return 6;
     }
-
-    public void PreformEffect(){
-
-   }
 
 }

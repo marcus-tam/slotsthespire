@@ -8,7 +8,7 @@ public class BattleSystem : MonoBehaviour
 {
 
     public GameObject P_Prefab, E_Prefab, selectedTarget;
-    public AttackData frontAttack, flankAttack, AOEAttack;
+    public PlayerData playerData;
     public FloatVariable turn, P_Shield, E_Shield, floorLevel,P_Rolls, P_MaxRolls,E_OG_Damage;
     public FloatVariable[] E_Health, E_MaxHP= new FloatVariable[4];
     public Transform P_BattleStation;
@@ -92,43 +92,43 @@ public class BattleSystem : MonoBehaviour
         }
         
         else{
-            if(AOEAttack.count != 0)
+            if(playerData.type == 2)
             {
                 Debug.Log("Dealing aoe damage");
                 for(int i = 0; i > E_GameObject.Length; i++)
                     {
                         if(E_GameObject[i]== null)
                         continue;
-                        E_GameObject[i].GetComponent<UnitHealth>().TakeDamage(AOEAttack.damage);
-                        E_GameObject[i].GetComponent<UnitHealth>().ApplyStatus(AOEAttack.fire, AOEAttack.weak, AOEAttack.expose);
+                        E_GameObject[i].GetComponent<UnitHealth>().TakeDamage(playerData.damage);
+                        E_GameObject[i].GetComponent<UnitHealth>().ApplyStatus(playerData.fire, playerData.weak, playerData.expose);
                         if(E_GameObject[i].GetComponent<UnitHealth>().currentHP <= 0)
                         EnemyDeath(i);
                     }
             }
-            if(frontAttack.count != 0) //front damage
+            else if(playerData.type == 1) //flank damage
+            {
+                for(int j = E_GameObject.Length - 1; j >= 0; j--)
+                {
+                    if(E_GameObject[j] == null)
+                        continue;
+                    E_GameObject[j].GetComponent<UnitHealth>().TakeDamage(playerData.damage);
+                    E_GameObject[j].GetComponent<UnitHealth>().ApplyStatus(playerData.fire, playerData.weak, playerData.expose);
+                    if(E_GameObject[j].GetComponent<UnitHealth>().currentHP <= 0)
+                        EnemyDeath(j);
+                    break;
+                }
+            }
+            else //front damage
             {
                 Debug.Log("Dealing Front damage");
                 for(int i = 0; i < E_GameObject.Length; i++)
                 {
                     if(E_GameObject[i] == null)
                         continue;
-                    E_GameObject[i].GetComponent<UnitHealth>().TakeDamage(frontAttack.damage);
-                    E_GameObject[i].GetComponent<UnitHealth>().ApplyStatus(frontAttack.fire, frontAttack.weak, frontAttack.expose);
+                    E_GameObject[i].GetComponent<UnitHealth>().TakeDamage(playerData.damage);
+                    E_GameObject[i].GetComponent<UnitHealth>().ApplyStatus(playerData.fire, playerData.weak, playerData.expose);
                     if(E_GameObject[i].GetComponent<UnitHealth>().currentHP <= 0)
                         EnemyDeath(i);
-                    break;
-                }
-            }
-            if(flankAttack.count != 0) //flank damage
-            {
-                for(int j = E_GameObject.Length - 1; j >= 0; j--)
-                {
-                    if(E_GameObject[j] == null)
-                        continue;
-                    E_GameObject[j].GetComponent<UnitHealth>().TakeDamage(flankAttack.damage);
-                    E_GameObject[j].GetComponent<UnitHealth>().ApplyStatus(flankAttack.fire, flankAttack.weak, flankAttack.expose);
-                    if(E_GameObject[j].GetComponent<UnitHealth>().currentHP <= 0)
-                        EnemyDeath(j);
                     break;
                 }
             }
@@ -179,9 +179,7 @@ public class BattleSystem : MonoBehaviour
             E_GameObject[i].GetComponent<UnitHealth>().ZeroShield();
         }
         E_OG_Damage.SetValue(0);
-        frontAttack.ResetAttack();
-        flankAttack.ResetAttack();
-        AOEAttack.ResetAttack();
+        playerData.ResetPlayer();
         hasRolled = false;
         CombatStart.Raise(this,1);
     }

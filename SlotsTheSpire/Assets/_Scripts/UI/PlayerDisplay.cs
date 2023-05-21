@@ -34,7 +34,7 @@ public class PlayerDisplay : MonoBehaviour
     }
 
     public void UpdateTurnText(){
-        turnSummary.text = "Attack: " + playerData.OG_FrontDamage + " \nShield: " + playerData.IC_Shield;
+        turnSummary.text = "Attack: " + playerData.damage + " \nShield: " + playerData.shield;
         checkStatusEffects();
     }
 

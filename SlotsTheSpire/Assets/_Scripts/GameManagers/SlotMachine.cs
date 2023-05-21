@@ -8,7 +8,7 @@ using System;
 public class SlotMachine : MonoBehaviour
 {
     public Deck cardDeck;
-    public AttackData frontAttack, flankAttack, AOEAttack;
+    public PlayerData playerData;
     public List<SymbolInventoryItem> newDeck = new List<SymbolInventoryItem>();
     public List<SymbolInventoryItem> discardDeck = new List<SymbolInventoryItem>();
     public List<SymbolInventoryItem> activeDeck = new List<SymbolInventoryItem>();
@@ -107,30 +107,17 @@ public class SlotMachine : MonoBehaviour
             {
                 case 0:
                 //Front Enemy
-                    IncrementDamage(frontAttack, symbol.symbolData.damage);
-                    IncrementShield(frontAttack, symbol.symbolData.shield);
-                    IncrementFire(frontAttack, symbol.symbolData.fire);
-                    IncrementWeak(frontAttack, symbol.symbolData.weak);
-                    IncrementExpose(frontAttack, symbol.symbolData.expose);
-                    frontAttack.AddCount();
+                    CalculatePlayerData();
                     break;
                 case 1:
                 //Flank Enemy
-                    IncrementDamage(flankAttack, symbol.symbolData.damage);
-                    IncrementShield(flankAttack, symbol.symbolData.shield);
-                    IncrementFire(flankAttack, symbol.symbolData.fire);
-                    IncrementWeak(flankAttack, symbol.symbolData.weak);
-                    IncrementExpose(flankAttack, symbol.symbolData.expose);
-                    flankAttack.AddCount();
+                    CalculatePlayerData();
+                    playerData.SwitchType(1);
                     break;
                 case 2:
                 //AOE (All enemies)
-                    IncrementDamage(AOEAttack, symbol.symbolData.damage);
-                    IncrementShield(AOEAttack, symbol.symbolData.shield);
-                    IncrementFire(AOEAttack, symbol.symbolData.fire);
-                    IncrementWeak(AOEAttack, symbol.symbolData.weak);
-                    IncrementExpose(AOEAttack, symbol.symbolData.expose);
-                    AOEAttack.AddCount();
+                    CalculatePlayerData();
+                    playerData.SwitchType(2);
                     break;
                 default:
                     Debug.Log("Symbol " + symbol.symbolData.name + " doesnt not have a position target");
@@ -140,27 +127,12 @@ public class SlotMachine : MonoBehaviour
         artworkList[o].sprite = newDeck[o].symbolData.artwork;
     }
 
-    public void IncrementDamage(AttackData attack, float amount){
-        if(P_WeakCount.Value == 0)
-            attack.AddDamage(amount);
-        else 
-            attack.AddDamage((float)Math.Ceiling(amount/2));
-    }
-
-    public void IncrementShield(AttackData attack, float amount){
-        attack.AddICShield(amount);
-    }
-
-    public void IncrementFire(AttackData attack, float amount){
-        attack.AddFire(amount);
-    }
-
-    public void IncrementWeak(AttackData attack, float amount){
-        attack.AddWeak(amount);
-    }
-
-    public void IncrementExpose(AttackData attack, float amount){
-        attack.AddExpose(amount);
+    public void CalculatePlayerData(){
+        playerData.AddDamage(symbol.symbolData.damage);
+        playerData.AddShield(symbol.symbolData.shield);
+        playerData.AddFire(symbol.symbolData.fire);
+        playerData.AddWeak(symbol.symbolData.weak);
+        playerData.AddExpose(symbol.symbolData.expose);
     }
 
     public void CopyDeck() {
@@ -261,9 +233,7 @@ public class SlotMachine : MonoBehaviour
     }
 
     public void ResetAttacks(){
-        frontAttack.ResetAttack();
-        flankAttack.ResetAttack();
-        AOEAttack.ResetAttack();
+        playerData.ResetPlayer();
     }
 
     public void UpdateText(){
