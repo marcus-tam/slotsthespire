@@ -152,16 +152,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c2206e195e92c6e1928b6f2d0128718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 5
-  levels: 10
-  mapNode: {fileID: 9055376215968123565, guid: 085df45705cdcde1bbb616e2813ae1ca, type: 3}
-  commonBattleNode: {fileID: 0}
-  eliteBattleNode: {fileID: 0}
-  bossBattleNode: {fileID: 0}
-  marketNode: {fileID: 0}
-  restNode: {fileID: 0}
-  eventNode: {fileID: 0}
-  mapSeed: 2
+  config: {fileID: 11400000, guid: 4c3c062b547795b68827dc9f482b14ed, type: 2}
+  mysteryNode: {fileID: 8981792869180758383, guid: 36df4b724a8fe024487f2014190594f2, type: 3}
+  commonBattleNode: {fileID: 11400000, guid: 8ed8ba155dee4cb3a805622918df2cf0, type: 2}
+  eliteBattleNode: {fileID: 11400000, guid: 872a70a7cc26f7a198eebed195ca9137, type: 2}
+  bossBattleNode: {fileID: 11400000, guid: dc69f1731d7021a39b1dd07f8e53ea6d, type: 2}
+  marketNode: {fileID: 11400000, guid: e9e78e6c0b168bdc78e6a360dbd559fe, type: 2}
+  restNode: {fileID: 11400000, guid: 1fcde9dec46c3181f9525a28d73a38d3, type: 2}
+  eventNode: {fileID: 11400000, guid: f852dfb4308d9173891cb040d6655542, type: 2}
+  treasureNode: {fileID: 11400000, guid: 0af33234d9c2e3ddcbffc6133f28d341, type: 2}
+  mapSeed: 3
 --- !u!4 &73248223
 Transform:
   m_ObjectHideFlags: 0
