@@ -21,7 +21,7 @@ public class EnemySpawner : MonoBehaviour
 
     public GameObject[] GenerateEnemies(){
         //add some function with map and levels 
-        int rand;
+        //int rand;
         for (int i = 0; i < EnemiesToSpawn.Length; i++)
         {
             if(i == EnemiesToSpawn.Length-1)

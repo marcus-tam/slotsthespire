@@ -9,7 +9,7 @@ public class BattleSystem : MonoBehaviour
 
     public GameObject P_Prefab, E_Prefab, selectedTarget;
     public PlayerData playerData;
-    public FloatVariable turn, P_Shield, E_Shield, floorLevel,P_Rolls, P_MaxRolls,E_OG_Damage;
+    public FloatVariable turn, E_Shield, floorLevel,P_Rolls, P_MaxRolls,E_OG_Damage;
     public FloatVariable[] E_Health, E_MaxHP= new FloatVariable[4];
     public Transform P_BattleStation;
     public Transform[] E_BattleStation = new Transform[4];
@@ -24,7 +24,7 @@ public class BattleSystem : MonoBehaviour
     GameObject[] Units = new GameObject[5];
     public int check;
 
-    public GameEvent P_Spin, P_Death, P_Victory, CombatStart, P_EndTurn, P_Reroll, OnUnitTarget;
+    public GameEvent P_Spin, P_Death, P_Victory, CombatStart, P_EndTurn, P_Reroll, OnUnitTarget, P_ShieldReset;
 
     void Start()
     {
@@ -50,6 +50,7 @@ public class BattleSystem : MonoBehaviour
         if (state != BattleState.PLAYERTURN || !hasRolled)
             return;
         DealDMG(E_GameObject[1], 0);
+        P_GameObject.GetComponent<PlayerHealth>().TakeShield(playerData.shield);
         P_GameObject.GetComponent<PlayerHealth>().DecreaseStatusEffects();
         for(int k = 0; k<E_GameObject.Length; k++)
         {
@@ -75,10 +76,9 @@ public class BattleSystem : MonoBehaviour
         {
             if(E_GameObject[i] != null)
             {
-                Debug.Log(E_GameObject[i]+" turn");
-            E_GameObject[i].GetComponent<UnitHealth>().Maintance();
-            E_GameObject[i].GetComponent<EnemyActioner>().PerformAction(E_GameObject[i].GetComponent<UnitHealth>());
-            DealDMG(P_GameObject, i);
+                E_GameObject[i].GetComponent<UnitHealth>().Maintance();
+                E_GameObject[i].GetComponent<EnemyActioner>().PerformAction(E_GameObject[i].GetComponent<UnitHealth>());
+                DealDMG(P_GameObject, i);
             }
         }
         EndEnemyTurn();           
@@ -95,7 +95,7 @@ public class BattleSystem : MonoBehaviour
             if(playerData.type == 2)
             {
                 Debug.Log("Dealing aoe damage");
-                for(int i = 0; i > E_GameObject.Length; i++)
+                for(int i = 0; i < E_GameObject.Length; i++)
                     {
                         if(E_GameObject[i]== null)
                         continue;
@@ -144,7 +144,6 @@ public class BattleSystem : MonoBehaviour
 
     public void EndEnemyTurn() {
         turn.ApplyChange(1.0f);
-        P_Shield.SetValue(0);
         for(int i = 0; i < E_GameObject.Length; i++){
             if(E_GameObject[i] == null)
             continue;
@@ -152,7 +151,7 @@ public class BattleSystem : MonoBehaviour
             E_GameObject[i].GetComponent<UnitHealth>().animator.SetTrigger("OnAttack");
             unitDisplay[i].UpdateDisplay(E_GameObject[i]);
         }
-        
+        P_ShieldReset.Raise(this,playerData.shield);
         state = BattleState.PLAYERTURN;
     }
 
@@ -227,8 +226,28 @@ public class BattleSystem : MonoBehaviour
     }
 
     public void SelectGameObject(int index){
-        selectedTarget = Units[index];
+        if(index == 0)
+            selectedTarget = P_GameObject;
+        if(index > 0)
+            selectedTarget = E_GameObject[index-1];
         OnUnitTarget.Raise(this, selectedTarget);
-        Debug.Log(selectedTarget + " pressed");
+    }
+
+    public void UpdateEnemyDisplay(){
+        for(int i = 0; i < E_GameObject.Length; i++){
+            if(E_GameObject[i]!= null)
+            unitDisplay[i].UpdateDisplay(E_GameObject[i]);
+        }
+    }
+
+    public void dealDMGAOE(Component sender, object data){
+         for(int i = 0; i < E_GameObject.Length; i++)
+                    {
+                        if(E_GameObject[i]== null)
+                        continue;
+                        E_GameObject[i].GetComponent<UnitHealth>().TakeDamage((float)data);
+                        if(E_GameObject[i].GetComponent<UnitHealth>().currentHP <= 0)
+                        EnemyDeath(i);
+                    }
     }
 }

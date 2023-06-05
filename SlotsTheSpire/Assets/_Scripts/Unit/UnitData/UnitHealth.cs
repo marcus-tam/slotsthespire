@@ -43,6 +43,7 @@ public class UnitHealth : MonoBehaviour
         if (!isShielded){
             currentHP -= incomingDamage.Value;
             Debug.Log("hit "+this+": " + incomingDamage.Value);
+            Debug.Log(this+": current health" + currentHP);
         }
         else
             {

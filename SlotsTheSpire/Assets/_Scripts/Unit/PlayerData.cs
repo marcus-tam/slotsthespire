@@ -40,14 +40,19 @@ public class PlayerData : ScriptableObject
     shield += amount;
    }
 
+    public void resetShield(){
+        shield = 0;
+    }
+
     public void SwitchType(float AttackType){
         // 0 - front(default), 1- flank, 2 - AOE
         if(type != AttackType && AttackType != 0)
         {
-            if(type == 1 && type != 2)
+            if(AttackType == 1 && type != 2)
             type = 1;
-            if(type == 2)
+            if(AttackType == 2)
             type = 2;
         }
+        Debug.Log("attack type = " + type);
     }
 }
