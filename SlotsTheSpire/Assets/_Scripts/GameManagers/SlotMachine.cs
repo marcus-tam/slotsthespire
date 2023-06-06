@@ -45,21 +45,28 @@ public class SlotMachine : MonoBehaviour
     public void SpinMachine() {
         for (int i = 0; i < slotSpace.Value; i++)
         {
-            if(i >= newDeck.Count)
+            if(newDeck.Count == 0 && discardDeck.Count != 0)
             {
                 ShuffleNewDeck();
             }
-             if(i == LockIndex){
+            if(newDeck.Count == 0 && discardDeck.Count == 0)
+            {
+                symbol = null;
+                continue;
+            }
+            if(i == LockIndex){
                symbol = lockInSymbol; 
             }else {
-                symbol = newDeck[i];
+                symbol = newDeck[0];
+                newDeck.RemoveAt(0);
             }
+            if(symbol != null){
             activeDeck.Add(symbol);
-            CalculateTurn(i);            
-            
+            CalculateTurn(i); 
+            }
+            if(symbol == null)
+            Debug.Log("Empty symbol slot: " +i);
         }
-
-        Discard();
         if(LockIndex != -1)
         Unlock();
         SetupArt();
@@ -90,7 +97,7 @@ public class SlotMachine : MonoBehaviour
 
     public void SetupArt(){
         for (int i = 0; i < slotSpace.Value; i++){
-            if(activeDeck.Count != 0)
+            if(activeDeck.Count != 0 && i != activeDeck.Count)
             artworkList[i].sprite = activeDeck[i].symbolData.artwork;
         }
     }
@@ -123,8 +130,8 @@ public class SlotMachine : MonoBehaviour
                     Debug.Log("Symbol " + symbol.symbolData.name + " doesnt not have a position target");
                     break;
             }
-
-        artworkList[o].sprite = newDeck[o].symbolData.artwork;
+                Debug.Log(""+symbol.symbolData.Pos.Value);
+        artworkList[o].sprite = activeDeck[o].symbolData.artwork;
     }
 
     public void CalculatePlayerData(){
@@ -143,15 +150,9 @@ public class SlotMachine : MonoBehaviour
     }
 
     public List<SymbolInventoryItem> Shuffle(List<SymbolInventoryItem> list){
-    
         listSize = list.Count;
-        SymbolInventoryItem lockInTemp;
         var rand = new System.Random();
         int randomIndex=0;
-        if(LockIndex != -1){
-            lockInTemp = list[LockIndex];
-            list.RemoveAt(LockIndex);
-            listSize = list.Count;
             for(int i = 0; i < listSize; i++)
             {
             container[0] = list[i];
@@ -159,17 +160,6 @@ public class SlotMachine : MonoBehaviour
             list[i] = list[randomIndex];
             list[randomIndex] = container[0];
             }
-            list.Insert(LockIndex, lockInTemp);
-        }   
-        else{
-            for(int i = 0; i < listSize; i++)
-            {
-            container[0] = list[i];
-            randomIndex = (int)rand.Next(i, listSize);
-            list[i] = list[randomIndex];
-            list[randomIndex] = container[0];
-            }
-        }
         return list;
     }
 
@@ -182,7 +172,7 @@ public class SlotMachine : MonoBehaviour
 
     public void LockIn(int index){
 
-        if(P_Locked.Value == false && P_Rolls.Value != 0 && P_Rolls.Value != 2){
+        if(P_Locked.Value == false && P_Rolls.Value != 0 && P_Rolls.Value != 2 && activeDeck.Count-1 >= index){
             LockIndex = index;
             lockInSymbol = activeDeck[LockIndex];
             artworkList[index].color = Color.blue;
@@ -202,7 +192,7 @@ public class SlotMachine : MonoBehaviour
     }
 
     public void OnHovered(int index){
-        if(activeDeck.Count!=0){
+        if(activeDeck.Count!=0 && activeDeck.Count-1 >= index){
             string symbolDescription = activeDeck[index].symbolData.GetDescription();
             OnHoveredEvent.Raise(this, symbolDescription);
         }

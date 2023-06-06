@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5eb177b4cec16cd4c8827228c6b25dc0, type: 3}
-  m_Name: Defend
+  m_Name: FlankAttack
   m_EditorClassIdentifier: 
-  name: Defend
-  description: Block for 1
+  name: FlankAttack
+  description: Adds flank attacking +3 damage
   upgradedDescription: 
   startingDescription: 
-  ID: 1
-  artwork: {fileID: 21300000, guid: 4e35412c6acf7da4b93a779caef8e5b9, type: 3}
+  ID: 6
+  artwork: {fileID: 21300000, guid: 8afb57fea8c4eea4a8085e91c810380b, type: 3}
   damage:
     UseConstant: 1
-    ConstantValue: 0
+    ConstantValue: 3
     Variable: {fileID: 0}
   upgradedDamage:
     UseConstant: 1
@@ -32,7 +32,7 @@ MonoBehaviour:
     Variable: {fileID: 0}
   shield:
     UseConstant: 1
-    ConstantValue: 5
+    ConstantValue: 0
     Variable: {fileID: 0}
   upgradedShield:
     UseConstant: 1
@@ -48,7 +48,7 @@ MonoBehaviour:
     Variable: {fileID: 0}
   Pos:
     UseConstant: 1
-    ConstantValue: 0
+    ConstantValue: 1
     Variable: {fileID: 0}
   weak: 0
   expose: 0
