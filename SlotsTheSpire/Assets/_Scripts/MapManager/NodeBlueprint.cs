@@ -11,6 +11,7 @@ namespace _Scripts.MapManager
         Market,
         Treasure,
         Event,
+        Mystery,
     }
 }
 

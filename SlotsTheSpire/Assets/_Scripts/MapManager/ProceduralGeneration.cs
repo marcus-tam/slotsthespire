@@ -39,6 +39,9 @@ using Newtonsoft.Json;
 
         void Start()
         {
+
+
+            
             //Local Variable
             Node go;
             nodeBlueprints = GetNodeBlueprints();
@@ -83,17 +86,19 @@ using Newtonsoft.Json;
         private void SpawnObj(Node node)
         {
 
-            GameObject obj = Instantiate(node.getGameObject(), new Vector2(node.point.x, node.point.y), Quaternion.identity);
-            if(obj.GetComponent<NodeButton>()==true)
-            {
-                obj.GetComponent<NodeButton>().x = node.point.x;
-                obj.GetComponent<NodeButton>().y = node.point.y;
-            }
+            GameObject obj = Instantiate(node.getGameObject(), 
+                new Vector2(node.point.x, node.point.y), 
+                Quaternion.identity);
+
+            obj.GetComponent<NodeButton>().x = node.point.x;
+            obj.GetComponent<NodeButton>().y = node.point.y;
+            obj.GetComponent<NodeButton>().onNodeClick = onNodeClick;
+            
             obj.transform.SetParent(this.transform);
             
             //This is a dumb naming convention. This should change later
             obj.name = node.gameObject.name + "__" + node.point.x + "_" + node.point.y;
-            
+
             node.setNewGameObject(obj);
 
         }
@@ -103,9 +108,10 @@ using Newtonsoft.Json;
             string lineName = "Line__" + from.GetHashCode() + "_" + to.GetHashCode();
             LineRenderer lineRenderer = (new GameObject(lineName)).AddComponent<LineRenderer>();
             
+            lineRenderer.useWorldSpace = false; //Set's the line to be in local space
+            
             LineObject lo = new LineObject(lineRenderer, from, to);
 
-            lo.lr.transform.SetParent(this.transform, true);
             lo.lr.startWidth = 0.05f;
             lo.lr.endWidth = 0.05f;
             
@@ -114,6 +120,7 @@ using Newtonsoft.Json;
             
             lo.lr.SetPosition(0, point1);
             lo.lr.SetPosition(1, point2);
+            lo.lr.transform.SetParent(this.transform);
         }
 
         private IDictionary<NodeType, GameObject> GetNodeBlueprints()
@@ -146,9 +153,12 @@ using Newtonsoft.Json;
 
         public void NodeClicked(Component sender, object point)
         {
+            int x = ((int[])point)[0];
+            int y = ((int[])point)[1];
             //if sender is blank do blank
-            Debug.Log(sender+ " Clicked at " + point);
+            Debug.Log(sender + " Clicked at [" + x + "," + y +"]");
             
+            //TODO: Implement player tracking using x,y coordinates 
             
         }
     }

@@ -7,14 +7,14 @@ using UnityEngine;
 public class NodeButton : MonoBehaviour
 {
     public Point point;
-    public int[] asd = new int[2];
+    public int[] location = new int[2];
     public int x, y;
     public GameEvent onNodeClick;
     
     private void OnMouseDown()
     {
-        asd[0] = x;
-        asd[1] = y;
-        onNodeClick.Raise(this, asd);
+        location[0] = x;
+        location[1] = y;
+        onNodeClick.Raise(this, location);
     }
 }
