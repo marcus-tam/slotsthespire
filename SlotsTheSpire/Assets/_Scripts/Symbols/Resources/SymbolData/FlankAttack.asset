@@ -20,7 +20,7 @@ MonoBehaviour:
   artwork: {fileID: 21300000, guid: 8afb57fea8c4eea4a8085e91c810380b, type: 3}
   damage:
     UseConstant: 1
-    ConstantValue: 3
+    ConstantValue: 0
     Variable: {fileID: 0}
   upgradedDamage:
     UseConstant: 1
@@ -48,7 +48,7 @@ MonoBehaviour:
     Variable: {fileID: 0}
   Pos:
     UseConstant: 1
-    ConstantValue: 1
+    ConstantValue: 0
     Variable: {fileID: 0}
   weak: 0
   expose: 0

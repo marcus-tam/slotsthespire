@@ -13,7 +13,7 @@ public class SliderSetter : MonoBehaviour
 
     private void Update()
     {
-        if (Slider != null && Variable != null)
+        //if (Slider != null && Variable != null)
             Slider.maxValue = unitDisplay.unitMaxHealth;
             Slider.value = unitDisplay.unitHealth;
     }

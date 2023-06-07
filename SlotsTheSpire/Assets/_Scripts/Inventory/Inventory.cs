@@ -14,7 +14,6 @@ public class Inventory : MonoBehaviour
     public StateManager stateManager;
     public GameState state;
 
-
     public void Start(){
         potionIndex = -1;
         state = GameState.POTIONSTATE;
@@ -81,6 +80,37 @@ public class Inventory : MonoBehaviour
         }
             
      }
+
+    public void checkItemModifier(SymbolInventoryItem symbolItem)
+    {
+        SymbolData symbol = symbolItem.symbolData;
+        // incremental and decremental 
+        foreach(InventoryItem item in inventory)
+        {
+            if(item.itemData.modifierType == 0)
+            {
+                if(symbol.damage.Value > 0)
+                item.itemData.modifyPlayer(symbol.damage);
+            }
+            if(item.itemData.modifierType == 1)
+            {
+                if(symbol.shield.Value > 0)
+                item.itemData.modifyPlayer(symbol.shield);
+            }
+            if(item.itemData.modifierType == 2)
+            {
+                if(symbol.fire > 0)
+                item.itemData.modifyPlayer(symbol.fire);
+            }
+               
+
+        }
+    }
+
+    public void StartOfCombatEffects()
+    {
+
+    }
 
 }
 

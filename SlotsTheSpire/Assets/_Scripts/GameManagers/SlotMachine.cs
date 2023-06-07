@@ -109,6 +109,7 @@ public class SlotMachine : MonoBehaviour
     }
 
     public void CalculateTurn(int o){
+<<<<<<< Updated upstream
 
             switch (symbol.symbolData.Pos.Value)
             {
@@ -132,9 +133,15 @@ public class SlotMachine : MonoBehaviour
             }
                 Debug.Log(""+symbol.symbolData.Pos.Value);
         artworkList[o].sprite = activeDeck[o].symbolData.artwork;
+=======
+        playerData.inventory.checkItemModifier(activeDeck[o]);
+        CalculatePlayerData();
+        artworkList[o].sprite = activeDeck[o].symbolData.artwork;
+>>>>>>> Stashed changes
     }
 
     public void CalculatePlayerData(){
+
         playerData.AddDamage(symbol.symbolData.damage);
         playerData.AddShield(symbol.symbolData.shield);
         playerData.AddFire(symbol.symbolData.fire);

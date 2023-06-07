@@ -23,6 +23,7 @@ public class BattleSystem : MonoBehaviour
     public UnitDisplay[] unitDisplay;
     GameObject[] Units = new GameObject[5];
     public int check;
+    public Inventory inventory;
 
     public GameEvent P_Spin, P_Death, P_Victory, CombatStart, P_EndTurn, P_Reroll, OnUnitTarget, P_ShieldReset;
 
@@ -43,6 +44,7 @@ public class BattleSystem : MonoBehaviour
         Units[0] = P_GameObject;
         GenerateFloorEnemy();
         ResetBattle();
+        inventory.StartOfCombatEffects();
         state = BattleState.PLAYERTURN;
     }
 
@@ -92,7 +94,7 @@ public class BattleSystem : MonoBehaviour
         }
         
         else{
-            if(playerData.type == 2)
+            if(playerData.type == 2) //Aoe Damage
             {
                 Debug.Log("Dealing aoe damage");
                 for(int i = 0; i < E_GameObject.Length; i++)

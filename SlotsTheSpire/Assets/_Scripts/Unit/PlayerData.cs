@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerData : ScriptableObject
 {
    public float damage, type, fire, weak, expose, shield;
+   public Inventory inventory;
 
     public void Start(){
         ResetPlayer();
@@ -40,10 +41,21 @@ public class PlayerData : ScriptableObject
     shield += amount;
    }
 
+<<<<<<< Updated upstream
+=======
     public void resetShield(){
         shield = 0;
     }
 
+    public void resetTurn(){
+        damage = 0;
+        type = 0;
+        fire = 0;
+        weak = 0;
+        expose = 0;
+    }
+
+>>>>>>> Stashed changes
     public void SwitchType(float AttackType){
         // 0 - front(default), 1- flank, 2 - AOE
         if(type != AttackType && AttackType != 0)

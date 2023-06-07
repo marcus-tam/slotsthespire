@@ -9,7 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 077e102b273ee3845b685a7890b99e24, type: 3}
-  m_Name: P_MaxRolls
+  m_Script: {fileID: 11500000, guid: e5bdbf7a820edab45b3c3d32bdcd64e5, type: 3}
+  m_Name: StrikeDummy
   m_EditorClassIdentifier: 
-  Value: 2
+  displayName: StrikeDummy
+  description: +3 damage to strikes
+  icon: {fileID: 0}
+  modifierType: 0
