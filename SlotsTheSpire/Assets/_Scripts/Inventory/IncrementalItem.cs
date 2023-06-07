@@ -5,10 +5,11 @@ using UnityEngine;
 [CreateAssetMenu (menuName = ("Inventory/item/Incremental"))]
 public class IncrementalItem : ItemData
 {
-    float modifyAmount;
-    
-    public float ModifyPlayer(float amt)
+    public float modifyAmount;
+
+    public override float ModifyPlayerFloat(float amt)
     {
+        Debug.Log("Modifying: "+amt+" by "+ modifyAmount);
         return amt += modifyAmount;
     }
 }

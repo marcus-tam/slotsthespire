@@ -2272,8 +2272,8 @@ MonoBehaviour:
   fireSpirte: {fileID: 21300000, guid: de9d8e24d90a41948861ead147617cf7, type: 3}
   weakSpirte: {fileID: 21300000, guid: ca4a07ad04b0cb34186f29af07bbd393, type: 3}
   playerHealth: {fileID: 11400000, guid: a39a27eada4fe7a4c827abd1faa1eda7, type: 2}
-  playerDamage: {fileID: 11400000, guid: 824c3da36c3239f458e659b5be75063a, type: 2}
-  E_IC_FireDamage: {fileID: 11400000, guid: 5cc4b9b7209bb5748bf60c6522f8ef29, type: 2}
+  playerDamage: {fileID: 0}
+  E_IC_FireDamage: {fileID: 0}
   E_FireCount: {fileID: 11400000, guid: efdb5816acb250c4aae7864c6bcf5162, type: 2}
   P_exposedCount: {fileID: 11400000, guid: 5297a8f96c2313b43bea25c93f101999, type: 2}
   P_fireCount: {fileID: 11400000, guid: 31ed15921d1b5e54097260056460f9e8, type: 2}
@@ -4539,7 +4539,7 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
-  m_ScreenMatchMode: 0
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -10042,7 +10042,7 @@ PrefabInstance:
       objectReference: {fileID: 1252476443}
     - target: {fileID: 132632073148074903, guid: 488edf6a35f47ad45a20c3696fa6515b, type: 3}
       propertyPath: deck.Array.size
-      value: 8
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 132632073148074903, guid: 488edf6a35f47ad45a20c3696fa6515b, type: 3}
       propertyPath: deck.Array.data[0].symbolData
@@ -10059,7 +10059,7 @@ PrefabInstance:
     - target: {fileID: 132632073148074903, guid: 488edf6a35f47ad45a20c3696fa6515b, type: 3}
       propertyPath: deck.Array.data[3].symbolData
       value: 
-      objectReference: {fileID: 11400000, guid: 3f482f7be8e0786488864116de8d54d6, type: 2}
+      objectReference: {fileID: 11400000, guid: 5bf2bab1182ad4d42b9a040199471a80, type: 2}
     - target: {fileID: 132632073148074903, guid: 488edf6a35f47ad45a20c3696fa6515b, type: 3}
       propertyPath: deck.Array.data[4].symbolData
       value: 
@@ -10077,8 +10077,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 6616e2592a4042c4a80514c071c88e4f, type: 2}
     - target: {fileID: 132632073148074904, guid: 488edf6a35f47ad45a20c3696fa6515b, type: 3}
+      propertyPath: clone
+      value: 
+      objectReference: {fileID: 11400000, guid: 4af617e012e605047ab3be4580aac249, type: 2}
+    - target: {fileID: 132632073148074904, guid: 488edf6a35f47ad45a20c3696fa6515b, type: 3}
       propertyPath: inventory.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 132632073148074904, guid: 488edf6a35f47ad45a20c3696fa6515b, type: 3}
       propertyPath: consumables.Array.size
@@ -10104,6 +10108,14 @@ PrefabInstance:
       propertyPath: consumables.Array.data[4]
       value: 
       objectReference: {fileID: 11400000, guid: 1f83a72fd28f99b45b4e1f5044b9a253, type: 2}
+    - target: {fileID: 132632073148074904, guid: 488edf6a35f47ad45a20c3696fa6515b, type: 3}
+      propertyPath: inventory.Array.data[0].itemData
+      value: 
+      objectReference: {fileID: 11400000, guid: fe74c559726d3c444905c3d07304fca1, type: 2}
+    - target: {fileID: 132632073148074904, guid: 488edf6a35f47ad45a20c3696fa6515b, type: 3}
+      propertyPath: inventory.Array.data[0].stackSize
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1794780336760912556, guid: 488edf6a35f47ad45a20c3696fa6515b, type: 3}
       propertyPath: m_Name
       value: GameManger
@@ -12157,6 +12169,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: f48df3a8f6a0f784dbfe135698b727be, type: 2}
     - target: {fileID: 1678821434, guid: ce21257cfdcd8d54da0ca8a538f40dc2, type: 3}
+      propertyPath: inventory
+      value: 
+      objectReference: {fileID: 1803004563}
+    - target: {fileID: 1678821434, guid: ce21257cfdcd8d54da0ca8a538f40dc2, type: 3}
       propertyPath: AOE_Damage
       value: 
       objectReference: {fileID: 11400000, guid: ca10bc75c9aa9c84fb28ef4c3dc0c26b, type: 2}
@@ -12192,6 +12208,14 @@ PrefabInstance:
       propertyPath: playerTurnData
       value: 
       objectReference: {fileID: 11400000, guid: 055a945f50fd64643b88e965ca77151e, type: 2}
+    - target: {fileID: 1678821434, guid: ce21257cfdcd8d54da0ca8a538f40dc2, type: 3}
+      propertyPath: tempSymbolData
+      value: 
+      objectReference: {fileID: 11400000, guid: 4af617e012e605047ab3be4580aac249, type: 2}
+    - target: {fileID: 1678821434, guid: ce21257cfdcd8d54da0ca8a538f40dc2, type: 3}
+      propertyPath: cloneSymbolData
+      value: 
+      objectReference: {fileID: 11400000, guid: 4af617e012e605047ab3be4580aac249, type: 2}
     - target: {fileID: 1678821434, guid: ce21257cfdcd8d54da0ca8a538f40dc2, type: 3}
       propertyPath: OG_Damage.Array.size
       value: 2

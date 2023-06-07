@@ -11,8 +11,6 @@ public abstract class ItemData : ScriptableObject
     //0 = damage, 1 = shield, 2 = fire
     public float modifierType; 
     
-    public float modifyPlayer(float amt){
-    return amt;
-    }
+    public abstract float ModifyPlayerFloat(float amt);
 
 }

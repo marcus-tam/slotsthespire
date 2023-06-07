@@ -9,6 +9,7 @@ public class SlotMachine : MonoBehaviour
 {
     public Deck cardDeck;
     public PlayerData playerData;
+    public Inventory inventory;
     public List<SymbolInventoryItem> newDeck = new List<SymbolInventoryItem>();
     public List<SymbolInventoryItem> discardDeck = new List<SymbolInventoryItem>();
     public List<SymbolInventoryItem> activeDeck = new List<SymbolInventoryItem>();
@@ -18,6 +19,7 @@ public class SlotMachine : MonoBehaviour
     public BoolVariable P_Locked;
     public BattleSystem battleSystem;
     public SymbolInventoryItem symbol, lockInSymbol;
+    public SymbolData cloneSymbolData;
     public List<Image> artworkList = new List<Image>();
     public TextMeshProUGUI rerollsText, deckText, discardText;
     public GameEvent OnHoveredEvent, OnUnfocusEvent, CheckDeck, CheckDiscard, EndTurn, reroll;
@@ -109,44 +111,37 @@ public class SlotMachine : MonoBehaviour
     }
 
     public void CalculateTurn(int o){
-<<<<<<< Updated upstream
-
-            switch (symbol.symbolData.Pos.Value)
+        cloneSymbolData = inventory.checkItemModifier(activeDeck[o].symbolData);
+            switch (symbol.symbolData.Pos)
             {
                 case 0:
                 //Front Enemy
-                    CalculatePlayerData();
                     break;
                 case 1:
                 //Flank Enemy
-                    CalculatePlayerData();
                     playerData.SwitchType(1);
                     break;
                 case 2:
                 //AOE (All enemies)
-                    CalculatePlayerData();
                     playerData.SwitchType(2);
                     break;
                 default:
                     Debug.Log("Symbol " + symbol.symbolData.name + " doesnt not have a position target");
                     break;
             }
-                Debug.Log(""+symbol.symbolData.Pos.Value);
+        Debug.Log(""+symbol.symbolData.Pos);
         artworkList[o].sprite = activeDeck[o].symbolData.artwork;
-=======
-        playerData.inventory.checkItemModifier(activeDeck[o]);
-        CalculatePlayerData();
+        CalculatePlayerData(cloneSymbolData);
         artworkList[o].sprite = activeDeck[o].symbolData.artwork;
->>>>>>> Stashed changes
     }
 
-    public void CalculatePlayerData(){
+    public void CalculatePlayerData(SymbolData calculatedData){
 
-        playerData.AddDamage(symbol.symbolData.damage);
-        playerData.AddShield(symbol.symbolData.shield);
-        playerData.AddFire(symbol.symbolData.fire);
-        playerData.AddWeak(symbol.symbolData.weak);
-        playerData.AddExpose(symbol.symbolData.expose);
+        playerData.AddDamage(calculatedData.damage);
+        playerData.AddShield(calculatedData.shield);
+        playerData.AddFire(calculatedData.fire);
+        playerData.AddWeak(calculatedData.weak);
+        playerData.AddExpose(calculatedData.expose);
     }
 
     public void CopyDeck() {

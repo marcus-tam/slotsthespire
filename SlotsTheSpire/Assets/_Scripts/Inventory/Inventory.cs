@@ -13,6 +13,7 @@ public class Inventory : MonoBehaviour
     public int potionIndex;
     public StateManager stateManager;
     public GameState state;
+    public SymbolData clone;
 
     public void Start(){
         potionIndex = -1;
@@ -81,30 +82,45 @@ public class Inventory : MonoBehaviour
             
      }
 
-    public void checkItemModifier(SymbolInventoryItem symbolItem)
+    public SymbolData checkItemModifier(SymbolData symbol)
     {
-        SymbolData symbol = symbolItem.symbolData;
+        clone.CopySymbol(symbol);
+
         // incremental and decremental 
         foreach(InventoryItem item in inventory)
         {
+            
             if(item.itemData.modifierType == 0)
             {
-                if(symbol.damage.Value > 0)
-                item.itemData.modifyPlayer(symbol.damage);
+                if(clone.damage > 0)
+                {
+                    Debug.Log(item.itemData.name + " modifying damage to " + symbol.name);
+                    clone.damage = item.itemData.ModifyPlayerFloat(clone.damage);
+                }
+                
             }
             if(item.itemData.modifierType == 1)
             {
-                if(symbol.shield.Value > 0)
-                item.itemData.modifyPlayer(symbol.shield);
+                if(clone.shield > 0)
+                {
+                    Debug.Log(item.itemData.name + " modifying shield to " + symbol.name);
+                    clone.shield = item.itemData.ModifyPlayerFloat(clone.shield);
+                }
+                
             }
             if(item.itemData.modifierType == 2)
             {
-                if(symbol.fire > 0)
-                item.itemData.modifyPlayer(symbol.fire);
+                if(clone.fire > 0)
+                {
+                    Debug.Log(item.itemData.name + " modifying fire to " + symbol.name + " type "+item.itemData.GetType());
+                    clone.fire = item.itemData.ModifyPlayerFloat(clone.fire);
+                }
+                
             }
                
 
         }
+        return clone;
     }
 
     public void StartOfCombatEffects()
