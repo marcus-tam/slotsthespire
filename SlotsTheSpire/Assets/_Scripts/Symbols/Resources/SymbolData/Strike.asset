@@ -18,38 +18,14 @@ MonoBehaviour:
   startingDescription: 
   ID: 0
   artwork: {fileID: 21300000, guid: a9d08c860115a27408d03560c7c62549, type: 3}
-  damage:
-    UseConstant: 1
-    ConstantValue: 5
-    Variable: {fileID: 0}
-  upgradedDamage:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  startingDamage:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  shield:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  upgradedShield:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  startingShield:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  Heal:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
-  Pos:
-    UseConstant: 1
-    ConstantValue: 0
-    Variable: {fileID: 0}
+  damage: 5
+  upgradedDamage: 0
+  startingDamage: 0
+  shield: 0
+  upgradedShield: 0
+  startingShield: 0
+  Heal: 0
+  Pos: 0
   weak: 0
   expose: 0
   fire: 0

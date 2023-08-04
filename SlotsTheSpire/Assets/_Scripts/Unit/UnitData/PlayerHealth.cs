@@ -26,11 +26,6 @@ public class PlayerHealth : MonoBehaviour
             maxHP.SetValue(StartingHP);
             currentHP.SetValue(StartingHP);
         }
-            shield.SetValue(0);
-            exposedCount.SetValue(0);
-            fireCount.SetValue(0);
-            weakCount.SetValue(0);
-            DMG.SetValue(0);
     }
 
     public void TakeDamage(FloatVariable incomingDamage){
@@ -73,9 +68,13 @@ public class PlayerHealth : MonoBehaviour
     }
 
     public void TakeDamage(float IC_Damage){
-        
         DMG.SetValue(IC_Damage);
         TakeDamage(DMG);
+    }
+
+    public void TakeFireDamage(){
+        currentHP.ApplyChange(fireCount, true);
+        animator.SetTrigger("OnFire");
     }
 
     public void TakeShield(float incomingShield){
@@ -91,8 +90,10 @@ public class PlayerHealth : MonoBehaviour
         return unit;
     }
 
-    public void GetTarget(){
-        
+    public void TakeStatus(PlayerData unit){
+        weakCount.ApplyChange(unit.weak);
+        exposedCount.ApplyChange(unit.expose);
+        fireCount.ApplyChange(unit.fire);
     }
 
     public void DecreaseStatusEffects(){
@@ -100,7 +101,7 @@ public class PlayerHealth : MonoBehaviour
         exposedCount.ApplyChange(1,true);
         if(fireCount.Value > 0)
         {
-            TakeDamage(fireCount);
+            TakeFireDamage();
             fireCount.ApplyChange(1,true);
         }
         if(weakCount.Value > 0)
@@ -110,6 +111,14 @@ public class PlayerHealth : MonoBehaviour
     public void Heal(float amount){
         currentHP.ApplyChange(amount);
         DamageEvent.Raise(this, amount);
+    }
+    
+    public void ResetPlayer(){
+        shield.SetValue(0);
+        exposedCount.SetValue(0);
+        fireCount.SetValue(0);
+        weakCount.SetValue(0);
+        DMG.SetValue(0);
     }
 
 }

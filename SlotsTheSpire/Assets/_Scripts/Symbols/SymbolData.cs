@@ -11,14 +11,34 @@ public class SymbolData : ScriptableObject
 
     public Sprite artwork;
 
-    public FloatReference damage, upgradedDamage, startingDamage;
-    public FloatReference shield, upgradedShield, startingShield;
-    public FloatReference Heal;
-    public FloatReference Pos;
+    public float damage, upgradedDamage, startingDamage;
+    public float shield, upgradedShield, startingShield;
+    public float Heal;
+    public float Pos;
     public float weak, expose, fire;
-    public bool upgraded ;
+    public bool upgraded;
 
     public string GetDescription(){
         return description;
+   }
+
+   public void ApplyStrength(float strength){
+    damage += strength;
+   }
+
+   public void ApplyDex(float dex){
+    shield += dex;
+   }
+
+   public void CopySymbol(SymbolData data)
+   {
+    name = data.name;
+    description = data.description;
+    damage = data.damage;
+    shield = data.shield;
+    fire = data.fire;
+    expose = data.expose;
+    weak = data.weak;
+    Heal = data.Heal;
    }
 }

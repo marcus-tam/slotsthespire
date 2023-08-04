@@ -13,4 +13,3 @@ MonoBehaviour:
   m_Name: P_Fire_Count
   m_EditorClassIdentifier: 
   Value: 0
-  StartingValue: 0

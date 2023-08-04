@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public GameEvent onInventoryItemChange, onInventoryConsumableChange;
+    public GameEvent onInventoryItemChange, onInventoryConsumableChange,onGoldChange;
     public GameObject target;
     public List<InventoryItem> inventory = new List<InventoryItem>();
     private Dictionary<ItemData, InventoryItem> itemDictionary = new Dictionary<ItemData, InventoryItem>();
@@ -13,7 +13,7 @@ public class Inventory : MonoBehaviour
     public int potionIndex;
     public StateManager stateManager;
     public GameState state;
-
+    public SymbolData clone;
 
     public void Start(){
         potionIndex = -1;
@@ -81,6 +81,62 @@ public class Inventory : MonoBehaviour
         }
             
      }
+
+    public SymbolData checkItemModifier(SymbolData symbol)
+    {
+        clone.CopySymbol(symbol);
+
+        // incremental and decremental 
+        foreach(InventoryItem item in inventory)
+        {
+            if(item.itemData.GetType().ToString() == "IncrementalItem")
+            {
+                if(item.itemData.modifierType == 0)
+            {
+                if(clone.damage > 0)
+                {
+                    Debug.Log(item.itemData.name + " modifying damage to " + symbol.name);
+                    clone.damage = item.itemData.ModifyPlayerFloat(clone.damage);
+                }
+                
+            }
+            if(item.itemData.modifierType == 1)
+            {
+                if(clone.shield > 0)
+                {
+                    Debug.Log(item.itemData.name + " modifying shield to " + symbol.name);
+                    clone.shield = item.itemData.ModifyPlayerFloat(clone.shield);
+                }
+                
+            }
+            if(item.itemData.modifierType == 2)
+            {
+                if(clone.fire > 0)
+                {
+                    Debug.Log(item.itemData.name + " modifying fire to " + symbol.name + " type "+item.itemData.GetType());
+                    clone.fire = item.itemData.ModifyPlayerFloat(clone.fire);
+                }
+                
+            }
+            }
+        }
+        return clone;
+    }
+
+    public void StartOfCombatEffects()
+    {
+        Debug.Log("SoC effects");
+        foreach(InventoryItem item in inventory)
+        {
+            if(item.itemData.GetType().ToString() == "InnateRelics")
+            {
+                Debug.Log("Innate works");
+                item.itemData.ModifyPlayerFloat(0);
+                if(item.itemData.displayName == "PiggyBank")
+                onGoldChange.Raise(this, item.itemData.amount);
+            }
+        }
+    }
 
 }
 

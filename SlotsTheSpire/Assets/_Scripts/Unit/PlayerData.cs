@@ -6,12 +6,19 @@ using UnityEngine;
 public class PlayerData : ScriptableObject
 {
    public float damage, type, fire, weak, expose, shield;
+   public FloatVariable strength, dex;
 
     public void Start(){
         ResetPlayer();
     }
 
-   public void ResetPlayer(){
+    public void ResetPlayer(){
+        ResetData();
+        strength.SetValue(0);
+        dex.SetValue(0);
+    }
+
+   public void ResetData(){
     damage = 0;
     type = 0;
     fire = 0;
@@ -42,6 +49,22 @@ public class PlayerData : ScriptableObject
 
     public void resetShield(){
         shield = 0;
+    }
+
+    public void resetTurn(){
+        damage = 0;
+        type = 0;
+        fire = 0;
+        weak = 0;
+        expose = 0;
+    }
+
+    public void AddStrength(float amt){
+        strength.ApplyChange(amt);
+    }
+
+    public void AddDex(float amt){
+        dex.ApplyChange(amt);
     }
 
     public void SwitchType(float AttackType){

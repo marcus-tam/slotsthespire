@@ -6,7 +6,7 @@ using System;
 
 public class UnitHealth : MonoBehaviour
 {
-    public float maxHP, currentHP, shield, exposeCount, fireCount, weakCount;
+    public float maxHP, currentHP, shield, exposeCount, fireCount, weakCount, strength, dex;
     public FloatVariable DMG;
     public bool isShielded;
     public UnitData unit;
@@ -110,11 +110,10 @@ public class UnitHealth : MonoBehaviour
         weakCount--;
     }
     
-    public void ApplyStatus(float fire, float weak, float expose){
-        Debug.Log(this+"; fire: " + fire + " weak: " + weak +" Expose: " + expose );
-        fireCount += fire;
-        weakCount += weak;
-        exposeCount += expose;
+    public void TakeStatus(PlayerData unit){
+        fireCount += unit.fire;
+        weakCount += unit.weak;
+        exposeCount += unit.expose;
     }
 
     public void Heal(float amount){
@@ -124,5 +123,13 @@ public class UnitHealth : MonoBehaviour
 
     public float getHealth(){
         return currentHP;
+    }
+
+    public void AddStrength(float amt){
+        strength += amt;
+    }
+
+    public void AddDex(float amt){
+        dex += amt;
     }
 }
