@@ -43,7 +43,7 @@ using Newtonsoft.Json;
 
             
             //Local Variable
-            Node go;
+            //Node go;
             nodeBlueprints = GetNodeBlueprints();
             
             //TODO: Change Seeding to be a global configuration 

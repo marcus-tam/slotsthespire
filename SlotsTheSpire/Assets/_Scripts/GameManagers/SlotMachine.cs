@@ -112,6 +112,16 @@ public class SlotMachine : MonoBehaviour
 
     public void CalculateTurn(int o){
         cloneSymbolData = inventory.checkItemModifier(activeDeck[o].symbolData);
+        if(playerData.strength.Value != 0 && cloneSymbolData.damage != 0){
+            cloneSymbolData.ApplyStrength(playerData.strength.Value);
+            Debug.Log("Applying " +playerData.strength.Value+ " strength");
+        }
+        
+        if(playerData.dex.Value != 0 && cloneSymbolData.shield != 0){
+            cloneSymbolData.ApplyDex(playerData.dex.Value);
+            Debug.Log("Applying " +playerData.dex.Value+ " dex");
+        }
+        
             switch (symbol.symbolData.Pos)
             {
                 case 0:
@@ -225,7 +235,7 @@ public class SlotMachine : MonoBehaviour
     }
 
     public void ResetAttacks(){
-        playerData.ResetPlayer();
+        playerData.ResetData();
     }
 
     public void UpdateText(){

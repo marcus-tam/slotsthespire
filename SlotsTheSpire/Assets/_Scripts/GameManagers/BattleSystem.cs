@@ -8,8 +8,8 @@ public class BattleSystem : MonoBehaviour
 {
 
     public GameObject P_Prefab, E_Prefab, selectedTarget;
-    public PlayerData playerData;
-    public FloatVariable turn, E_Shield, floorLevel,P_Rolls, P_MaxRolls,E_OG_Damage;
+    public PlayerData playerData, enemyData;
+    public FloatVariable turn, floorLevel, P_Rolls, P_MaxRolls;
     public FloatVariable[] E_Health, E_MaxHP= new FloatVariable[4];
     public Transform P_BattleStation;
     public Transform[] E_BattleStation = new Transform[4];
@@ -25,7 +25,7 @@ public class BattleSystem : MonoBehaviour
     public int check;
     public Inventory inventory;
 
-    public GameEvent P_Spin, P_Death, P_Victory, CombatStart, P_EndTurn, P_Reroll, OnUnitTarget, P_ShieldReset;
+    public GameEvent P_Spin, P_Death, P_Victory, CombatStart, P_EndTurn, P_Reroll, OnUnitTarget, P_ShieldReset, P_DrawBelt;
 
     void Start()
     {
@@ -39,12 +39,12 @@ public class BattleSystem : MonoBehaviour
         for(int i = 0; i < E_BattleHUD.Length; i++){
             E_BattleHUD[i].SetActive(true);
         }
-        
         P_GameObject = Instantiate(P_Prefab, P_BattleStation);
         Units[0] = P_GameObject;
         GenerateFloorEnemy();
         ResetBattle();
         inventory.StartOfCombatEffects();
+        P_DrawBelt.Raise(this, true);
         state = BattleState.PLAYERTURN;
     }
 
@@ -60,6 +60,7 @@ public class BattleSystem : MonoBehaviour
             unitDisplay[k].UpdateDisplay(E_GameObject[k]);
         }
         P_EndTurn.Raise(this, 1);
+        P_DrawBelt.Raise(this, true);
         EndPlayerTurn();
     }
 
@@ -89,8 +90,9 @@ public class BattleSystem : MonoBehaviour
     public void DealDMG(GameObject target, int index) {
         if(target == P_GameObject)
         {
-            Debug.Log(E_GameObject[index]+ " is hitting the player for " + E_OG_Damage.Value);
-            P_GameObject.GetComponent<PlayerHealth>().TakeDamage(E_OG_Damage.Value);
+            Debug.Log(E_GameObject[index]+ " is hitting the player for " + enemyData.damage);
+            P_GameObject.GetComponent<PlayerHealth>().TakeDamage(enemyData.damage);
+            ApplyStatusEffects(P_GameObject, enemyData);
         }
         
         else{
@@ -102,7 +104,7 @@ public class BattleSystem : MonoBehaviour
                         if(E_GameObject[i]== null)
                         continue;
                         E_GameObject[i].GetComponent<UnitHealth>().TakeDamage(playerData.damage);
-                        E_GameObject[i].GetComponent<UnitHealth>().ApplyStatus(playerData.fire, playerData.weak, playerData.expose);
+                        ApplyStatusEffects(E_GameObject[i], playerData);
                         if(E_GameObject[i].GetComponent<UnitHealth>().currentHP <= 0)
                         EnemyDeath(i);
                     }
@@ -114,7 +116,7 @@ public class BattleSystem : MonoBehaviour
                     if(E_GameObject[j] == null)
                         continue;
                     E_GameObject[j].GetComponent<UnitHealth>().TakeDamage(playerData.damage);
-                    E_GameObject[j].GetComponent<UnitHealth>().ApplyStatus(playerData.fire, playerData.weak, playerData.expose);
+                    ApplyStatusEffects(E_GameObject[j], playerData);
                     if(E_GameObject[j].GetComponent<UnitHealth>().currentHP <= 0)
                         EnemyDeath(j);
                     break;
@@ -128,13 +130,23 @@ public class BattleSystem : MonoBehaviour
                     if(E_GameObject[i] == null)
                         continue;
                     E_GameObject[i].GetComponent<UnitHealth>().TakeDamage(playerData.damage);
-                    E_GameObject[i].GetComponent<UnitHealth>().ApplyStatus(playerData.fire, playerData.weak, playerData.expose);
+                    ApplyStatusEffects(E_GameObject[i], playerData);
                     if(E_GameObject[i].GetComponent<UnitHealth>().currentHP <= 0)
                         EnemyDeath(i);
                     break;
                 }
             }
         }
+    }
+
+    public void ApplyStatusEffects(GameObject target, PlayerData attacker){
+        if(target == P_GameObject)
+        {
+            P_GameObject.GetComponent<PlayerHealth>().TakeStatus(attacker);
+        }
+        else 
+        target.GetComponent<UnitHealth>().TakeStatus(attacker);
+        Debug.Log(attacker + " is applying fire: " +attacker.fire + " weak: " + attacker.weak + " expose: " +attacker.expose +" to " + target);
     }
 
     public void EndPlayerTurn() {
@@ -154,6 +166,7 @@ public class BattleSystem : MonoBehaviour
             unitDisplay[i].UpdateDisplay(E_GameObject[i]);
         }
         P_ShieldReset.Raise(this,playerData.shield);
+        P_DrawBelt.Raise(this, true);
         state = BattleState.PLAYERTURN;
     }
 
@@ -179,8 +192,9 @@ public class BattleSystem : MonoBehaviour
         for(int i = 0; i < E_GameObject.Length; i++){
             E_GameObject[i].GetComponent<UnitHealth>().ZeroShield();
         }
-        E_OG_Damage.SetValue(0);
+        enemyData.ResetData();
         playerData.ResetPlayer();
+        P_GameObject.GetComponent<PlayerHealth>().ResetPlayer();
         hasRolled = false;
         CombatStart.Raise(this,1);
     }

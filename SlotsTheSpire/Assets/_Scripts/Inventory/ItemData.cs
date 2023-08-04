@@ -7,6 +7,7 @@ public abstract class ItemData : ScriptableObject
 
     public string displayName, description;
     public Sprite icon;
+    public float amount;
 
     //0 = damage, 1 = shield, 2 = fire
     public float modifierType; 

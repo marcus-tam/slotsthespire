@@ -15,5 +15,6 @@ MonoBehaviour:
   displayName: FireWand
   description: Whenever you apply fire +1
   icon: {fileID: 21300000, guid: de9d8e24d90a41948861ead147617cf7, type: 3}
+  amount: 0
   modifierType: 2
-  modifyAmount: 1
+  modifyAmount: 6

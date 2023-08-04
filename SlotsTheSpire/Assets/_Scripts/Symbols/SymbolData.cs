@@ -22,6 +22,14 @@ public class SymbolData : ScriptableObject
         return description;
    }
 
+   public void ApplyStrength(float strength){
+    damage += strength;
+   }
+
+   public void ApplyDex(float dex){
+    shield += dex;
+   }
+
    public void CopySymbol(SymbolData data)
    {
     name = data.name;

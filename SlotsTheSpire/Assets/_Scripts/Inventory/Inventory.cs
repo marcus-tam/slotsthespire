@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public GameEvent onInventoryItemChange, onInventoryConsumableChange;
+    public GameEvent onInventoryItemChange, onInventoryConsumableChange,onGoldChange;
     public GameObject target;
     public List<InventoryItem> inventory = new List<InventoryItem>();
     private Dictionary<ItemData, InventoryItem> itemDictionary = new Dictionary<ItemData, InventoryItem>();
@@ -89,8 +89,9 @@ public class Inventory : MonoBehaviour
         // incremental and decremental 
         foreach(InventoryItem item in inventory)
         {
-            
-            if(item.itemData.modifierType == 0)
+            if(item.itemData.GetType().ToString() == "IncrementalItem")
+            {
+                if(item.itemData.modifierType == 0)
             {
                 if(clone.damage > 0)
                 {
@@ -117,15 +118,24 @@ public class Inventory : MonoBehaviour
                 }
                 
             }
-               
-
+            }
         }
         return clone;
     }
 
     public void StartOfCombatEffects()
     {
-
+        Debug.Log("SoC effects");
+        foreach(InventoryItem item in inventory)
+        {
+            if(item.itemData.GetType().ToString() == "InnateRelics")
+            {
+                Debug.Log("Innate works");
+                item.itemData.ModifyPlayerFloat(0);
+                if(item.itemData.displayName == "PiggyBank")
+                onGoldChange.Raise(this, item.itemData.amount);
+            }
+        }
     }
 
 }

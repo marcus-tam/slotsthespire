@@ -18,3 +18,5 @@ MonoBehaviour:
   weak: 0
   expose: 0
   shield: 0
+  strength: {fileID: 11400000, guid: f4cf44f939eab524cb2f96b6304bd722, type: 2}
+  dex: {fileID: 11400000, guid: 3a33b2012ce229b4982e0b071778cc4b, type: 2}
