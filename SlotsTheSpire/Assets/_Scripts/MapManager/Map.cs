@@ -175,7 +175,7 @@ namespace _Scripts.MapManager
             nodes.Clear();
         }
 
-        private List<Node> FetchLayer(int layer)
+        public List<Node> FetchLayer(int layer)
         {
             List<Node> layerNodes = new List<Node>();
             foreach (var node in nodes)
